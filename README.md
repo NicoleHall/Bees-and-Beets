@@ -1,57 +1,285 @@
-# Rough-Sketch
-## Built with Ruby on Rails
+---
+title: The Pivot
+length: 2 weeks
+tags:
+type: project
+---
 
-### Authors
-[Toni Rib](http://github.com/tonirib), [Taylor Moore](https://github.com/Tman22), [Brenna Martenson](https://github.com/martensonbj)
+## Project Description
 
-This project was created as a part of the curriculum for the [Turing School of Software & Design](http://turing.io).
+Your Little Shop of Orders application was *almost* great, but it turns out that we need to *pivot* the business model.
 
-### Overview
+In this project, you'll build upon an existing implementation of Little Shop. You will transform your restaurant ordering site into a platform that handles multiple, simultaneous businesses. Each business will have their own name, unique URL pattern, items, orders, and administrators.
 
-This Rails application is a marketplace for artists. An artist can register an account and add art pieces to sell. Users can register accounts to purchase the available art pieces. An admin can regulate the process by transitioning order status and managing art for artists.
+The project requirements are listed below:
 
-### Live Version
+* [Learning Goals](#learning-goals)
+* [Teams](#teams)
+* [Setup](#setup)
+* [Workflow](#workflow)
+* [Technical Expectations](#technical-expectations)
+* [Pivots](#pivots)
+* [Base Data](#base-data)
+* [Evaluation](#evaluation)
 
-You can find a live version of this application on Heroku at: [https://rough-sketch.herokuapp.com/](https://rough-sketch.herokuapp.com/)
+## <a name="learning-goals"></a> Learning Goals
 
-### Setup
+During this project, you'll learn about:
 
-To set up a local copy of this project, perform the following:
+* Working with Multitenancy
+* Implementing JavaScript
+* Securing a Rails App
+* Sending Email
+* Creating Seed files
 
-  1. Clone the repository: `git clone https://github.com/martensonbj/little_shop.git`
-  2. `cd` into the project's directory
-  3. Run `bundle install`
-  4. Run `rake db:create db:migrate db:seed` to set up the postgres database and seed it with users, artists, categories, and items.
-    - If you would like to create your own users, artist, items, and categories do not run `db:seed`
-    - The seed file does not include any setup for admins, so those must be created manually by running `rails c` and adding a user to the database with role = 2
-  5. Run the application in the dev environment by running `rails s`
+## <a name="teams"></a> Teams
 
-### App Features
+The project will be completed by teams of three to four developers over the span of two weeks.
 
-The app is designed for both the mobile and desktop experience. Some of the main features of the app include:
+You will name a team leader that will:
 
-#### Users
+* Transform business requirements into user stories.
+* Work with the customer to establish team priorities.
+* Seek clarification from the customer when a user story is not clear.
+* Make sure that all the team members are on track and collaborating following a professional workflow.
 
-Users can browse the art inventory by both artist and category and filter based on a particular category or artist name. Each item has an image, title, price, artist name, and description associated with it. Users can add any items that are active to their cart. Users do not need to be signed in to browse items or add them to their cart. However, upon checkout, if a user is not signed in they will be asked to create an account or login before being allowed to check out. A user cannot add any items, but can choose to change their account to an "artist" account at any point. However, once they are signed up as an artist, they cannot change back to a default user. Users can also view any of their past orders and the order status.
+Like all projects, individual team members are expected to:
 
-#### Artists
+* Seek out features and responsibilities that are uncomfortable.
+* Support your teammates so that everyone can collaborate and contribute.
+* Follow a professional workflow when developing a feature.
 
-Users can also sign up as an "artist" which allows them to add items to sell. Each item must include either an uploaded photo or a link to an online image path before it is allowed to be active. Artists can only add art for themselves, and they are allowed to both edit and delete any art that they own. Artists can also upload a profile photo that shows up next to their name in the art index. Artist also have all of the same priviledges as default users.
+## <a name="setup"></a> Setup
 
-#### Admins
+### Project Starting Point
 
-Admins are the 'master user' of the site. An admin can add art for any registered artist and also has the ability to edit and delete art from any artist. They are also able to view and change the status of any order that has been placed through the site. Like a default user, they are also able to shop and place orders of their own.
+You'll build upon an existing code base assigned by the instructors. You need to work on adapting and improving this codebase, not building your own thing from scratch. This is sometimes called "brownfield" development, and you'll soon know why.
 
-#### Other Features
+### Exploring the Little Shop App
 
-The app is integrated with a test version of Stripe for mock-processing of payment at checkout. In addition, it uses Amazon Web Services S3 to store and host any image uploads. It also utilizes the jQuery library for live filtering of content.
+As a group, dig into the code base and pay particular attention to:
 
-### Test Suite
+* Test coverage and quality
+* Architectural concerns
+* Components that are particularly strong or weak
+* General strengths and weaknesses
 
-The test suite tests the application on multiple levels. To run all of the tests, run `rake test` from the terminal in the main directory of the project. The feature tests (integration tests) rely mainly on the [capybara gem](https://github.com/jnicklas/capybara) for navigating the various application views.
+### Beginning The Pivot
 
-The project also utilizes the [simplecov gem](https://github.com/colszowka/simplecov) for quick statistics on code coverage.
+Once you've explored the base project, the team leader will:
 
-### Dependencies
+* Create a new, blank repository on GitHub named `the_pivot`
+* Clone the Little Shop project that you'll be working with to your local machine
+* Go into that project directory and `git remote rm origin`
+* Add the new repository as a remote `git remote add origin git://new_repo_url`
+* Push the code `git push origin master`
+* Add the other team members as collaborators in Github
 
-This application depends on many ruby gems, all of which are found in the `Gemfile` and can be installed by running `bundle install` from the terminal in the main directory of the project.
+Once the team leader has done this, the other team members can fork the new repo.
+
+### Tagging the Start Point
+
+We want to be able to easily compare the change between the start of the project and the end. For that purpose, create a tag in the repo and push it to GitHub:
+
+* $ git tag -a little_shop_v1
+* $ git push --tags
+
+### Restrictions & Outside Code
+
+Your project should evolve, refactor, and clean up the code you inherit. This includes deleting redundant, broken, or obsolete code. However, you should **not** throw out the previous work wholesale.
+
+Furthermore, there should be *no reduction in functionality* except when explicitly called for by new requirements.
+
+### Project Management Tool
+
+There are many popular project management tools out there. For this project we'll use a lightweight tool that wraps GitHub issues: [Waffle.io](https://waffle.io/)
+
+Setup a Waffle project for your new repo. Your team members and instructors should be added to the project so they can create, edit, and comment on issues.
+
+## <a name="workflow"></a> Workflow
+
+### Client Interaction
+
+You will meet with the client frequently to obtain his/her business needs and correct course. You will transform these requirements into user stories.
+
+A feature will not be considered complete until it is working on production. You must assume that your client doesn't have any programming experience. You will have to learn how to manage expectations.
+
+The stories as written and prioritized in your project management tool will be the authoritative project requirements. They may go against and likely go beyond the general requirements in this project description.
+
+As the stories clearly define the customer's expectations, your application needs to **exactly** follow the stories as they've been developed with your customer. A 95% implementation is wrong.
+
+If you want to deviate from the story as it's written, you need to discuss that with your client and get approval to change the story *first*.
+
+### User Stories
+
+User stories follow this pattern:
+
+*As a [user], when I [do something], I [expect something].*
+
+Examples:
+
+* As an admin, when I click on dashboard, I can see all the users listed in the page.
+* As a store admin, when I visit the orders page, I can see the orders listed there by status.
+
+### Working with Git
+
+Once you have written the user stories with your client, each team member should:
+
+1. Select a story from the project management tool.
+2. If the story is not clear, add comments or request clarification.
+3. Create a feature branch in your *local* repo.
+4. Write a feature test.
+5. Implement the requested feature.
+6. Merge the latest master into the requested feature to make sure that all the tests are passing.
+7. Commit referencing the issue that you are working on in the commit message. Check this [guide](https://help.github.com/articles/closing-issues-via-commit-messages/) for more information.
+8. Push the *feature* branch to the *remote* repo.
+9. Submit a pull request asking to merge the branch into *master*.
+10. A teammate reviews the code for quality and functionality.
+11. The teammate merges the pull request and deletes the remote branch.
+
+## <a name="technical-expectations"></a> Technical Expectations
+
+You are to extend Little Shop so that it can handle multiple, simultaneous businesses. Each business should have:
+
+* A unique name
+* A unique URL pattern (http://example.com/name-of-business)
+* Unique items
+* Unique orders
+* Unique administrators
+
+The Pivot should be able to handle the following users:
+
+### Guest Customer
+
+As a guest customer, I should be able to:
+
+* Visit different businesses.
+* Add items from multiple businesses into a single cart.
+* Log in or create an account before completing checkout.
+
+### Registered Customer
+
+As an registered customer, I should be able to:
+
+* Make purchases on any business
+* Manage my account information
+* View my purchase history
+
+### Business Admin
+
+As a business admin, I should be able to:
+
+* Manage items on my business
+* Update my business information
+* Manage other business admins for your store
+
+### Platform Admin
+
+As a platform admin, I should be able to:
+
+* Approve or decline the creation of new businesses
+* Take a business offline / online
+* Perform any functionality restricted to business admins
+
+## <a name="pivots"></a> Pivots
+
+Your group will be assigned one of the following problem domains to pivot Little Shop:
+
+### Collector Items
+
+How many times did you want to buy that old Pacman arcade so that you could put it next to that Atari console? Let's rework Little Shop into a platform to bid on collectors' items.
+
+### Farmers' Market
+
+Organic vegetables that grow in innercity sidewalks are a great source of vitamins. Let's rework Little Shop into a marketplace for local produce.
+
+### Lending
+
+Micro-lending is a powerful tool for social progress. Let's rework Little Shop
+into a micro-lending platform.
+
+### Jobs
+
+Employment is key to quality of life. Let's rework our Little Shop into a platform
+to help people find great jobs.
+
+### Lodging
+
+Experiencing other cultures is one of the strongest ways to build our understanding
+of humanity. Let's make it easier for people to open their homes to travelers.
+
+### Photos
+
+People hated our restaurant, but they loved our product photos. Let's pivot
+the platform to sell photography, providing our customers a "whitelabel" experience.
+
+### Tickets
+
+Who wants to stand in line for tickets the day they come out? Nobody. Instead you
+can just pay 50-500% more to buy them from someone else.
+
+## <a name="base-data"></a> Base Data
+
+You should have the following data pre-loaded in your marketplace:
+
+* 20 total businesses
+* 10 categories
+* 50 items per category
+* 100 registered customers, one with the following data:
+  * Username: josh@turing.io
+  * Password: password
+* 10 orders per registered customer
+* 1 business admins per business
+  * Username: andrew@turing.io
+  * Password: password
+* 1 platform administrators
+  * Username: jorge@turing.io
+  * Password: password
+
+It creates a much stronger impression of your site if the data is plausible. We recommend creating a few "template" businesses that have real listings, then replicating those as needed. You could also use the [Faker](https://github.com/stympy/faker) gem.
+
+## <a name="evaluation"></a> Evaluation
+
+You'll be graded on each of the criteria below with a score of (1) well below
+expectations, (2) below expectations, (3) as expected, (4) better than expected.
+
+### Feature Delivery
+
+**1. Completion**
+
+* 4: Team completed all the user stories and requirements set by the client in timely manner.
+* 3: Team completed all the user stories and requirements set by the client.
+* 2: Team completed most of the user stories and requirements set by the client.
+* 1: Team completed the user stories and requirements partially.
+
+**2. Organization**
+
+* 4: Team used a project management tool and updated their progress in real-time.
+* 3: Team used a project management tool to keep their project organized.
+* 2: Team used a project management tool but didn't update the progress frequently.
+* 1: Team failed to use a project management tool to track its progress.
+
+### Technical Quality
+
+**1. Test-Driven Development**
+
+* 4: Project shows exceptional use of testing at different layers (above 95% coverage).
+* 3: Project shows adequate testing (90% - 95% coverage).
+* 2: Project shows gaps in test usage/coverage/design (85 - 90% coverage).
+* 1: Project lacks sufficient testing (under 85% coverage).
+
+**2. Code Quality**
+
+* 4: Project demonstrates exceptionally well factored code.
+* 3: Project demonstrates solid code quality and MVC principles.
+* 2: Project demonstrates some gaps in code quality and/or application of MVC principles.
+* 1: Project demonstrates poor factoring and/or understanding of MVC.
+
+### Product Experience
+
+**1. User Experience**
+
+* 4: Project exhibits a production-ready and polished UX.
+* 3: Project exhibits a production-ready user experience.
+* 2: Project exhibits some gaps in the UX.
+* 1: Project exhibits inattention to the user experience.
