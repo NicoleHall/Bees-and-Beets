@@ -3,7 +3,7 @@
 
   <%= render partial: "layouts/head" %>
 
-  <body class="landing_page">
+  <body class="landing-page">
 
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -12,19 +12,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.0.0/imagesloaded.pkgd.js"></script>
 
-    <%= render partial: "layouts/navbar" %>
+    <%= render partial: "layouts/home_navbar" %>
 
     <div class="container center-align">
       <%= yield %>
     </div>
-
-    <script type="text/javascript">
-      $( document ).ready(function(){
-        $(".button-collapse").sideNav();
-        $('.slider').slider({full_width: true, indicators: false});
-        $('.caption').css({'opacity' : 1})
-      })
-    </script>
 
   </body>
 </html>
