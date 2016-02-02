@@ -51,13 +51,16 @@ a:hover {
 /* HOME INDEX PAGE */
 
 h1.home_title {
-  background-image: url('bees_beets_logo_black.png');
+  /*background-image: url('bees_beets_logo_black.png');
+  background-color: rgba(255,255,255,0.7);*/
+  background-image: url('bees_beets_logo_white.png');
+  background-color: rgba(0,0,0,0.7);
   width: 100%;
   height: 123px;
   position: relative;
   top: 80px;
   border-radius: 5px;
-  background-color: rgba(255,255,255,0.7);
+
 }
 
 .home_enter_link {
