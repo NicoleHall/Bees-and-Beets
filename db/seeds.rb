@@ -78,19 +78,59 @@ class Seed
     vendors = Vendor.all
     vendors.each do |vendor|
       items = []
-      items = Item.create!(
-      title: Faker::SlackEmoji.food_and_drink.gsub(":",""),
-      price: Faker::Commerce.price,
-      description: Faker::Hipster.paragraph,
-      status: rand(2),
-      image_path: Faker::Place
-      )
-      vendor.items <<
+      100.times do |i|
+        items << Item.create!(
+        title: Faker::SlackEmoji.food_and_drink.gsub(":",""),
+        price: Faker::Commerce.price,
+        description: Faker::Hipster.paragraph,
+        status: rand(2),
+        image_path: "http://lorempixel.com/600/600/food"
+        )
+      end
+      vendor.items << items
     end
   end
 
-end
+  def generate_addresses
+    customers = User.where(role: 0)
+    customers.each do |customer|
+      customer.address.create!(
+      street: Faker::Address.street_address,
+      city: Faker::Address.city,
+      state: Faker::Address.state_abbr,
+      zipcode: Faker::Address.zip
+      )
+    end
+  end
 
+  def generate_orders
+    customers = User.where(role: 0)
+    vendors = Vendor.take(20)
+    customers.each do |customer|
+      10.times do |i|
+        customer.orders.create!(
+          address_id: customer.address,
+          user_id: customer.id,
+          status: rand(4),
+          vendor_id: vendors.sample.id
+        )
+      end
+    end
+  end
+
+  def generate_order_items
+    orders = Order.all
+    orders.each do |order|
+      item_ids = order.vendor.items.pluck(:id)
+      3.times do |i|
+        order.order_items.create!(
+          item_id: item_ids.sample,
+          quantity: rand(8)
+        )
+      end
+    end
+  end
+end
 
 
 
