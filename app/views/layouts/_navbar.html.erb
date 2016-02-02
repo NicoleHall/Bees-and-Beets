@@ -1,6 +1,6 @@
 <nav>
   <div class="nav-wrapper" >
-    <%= link_to "RoughSketch", root_path, class: "brand-logo" %>
+    <%= link_to "Bees&Beets", root_path, class: "brand-logo" %>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
     <!-- DESKTOP NAV -->
@@ -33,30 +33,16 @@
         <li><%= link_to "Login", login_path %></li>
       <% end %>
 
-      <% if current_admin? %>
-        <li><%= link_to "View All Items", admin_items_path %></li>
-        <li><%= link_to "Browse by Artist", artists_path %></li>
-        <li><%= link_to "Browse by Category", categories_path %></li>
-      <% else %>
-        <li><%= link_to "View All Items", items_path %></li>
-        <li><%= link_to "Browse by Artist", artists_path %></li>
-        <li><%= link_to "Browse by Category", categories_path %></li>
-      <% end %>
+        <li><%= link_to "View All Vendors", "#" %></li>
+        <li><%= link_to "View Categories", "#" %></li>
     </ul>
 
     <!-- MOBILE NAV -->
     <ul class="side-nav" id="mobile-demo">
-      <li><strong><%= link_to "RoughSketch", root_path %></strong></li>
+      <li><strong><%= link_to "Bees&Beets", root_path %></strong></li>
 
-      <% if current_admin? %>
-        <li><%= link_to "View All Items", admin_items_path %></li>
-        <li><%= link_to "Browse by Artist", artists_path %></li>
-        <li><%= link_to "Browse by Category", categories_path %></li>
-      <% else %>
-        <li><%= link_to "View All Items", items_path %></li>
-        <li><%= link_to "Browse by Artist", artists_path %></li>
-        <li><%= link_to "Browse by Category", categories_path %></li>
-      <% end %>
+        <li><%= link_to "View All Vendors", "#" %></li>
+        <li><%= link_to "ViewCategories", "#" %></li>
 
       <li><%= link_to "View Cart", cart_path %></li>
 
