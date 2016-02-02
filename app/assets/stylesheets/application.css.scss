@@ -82,6 +82,18 @@ h1.home_title {
     margin: 0 auto;
 }
 
+/* NEW CATEGORIES INDEX PAGE */
+
+.categories .card ul {
+    padding: 0;
+    text-align: left;
+    margin-left: 25px;
+    li {
+      list-style-type: disc;
+    }
+}
+
+
 /* NAVBAR */
 nav {
   background-color: transparent;
