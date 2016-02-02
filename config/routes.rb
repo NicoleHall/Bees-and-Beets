@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
   get "/dashboard", to: "users#show"
+  get "/categories_2", to: "categories#index_2"
 
   root "home#index"
 end
