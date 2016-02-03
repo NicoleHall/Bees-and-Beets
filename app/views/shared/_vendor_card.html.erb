@@ -1,0 +1,16 @@
+<div class="grid-item">
+  <div class="card" id="<%= vendor.name %>">
+    <a href="#" class="card-image">
+      <% if vendor.file_upload_file_name.nil? %>
+        <%= image_tag vendor.image_path %>
+      <% elsif vendor.file_upload_file_name %>
+        <%= image_tag vendor.file_upload.url(:large) %>
+      <% end %>
+    </a>
+    <div class="card-action">
+      <span class="card-title">
+        <%= link_to vendor.name, "#" %>
+      </a></span>
+    </div>
+  </div>
+</div>

@@ -9,20 +9,12 @@ class GuestCanViewItemsSortedByArtistTest < ActionDispatch::IntegrationTest
 
     visit vendors_path
 
-    assert page.has_content?(vendor_1.name)
     within "\##{vendor_1.name}" do
-      assert page.has_content?(vendor_1.items.first.title)
-      assert page.has_content?(vendor_1.items.last.title)
-      refute page.has_content?(vendor_2.items.first.title)
-      refute page.has_content?(vendor_2.items.last.title)
+      assert page.has_content?(vendor_1.name)
     end
 
-    assert page.has_content?(vendor_2.name)
     within "\##{vendor_2.name}" do
-      assert page.has_content?(vendor_2.items.first.title)
-      assert page.has_content?(vendor_2.items.last.title)
-      refute page.has_content?(vendor_1.items.first.title)
-      refute page.has_content?(vendor_1.items.last.title)
+      assert page.has_content?(vendor_2.name)
     end
 
     refute page.has_content?(user.full_name)

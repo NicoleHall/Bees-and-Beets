@@ -5,7 +5,6 @@ FactoryGirl.define do
     title
     image_path "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTmmnVDNMRzWNavHqRRaaHMyY_e4_qg5QsoBIGxRNhuhJmNdRUO"
     association :vendor, factory: :vendor
-    # vendor
     category
   end
 

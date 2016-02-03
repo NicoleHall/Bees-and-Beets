@@ -1,19 +1,19 @@
 $(document).ready(function () {
-  var $artists = $('.artist');
+  var $vendors = $('.vendor');
   var $categories = $('.category');
   var $orders = $('.order');
 
-  $('#artist_filter_name').on('keypress', function () {
+  $('#vendor_filter_name').on('keypress', function () {
     var currentName = this.value.toLowerCase();
 
-    $artists.each(function (index, artist) {
-      var $artist = $(artist);
-      var $artistName = $artist.find('h2 span').text().toLowerCase();
+    $vendors.each(function (index, vendor) {
+      var $vendor = $(vendor);
+      var $vendorName = $vendor.find('h2 span').text().toLowerCase();
 
-      if ($artistName.startsWith(currentName)) {
-        $artist.show();
+      if ($vendorName.startsWith(currentName)) {
+        $vendor.show();
       } else {
-        $artist.hide();
+        $vendor.hide();
       }
     });
   });
