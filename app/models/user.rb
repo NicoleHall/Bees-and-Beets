@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :items
 
+
   has_attached_file :file_upload,
                     styles: { medium: "300x300>", thumb: "100x100>" },
                     default_url: "https://www.weefmgrenada.com/images/na4.jpg"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119183846) do
+ActiveRecord::Schema.define(version: 20160203211841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,16 +31,16 @@ ActiveRecord::Schema.define(version: 20160119183846) do
     t.datetime "updated_at",                           null: false
     t.integer  "price"
     t.text     "description"
-    t.integer  "user_id"
     t.integer  "status",                   default: 1
     t.string   "file_upload_file_name"
     t.string   "file_upload_content_type"
     t.integer  "file_upload_file_size"
     t.datetime "file_upload_updated_at"
+    t.integer  "vendor_id"
   end
 
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
-  add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
+  add_index "items", ["vendor_id"], name: "index_items_on_vendor_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
@@ -82,8 +82,21 @@ ActiveRecord::Schema.define(version: 20160119183846) do
     t.datetime "file_upload_updated_at"
   end
 
+  create_table "vendors", force: :cascade do |t|
+    t.integer  "status",                   default: 0
+    t.string   "name"
+    t.string   "description"
+    t.string   "image_path"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "file_upload_file_name"
+    t.string   "file_upload_content_type"
+    t.integer  "file_upload_file_size"
+    t.datetime "file_upload_updated_at"
+  end
+
   add_foreign_key "items", "categories"
-  add_foreign_key "items", "users"
+  add_foreign_key "items", "vendors"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"

@@ -1,0 +1,20 @@
+<div class="filter">
+  <label>Filter By Vendor:</label>
+  <%= text_field :vendor, :filter_name %>
+</div>
+
+<% @vendors.each do |vendor| %>
+  <div class="vendor">
+    <h2>
+      <% if vendor.file_upload_file_name %>
+        <%= image_tag vendor.file_upload.url(:thumb), class: "vendor_thumb circle"%>
+      <% end %>
+      <span><%= link_to vendor.name, vendor_path(vendor) %></span>
+    </h2>
+    <div id="<%= vendor.name %>" class="grid">
+      <% vendor.items.each do |item| %>
+        <%= render partial: 'shared/item_card', locals: { item: item } %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
