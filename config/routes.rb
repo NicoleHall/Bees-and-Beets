@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :items, only: [:index, :show, :destroy]
+  namespace :vendor, path: ':vendor', as: :vendor do
+    resources :items, only: [:index, :show, :destroy]
+  end
+  resources :vendors, only: [:index, :show]
   resources :categories, only: [:show, :index], param: :slug
   resources :cart_items, only: [:create, :destroy, :update]
 
@@ -25,6 +28,5 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#destroy"
   get "/dashboard", to: "users#show"
   get "/categories_2", to: "categories#index_2"
-
   root "home#index"
 end
