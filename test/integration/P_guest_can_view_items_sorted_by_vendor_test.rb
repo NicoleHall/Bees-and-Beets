@@ -7,7 +7,8 @@ class GuestCanViewItemsSortedByArtistTest < ActionDispatch::IntegrationTest
     vendor_1, vendor_2 = create_list(:vendor_with_items, 2)
     user = create(:user)
 
-    visit vendors_path
+    visit root_path
+    click_on "Shop Vendors"
 
     within "\##{vendor_1.name}" do
       assert page.has_content?(vendor_1.name)
