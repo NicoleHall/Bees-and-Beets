@@ -152,6 +152,18 @@ nav ul a:hover {
 
 /* BUTTONS */
 
+.row.shop_buttons {
+  position: relative;
+  top: 75px;
+  .btn {
+    height: 60px;
+  }
+  a {
+    padding: 12px;
+  }
+}
+
+
 .remove-item-button {
   font-size: 14px;
   position: relative;
@@ -190,13 +202,13 @@ nav ul a:hover {
 
 .btn {
   margin: 3px;
-  background-color: #6C8672!important;
-  color: #C4D4AF
+  background-color: rgba(0,0,0,0.5)!important;
+  color: #fff
 }
 
 .btn:hover {
-  background-color: #C4D4AF!important;
-  color: #6C8672;
+  background-color: rgba(0,0,0,0.8)!important;
+  color: #ccc;
 }
 
 .btn_edit {
