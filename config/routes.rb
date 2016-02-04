@@ -12,13 +12,12 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
   end
 
-  # resources :users,
-  #           only: [:new, :create, :show, :edit, :update],
-  #           param: :slug do
-  #   get "/cart", to: "cart_items#index"
-  #   resources :orders, only: [:index, :create, :show]
-  #   resources :items, only: [:new, :create, :edit, :update]
-  # end
+  resources :users,
+            only: [:new, :create, :show, :edit, :update],
+            param: :slug do
+    # get "/cart", to: "cart_items#index"
+    # resources :orders, only: [:index, :create, :show]
+  end
   #
   # namespace :admin do
   #   get "/dashboard", to: "users#show"
