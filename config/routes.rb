@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
   resources :vendors, only: [:index, :show]
 
-  resources :categories, only: [:index]
+  resources :categories, only: [:index, :show]
 
   namespace :category, path: ':category', as: :category do
     resources :items, only: [:index]
