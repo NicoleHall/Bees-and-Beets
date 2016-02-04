@@ -14,15 +14,14 @@ class UserCanEditTheirInfoTest < ActionDispatch::IntegrationTest
     visit dashboard_path
     click_on "Edit Info"
 
+
     assert_equal edit_user_path(user), current_path
 
-    fill_in "City", with: "Gotham"
-    select("New York", from: "user_state")
-    click_on "Update User"
+    fill_in "First name", with: "Harry"
+    click_on "Submit"
 
     assert_equal dashboard_path, current_path
-    assert page.has_content? "Gotham"
-    assert page.has_content? "NY"
+    assert page.has_content? "Harry"
   end
 
   test "user cannot leave required fields blank when updating info" do
@@ -40,8 +39,8 @@ class UserCanEditTheirInfoTest < ActionDispatch::IntegrationTest
 
     assert_equal edit_user_path(user), current_path
 
-    fill_in "City", with: ""
-    click_on "Update User"
+    fill_in "First name", with: ""
+    click_on "Submit"
 
     assert page.has_content? "Incorrect user information"
   end

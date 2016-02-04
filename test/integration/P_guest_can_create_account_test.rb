@@ -20,7 +20,7 @@ class GuestCanCreateAccountTest < ActionDispatch::IntegrationTest
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
 
-    click_on "Create Account"
+    click_on "Submit"
     user = User.last
     assert_equal "/dashboard", current_path
 
