@@ -443,6 +443,41 @@ select {
   float: left;
 }
 
+/* DASHBOARD */
+
+.table_wrapper {
+    background-color: rgba(255,255,255,0.7);
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.dashboard_thumbnail {
+  max-width: 150px;
+}
+
+table tr th {
+  text-align: center;
+}
+
+.platform_dashboard h2, .admin_dashboard h2 {
+    font-family: 'Codystar', sans-serif;
+    color: #fff;
+    font-weight: 100;
+    width: 110%;
+    background-color: rgba(0,0,0,0.7);
+    padding: 10px;
+}
+
+figure.dashboard_graph {
+    background-color: rgba(255,255,255,0.5);
+    padding: 20px;
+    figcaption {
+      font-size: 25px;
+    }
+}
+
+
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 990px) {
   .brand-logo {
