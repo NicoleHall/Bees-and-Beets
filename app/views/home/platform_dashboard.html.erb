@@ -1,0 +1,30 @@
+<div class="platform_dashboard">
+  <h2>Platform Dashboard</h2>
+
+  <figure class="dashboard_graph">
+    <%= image_tag 'sample_graph.png' %>
+    <figcaption>Current Vendor Stats</figcaption>
+  </figure>
+
+  <div class="table_wrapper">
+    <table class="larger-text bordered striped">
+      <tr>
+        <th>
+          BLANK
+        </th>
+        <th>
+          DESCRIPTION
+        </th>
+        <th>
+          STATUS
+        </th>
+        <th>
+          ACTION
+        </th>
+      </tr>
+      <% 5.times do %>
+      <%= render partial: "vendor_row" %>
+      <% end %>
+    </table>
+  </div>
+</div>
