@@ -1,4 +1,5 @@
 class Vendor::VendorsController < ApplicationController
+  attr_reader :current_vendor
   helper_method :current_vendor
   before_action :vendor_not_found
 
