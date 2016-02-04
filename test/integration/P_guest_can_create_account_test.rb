@@ -16,10 +16,6 @@ class GuestCanCreateAccountTest < ActionDispatch::IntegrationTest
     fill_in "First name", with: "Brenna"
     fill_in "Last name", with: "Martenson"
     fill_in "Email address", with: "brenna@awesome.com"
-    fill_in "Street address", with: "123 Maple Drive"
-    fill_in "City", with: "Denver"
-    select('Colorado', from: 'user_state')
-    fill_in "Zipcode", with: "80231"
     fill_in "Username", with: "brenna"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
@@ -33,16 +29,11 @@ class GuestCanCreateAccountTest < ActionDispatch::IntegrationTest
       refute page.has_content?("Login/Signup")
       assert page.has_content?("Logout")
     end
-
     assert page.has_content?("#{user.first_name}")
     assert page.has_content?("#{user.last_name}")
     assert page.has_content?("#{user.email_address}")
-    assert page.has_content?("#{user.addresses.first.street}")
-    assert page.has_content?("#{user.addresses.first.city}")
-    assert page.has_content?("#{user.addresses.first.state}")
-    assert page.has_content?("#{user.addresses.first.zipcode}")
 
-    assert page.has_button?("Edit Info")
-    assert page.has_button?("Order History")
+    assert page.has_link?("Edit Info")
+    assert page.has_link?("Order History")
   end
 end
