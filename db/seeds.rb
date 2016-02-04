@@ -1,4 +1,18 @@
 class Seed
+  def self.start
+    seed = Seed.new
+    # seed.create_customer_josh
+    # seed.generate_customer
+    # seed.create_business_admin_andrew
+    # seed.generate_business_admins
+    # seed.create_platform_admin_jorge
+    seed.generate_vendors
+    seed.generate_categories
+    seed.generate_items
+    # seed.generate_addresses
+    # seed.generate_orders
+    # seed.generate_order_items
+  end
 
   def create_customer_josh
     User.create!(
@@ -7,7 +21,7 @@ class Seed
     username: "josh@turing.io",
     email_address: "josh@turing.io",
     password: "password",
-    role: 0
+    # role: 0
     )
   end
 
@@ -20,7 +34,7 @@ class Seed
       username: name.join(".").downcase,
       email_address: Faker::Internet.email,
       password: "password"
-      role: 0
+      # role: 0
       )
     end
   end
@@ -32,7 +46,7 @@ class Seed
     username: "andrew@turing.io",
     email_address: "andrew@turing.io",
     password: "password",
-    role: 1
+    # role: 1
     )
   end
 
@@ -45,11 +59,10 @@ class Seed
       username: name.join(".").downcase,
       email_address: Faker::Internet.email,
       password: "password"
-      role: 1
+      # role: 1
       )
     end
   end
-
 
   def create_platform_admin_jorge
     User.create!(
@@ -58,33 +71,52 @@ class Seed
     username: "jorge@turing.io",
     email_address: "jorge@turing.io",
     password: "password",
-    role: 2
+    # role: 2
     )
   end
 
   def generate_vendors
-    business_admins = User.where(role: 1)
-    business_admins.each do |admin|
+    types = ["Jams", "Produce", "Farm", "Greens",
+      "Kitchen", "Winery", "Herbals", "Ranch",
+      "Bakery", "Foods", "Greenhouse","Garden"]
+    # business_admins = User.where(role: 1)
+    # business_admins.each do |admin|
+
+    20.times do |i|
       vendor = Vendor.create!(
-      name: Faker::Company.name,
+      name: Faker::Name.name.split(" ").first + "'s " + types.sample,
       description: Faker::Lorem.paragraph,
-      image_path: Faker::Company.logo,
-      user_id: admin.id
+      image_path: "https://s-media-cache-ak0.pinimg.com/236x/1e/53/94/1e53942d804bd726b332b849ca7254b0.jpg",
+      status: 0,
+      # user_id: admin.id
+      )
+    end
+  end
+
+  def generate_categories
+    10.times do |i|
+      Category.create!(
+        name: "Food Stuff #{i}"
       )
     end
   end
 
   def generate_items
+    adjectives = ["delicious","delectable","golden","sweet",
+                  "crispy","buttery","bitter","creamy","ripe",
+                  "juicy","tart","zesty","succulent","spicy",
+                  "nutty"]
     vendors = Vendor.all
     vendors.each do |vendor|
       items = []
       100.times do |i|
         items << Item.create!(
-        title: Faker::SlackEmoji.food_and_drink.gsub(":",""),
+        title: vendor.name + " " + Faker::SlackEmoji.food_and_drink.gsub(":","") + "#{i}",
         price: Faker::Commerce.price,
-        description: Faker::Hipster.paragraph,
+        description: Faker::Lorem.paragraph,
         status: rand(2),
-        image_path: "http://lorempixel.com/600/600/food"
+        image_path: "http://vafoodbanks.org/wp-content/uploads/2012/06/fresh_food.jpg",
+        category_id: (1..10).to_a.sample
         )
       end
       vendor.items << items
@@ -94,7 +126,7 @@ class Seed
   def generate_addresses
     customers = User.where(role: 0)
     customers.each do |customer|
-      customer.address.create!(
+      customer.addresses.create!(
       street: Faker::Address.street_address,
       city: Faker::Address.city,
       state: Faker::Address.state_abbr,
@@ -125,21 +157,14 @@ class Seed
       3.times do |i|
         order.order_items.create!(
           item_id: item_ids.sample,
-          quantity: rand(8)
+          quantity: (1..8).to_a.sample
         )
       end
     end
   end
 end
 
-
-
-
-
-
-
-
-
+Seed.start
 
 
 # class Seed
