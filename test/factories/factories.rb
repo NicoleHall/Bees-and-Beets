@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :item do
     price
-    description "This is a painting of Batman."
+    description "This is food"
     title
-    image_path "https://s-media-cache-ak0.pinimg.com/236x/ac/79/ec/ac79ecfd60f82e28cabdfb8f1dc10df4.jpg"
-    association :user, factory: :artist
+    image_path "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTmmnVDNMRzWNavHqRRaaHMyY_e4_qg5QsoBIGxRNhuhJmNdRUO"
+    association :vendor, factory: :vendor
     category
   end
 
@@ -26,17 +26,7 @@ FactoryGirl.define do
     last_name
     username
     password "password"
-    role 0
     email_address
-    street_address "123 Maple Drive"
-    city "Denver"
-    state "CO"
-    zipcode 80231
-
-    factory :admin do
-      username "admin"
-      role 2
-    end
 
     factory :user_with_orders do
       transient do
@@ -47,19 +37,20 @@ FactoryGirl.define do
         create_list(:order, evaluator.order_count, user: user)
       end
     end
+  end
 
-    factory :artist do
-      username { generate(:artist_username) }
-      role 1
+  factory :vendor do
+    status 0
+    name { generate(:vendor_name) }
+    description "A shop."
+    image_path "http://theveganherald.com/wp-content/uploads/2015/12/Farm-Animals.jpg"
+    factory :vendor_with_items do
+      transient do
+        item_count 2
+      end
 
-      factory :artist_with_items do
-        transient do
-          item_count 2
-        end
-
-        after(:create) do |user, evaluator|
-          create_list(:item, evaluator.item_count, user: user)
-        end
+      after(:create) do |vendor, evaluator|
+        create_list(:item, evaluator.item_count, vendor: vendor)
       end
     end
   end
@@ -75,8 +66,8 @@ FactoryGirl.define do
     status
   end
 
-  sequence :artist_username do |n|
-    "artist#{n}"
+  sequence :vendor_name do |n|
+    "vendor_#{n}"
   end
 
   sequence :status, %w(ordered paid cancelled completed).cycle do |n|

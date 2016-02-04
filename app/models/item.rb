@@ -1,7 +1,6 @@
 class Item < ActiveRecord::Base
-  before_save :check_user_type
   before_save :check_image_path
-  belongs_to :user
+  belongs_to :vendor
   belongs_to :category
   has_attached_file :file_upload,
                     styles: { large: "550x550>", medium: "300x300>", thumb: "100x100>" },
@@ -13,7 +12,6 @@ class Item < ActiveRecord::Base
 
   validates :title, presence: true,
                     uniqueness: true
-  validates :user_id, presence: true
   validates :category_id, presence: true
   validates :price, presence: true,
                     numericality: { greater_than: 0 }
@@ -31,10 +29,6 @@ class Item < ActiveRecord::Base
 
   def default_image
     "https://www.weefmgrenada.com/images/na4.jpg"
-  end
-
-  def check_user_type
-    User.find(user_id).artist?
   end
 
   def check_image_path

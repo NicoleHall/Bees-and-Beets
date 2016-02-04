@@ -1,4 +1,6 @@
 /* STRIPE -- DO NOT DELETE!!!! */
+$weird_green: #C4D4AF;
+$white: #fff;
 
 button.stripe-button-el span {
   display: none !important;
@@ -7,7 +9,7 @@ button.stripe-button-el span {
 /* END OF STRIPE -- DO NOT DELETE!!!! */
 
 /* DARKER GREEN #6C8672
- LIGHTER GREEN #C4D4AF
+ LIGHTER GREEN $weird_green
  BLUEISH #68A8AD
 PURPLY #737495
  PINK #F17D80 */
@@ -41,7 +43,7 @@ a {
 }
 
 a:hover {
-  color: #C4D4AF;
+  color: $weird_green;
 }
 
 .clear-floats {
@@ -107,11 +109,11 @@ nav .brand-logo {
 }
 
 nav .nav-wrapper {
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(191,0,0,0.71);
 }
 
 nav ul a {
-  color: #C4D4AF;
+  color: $white;
 }
 
 nav ul a:hover {
@@ -152,6 +154,18 @@ nav ul a:hover {
 
 /* BUTTONS */
 
+.row.shop_buttons {
+  position: relative;
+  top: 75px;
+  .btn {
+    height: 60px;
+  }
+  a {
+    padding: 12px;
+  }
+}
+
+
 .remove-item-button {
   font-size: 14px;
   position: relative;
@@ -190,13 +204,13 @@ nav ul a:hover {
 
 .btn {
   margin: 3px;
-  background-color: #6C8672!important;
-  color: #C4D4AF
+  background-color: rgba(0,0,0,0.5)!important;
+  color: #fff
 }
 
 .btn:hover {
-  background-color: #C4D4AF!important;
-  color: #6C8672;
+  background-color: rgba(0,0,0,0.8)!important;
+  color: #ccc;
 }
 
 .btn_edit {
@@ -221,7 +235,7 @@ nav ul a:hover {
 }
 
 .inactive_status_text {
-  color: #C4D4AF;
+  color: $weird_green;
   font-weight: 100;
 }
 
@@ -245,8 +259,8 @@ nav ul a:hover {
   opacity: 0.8;
 }
 .title-links{
-font-family: 'Amatic SC', cursive;
-font-size: 40px
+font-family: 'Roboto', sans-serif;
+font-size: 20px
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
@@ -397,7 +411,7 @@ select {
 }
 
 .user_action_links .action_box a {
-  color: #C4D4AF !important;
+  color: $weird_green !important;
   display: block;
   padding: 20px;
   background-color: #6C8672
@@ -405,7 +419,7 @@ select {
 
 .user_action_links .action_box a:hover {
   color: #6C8672 !important;
-  background-color: #C4D4AF;
+  background-color: $weird_green;
 }
 
 .larger-text {
@@ -420,6 +434,13 @@ select {
 
 .slider .slides li .caption {
   top: -10%;
+}
+
+/* ITEM SHOW PAGE */
+
+.item-show-image {
+  max-width: 500px;
+  float: left;
 }
 
 /* MEDIA QUERIES */
@@ -454,7 +475,7 @@ select {
     font-size: 16px;
   }
 
-  .artist_thumb {
+  .vendor_thumb {
     float: left;
   }
 

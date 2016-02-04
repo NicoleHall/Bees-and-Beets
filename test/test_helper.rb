@@ -8,6 +8,8 @@ require "capybara/rails"
 require "database_cleaner"
 require "mocha/mini_test"
 require "stripe_mock"
+require "minitest/pride"
+require "pry"
 
 DatabaseCleaner.strategy = :truncation
 

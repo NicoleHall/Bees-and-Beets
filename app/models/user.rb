@@ -8,12 +8,9 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :email_address, presence: true,
                             uniqueness: true
-  validates :street_address, presence: true
-  validates :city, presence: true
-  validates :state, presence: true
-  validates :zipcode, presence: true
   has_many :orders
   has_many :items
+
 
   has_attached_file :file_upload,
                     styles: { medium: "300x300>", thumb: "100x100>" },
