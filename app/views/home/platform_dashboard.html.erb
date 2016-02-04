@@ -1,57 +1,30 @@
-<h2>Platform Dashboard</h2>
+<div class="platform_dashboard">
+  <h2>Platform Dashboard</h2>
 
-<div class="row">
-  <div class="col s12 m6">
-    <div class="card">
-      <div class="card-content">
-        <% if current_artist? %>
-          <% if current_user.file_upload %>
-            <%= image_tag current_user.file_upload.url(:medium) %>
-          <% end %>
-        <% end %>
-        <h3> User Name</h3>
-        <table class="larger-text">
-          <tr>
-            <td>
-              <strong>Username:</strong>
-            </td>
-            <td>
-              username
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>Email: </strong>
-            </td>
-            <td>
-              email-address
-            </td>
-          </tr>
-          <tr>
-            <td>
-                <strong>Address: </strong>
-            </td>
-            <td>
-              123 Maple Dr.
-              <br>
-              Denver, CO 80210
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class="card-action">
-        <%= link_to "Edit Info", "#", class: "btn waves-effect waves-light" %>
-      </div>
-    </div>
-  </div>
+  <figure class="dashboard_graph">
+    <%= image_tag 'sample_graph.png' %>
+    <figcaption>Current Vendor Stats</figcaption>
+  </figure>
 
-  <div class="col s12 m6">
-    <div class="card">
-      <div class="card-action user_action_links">
-          <div class="action_box"><%= link_to "View All Vendors", "#" %></div>
-          <div class="action_box"><%= link_to "Manage Users", "#" %></div>
-          <div class="action_box"><%= link_to "Vendors Pending Approval", "#" %></div>
-      </div>
-    </div>
+  <div class="table_wrapper">
+    <table class="larger-text bordered striped">
+      <tr>
+        <th>
+          BLANK
+        </th>
+        <th>
+          DESCRIPTION
+        </th>
+        <th>
+          STATUS
+        </th>
+        <th>
+          ACTION
+        </th>
+      </tr>
+      <% 5.times do %>
+      <%= render partial: "vendor_row" %>
+      <% end %>
+    </table>
   </div>
 </div>
