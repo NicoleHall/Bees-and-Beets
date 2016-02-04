@@ -426,17 +426,17 @@ select {
   font-size: 18px;
 }
 
-/***** SLIDER *****/
+/* CATEGORY ITEM SHOW PAGE */
 
-.slider.fullscreen {
-  margin-top: 62px;
+.item-thumbnail img {
+  max-width: 200px;
+  margin-top: 10px
 }
 
-.slider .slides li .caption {
-  top: -10%;
+.category-show-item {
+  border-bottom: 1px solid #ddd;
 }
 
-/* ITEM SHOW PAGE */
 
 .item-show-image {
   max-width: 500px;

@@ -4,57 +4,58 @@ class ItemsController < ApplicationController
                 only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all
+    @category = Category.find_by(url: params[:category_url])
+    @items = @category.items
   end
 
-  def show
-    @item = Item.find(params[:id])
-  end
-
-  def new
-    @item = Item.new
-  end
-
-  def create
-    sanitize_price(params[:item][:price])
-    @item = current_user.items.new(item_params)
-
-    if @item.save
-      redirect_to @item
-    else
-      flash.now[:error] = "Incomplete form"
-      render :new
-    end
-  end
-
-  def edit
-    @item = Item.find(params[:id])
-  end
-
-  def update
-    sanitize_price(params[:item][:price])
-    @item = Item.find(params[:id])
-
-    if @item.update(item_params)
-      redirect_to @item
-    else
-      flash.now[:error] = "All fields must be filled in."
-      render :new
-    end
-  end
-
-  def destroy
-    @item = Item.find(params[:id])
-
-    if @item.orders.empty?
-      @item.destroy
-    else
-      flash[:error] = "Cannot delete an item that has been ordered." \
-                      " Suggest making it inactive instead."
-    end
-
-    redirect_to items_path
-  end
+  # def show
+  #   @item = Item.find(params[:id])
+  # end
+  #
+  # def new
+  #   @item = Item.new
+  # end
+  #
+  # def create
+  #   sanitize_price(params[:item][:price])
+  #   @item = current_user.items.new(item_params)
+  #
+  #   if @item.save
+  #     redirect_to @item
+  #   else
+  #     flash.now[:error] = "Incomplete form"
+  #     render :new
+  #   end
+  # end
+  #
+  # def edit
+  #   @item = Item.find(params[:id])
+  # end
+  #
+  # def update
+  #   sanitize_price(params[:item][:price])
+  #   @item = Item.find(params[:id])
+  #
+  #   if @item.update(item_params)
+  #     redirect_to @item
+  #   else
+  #     flash.now[:error] = "All fields must be filled in."
+  #     render :new
+  #   end
+  # end
+  #
+  # def destroy
+  #   @item = Item.find(params[:id])
+  #
+  #   if @item.orders.empty?
+  #     @item.destroy
+  #   else
+  #     flash[:error] = "Cannot delete an item that has been ordered." \
+  #                     " Suggest making it inactive instead."
+  #   end
+  #
+  #   redirect_to items_path
+  # end
 
   private
 

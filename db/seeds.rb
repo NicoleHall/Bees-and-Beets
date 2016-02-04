@@ -112,7 +112,7 @@ class Seed
       100.times do |i|
         items << Item.create!(
         title: vendor.name + " " + Faker::SlackEmoji.food_and_drink.gsub(":","") + "#{i}",
-        price: Faker::Commerce.price,
+        price: Faker::Commerce.price.to_i + 1,
         description: Faker::Lorem.paragraph,
         status: rand(2),
         image_path: "http://vafoodbanks.org/wp-content/uploads/2012/06/fresh_food.jpg",
