@@ -32,17 +32,16 @@
       <% else %>
         <li><%= link_to "Login", login_path %></li>
       <% end %>
-
-        <li><%= link_to "View All Vendors", "#" %></li>
-        <li><%= link_to "View Categories", "#" %></li>
+        <li><%= link_to "Shop Vendors", vendors_path %></li>
+        <li><%= link_to "Shop Categories", categories_path %></li>
     </ul>
 
     <!-- MOBILE NAV -->
     <ul class="side-nav" id="mobile-demo">
       <li><strong><%= link_to "Bees&Beets", root_path %></strong></li>
 
-        <li><%= link_to "View All Vendors", "#" %></li>
-        <li><%= link_to "ViewCategories", "#" %></li>
+        <li><%= link_to "Shop Vendors", vendors_path %></li>
+        <li><%= link_to "Shop Categories", categories_path %></li>
 
       <li><%= link_to "View Cart", cart_path %></li>
 
