@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :cart_items, only: [:create, :destroy, :update]
 
-  namespace :vendor, path: ':vendor', as: :vendor do
+  namespace :vendors, path: ':vendor', as: :vendor do
     resources :items, only: [:index, :show]
   end
 
