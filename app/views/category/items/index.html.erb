@@ -1,0 +1,9 @@
+<h2> <%= @category.name %> </h2>
+
+<div class="category-show-list">
+  <% @category.items.each do |item| %>
+  <div class="row">
+    <%= render partial: "shared/category_item_card", locals: { item: item }%>
+  </div>
+  <% end %>
+</div>

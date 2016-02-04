@@ -4,6 +4,10 @@ class Category < ActiveRecord::Base
                    uniqueness: true
   before_create :generate_url
 
+  def to_param
+    url
+  end
+
   def generate_url
     self.url = self.name.parameterize
   end

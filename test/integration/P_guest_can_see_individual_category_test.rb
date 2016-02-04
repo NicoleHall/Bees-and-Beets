@@ -7,15 +7,13 @@ class GuestCanSeeIndividualCategoryTest < ActionDispatch::IntegrationTest
     visit categories_path
 
     assert_equal Category.count, 3
-
     click_on category1.name
 
-
     assert page.has_content?(category1.name)
-    category1.items.first.each do |item|
-      assert page.has_content?(item.name)
-      within(".item-#{item.name}") do
-        assert page.has_content?("Add to Cart")
+    category1.items.each do |item|
+      assert page.has_content?(item.title)
+      within(".item-#{item.title}") do
+        assert page.has_button?("Add to Cart")
       end
     end
   end

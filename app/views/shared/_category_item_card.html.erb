@@ -2,10 +2,10 @@
   <div class="item-thumbnail col s4">
     <%= image_tag "vegetables.jpg" %>
   </div>
-  <div class="item-details col s8 left-align">
+  <div class="item-details col s8 left-align item-<%=item.title%>">
     <h4><%= item.title %></h4>
     <p><%= item.description %></p>
     <p><%= number_to_currency(item.price, class: "item-price") %></p>
-    <%= button_to "Add to Cart", "#", class: "btn waves-effect waves-light item-#{item.title}" %>
+    <%= button_to "Add to Cart", "#", class: "btn waves-effect waves-light" %>
   </div>
 </div>

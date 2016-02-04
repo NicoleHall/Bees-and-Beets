@@ -1,2 +1,0 @@
-module Category::ItemsHelper
-end
