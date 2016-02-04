@@ -32,8 +32,8 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
-  get "/admin_dashboard", to: "home#admin_dashboard"
-  get "/platform_dashboard", to: "home#platform_dashboard"
-  # get "/categories_2", to: "categories#index_2"
+  get "/dashboard", to: "users#show"
+  get "/admin_dashboard", to: "admin_dashboards#show"
+  get "/platform_dashboard", to: "platform_dashboards#show"
   root "home#index"
 end
