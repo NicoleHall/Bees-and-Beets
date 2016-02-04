@@ -10,9 +10,13 @@ class GuestCanSeeIndividualCategoryTest < ActionDispatch::IntegrationTest
 
     click_on category1.name
 
-    save_and_open_page
+
     assert page.has_content?(category1.name)
-    assert page.has_content?(category1.items.first)
-    assert page.has_content?("Add to Cart")
+    category1.items.first.each do |item|
+      assert page.has_content?(item.name)
+      within(".item-#{item.name}") do
+        assert page.has_content?("Add to Cart")
+      end
+    end
   end
 end

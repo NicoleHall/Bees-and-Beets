@@ -6,6 +6,6 @@
     <h4><%= item.title %></h4>
     <p><%= item.description %></p>
     <p><%= number_to_currency(item.price, class: "item-price") %></p>
-    <%= button_to "Add to Cart", "#", class: "btn waves-effect waves-light" %>
+    <%= button_to "Add to Cart", "#", class: "btn waves-effect waves-light item-#{item.title}" %>
   </div>
 </div>
