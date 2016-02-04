@@ -3,9 +3,8 @@
   <%= text_field :vendor, :filter_name %>
 </div>
 
-
-    <div class="vendor_cards grid">
-      <% @vendors.each do |vendor| %>
-        <%= render partial: 'shared/vendor_card', locals: { vendor: vendor } %>
-      <% end %>
-    </div>
+<div class="vendor_cards grid">
+  <% @vendors.each do |vendor| %>
+    <%= render partial: 'shared/vendor_card', locals: { vendor: vendor } %>
+  <% end %>
+</div>
