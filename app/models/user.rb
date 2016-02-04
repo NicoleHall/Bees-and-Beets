@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :file_upload,
                                     content_type: %r{\Aimage\/.*\Z}
 
-  scope :artists, -> { where(role: 1) }
+  scope :vendors, -> { where(role: 1) }
 
-  enum role: %w(default artist admin)
+  enum role: %w(default vendor platform_admin)
 
   def full_name
     "#{first_name} #{last_name}"

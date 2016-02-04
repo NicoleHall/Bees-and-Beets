@@ -21,22 +21,6 @@
   <%= f.text_field :email_address %>
   <br>
 
-  <%= f.label :street_address %>
-  <%= f.text_field :street_address %>
-  <br>
-
-  <%= f.label :city %>
-  <%= f.text_field :city %>
-  <br>
-
-  <%= f.label :state %>
-  <%= f.select(:state, options_for_select(us_states, "MN")) %>
-  <br>
-
-  <%= f.label :zipcode %>
-  <%= f.text_field :zipcode %>
-  <br>
-
   <% unless current_user %>
     <%= f.label :username %>
     <%= f.text_field :username  %>
@@ -51,23 +35,9 @@
   <%= f.password_field :password_confirmation %>
   <br>
 
-  <% if current_admin? %>
-    <%= f.label :role %>
-    <%= f.select :role, options_for_select(["default", "artist", "admin"], selected: "admin") %>
-    <br>
-  <% elsif current_artist? %>
-    <%= f.label :role %>
-    <%= f.select :role, options_for_select(["artist"], selected: "artist") %>
-    <br>
-  <% elsif current_user %>
-    <%= f.label :role %>
-    <%= f.select :role, options_for_select(["default", "artist"], selected: current_user.role) %>
-    <br>
-  <% else %>
-    <%= f.label :role %>
-    <%= f.select :role, options_for_select(["default", "artist"]) %>
-    <br>
-  <% end %>
+  <%= f.label :role %>
+  <%= f.select :role, options_for_select(["default", "vendor"]) %>
+  <br>
 
-  <%= f.submit class: "wave-effect waves-light btn" %>
+  <%= f.submit "Submit", class: "wave-effect waves-light btn" %>
 <% end  %>
