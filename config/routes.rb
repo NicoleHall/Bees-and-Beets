@@ -3,7 +3,13 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show, :destroy]
   end
   resources :vendors, only: [:index, :show]
-  resources :categories, only: [:show, :index], param: :slug
+
+  resources :categories, only: [:index]
+
+  namespace :category, path: ':category', as: :category do
+    resources :items, only: [:index]
+  end
+
   resources :cart_items, only: [:create, :destroy, :update]
 
   resources :users,
