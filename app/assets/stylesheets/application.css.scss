@@ -436,6 +436,13 @@ select {
   top: -10%;
 }
 
+/* ITEM SHOW PAGE */
+
+.item-show-image {
+  max-width: 500px;
+  float: left;
+}
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 990px) {
   .brand-logo {
