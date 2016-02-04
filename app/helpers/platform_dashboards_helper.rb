@@ -1,0 +1,2 @@
+module PlatformDashboardsHelper
+end
