@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_cart
   helper_method :current_user
   helper_method :current_admin?
-  helper_method :current_artist?
+  helper_method :current_vendor?
   helper_method :artist_owns_item?
 
   def set_cart
@@ -18,8 +18,8 @@ class ApplicationController < ActionController::Base
     current_user && current_user.admin?
   end
 
-  def current_artist?
-    current_user && current_user.artist?
+  def current_vendor?
+    current_user && current_user.vendor?
   end
 
   def artist_owns_item?(item)
