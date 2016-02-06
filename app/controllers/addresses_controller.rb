@@ -33,6 +33,18 @@ class AddressesController < ApplicationController
     end
   end
 
+  def destroy
+    @address = current_user.addresses.find(params[:id])
+    
+    if @address.orders.empty?
+      @address.destroy
+    else
+      flash.now[:error] = "Cannot delete addresses associated with orders."
+    end
+
+    redirect_to addresses_path
+  end
+
   private
 
   def address_params
