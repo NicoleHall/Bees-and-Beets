@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
       flash[:error] = "Cannot place an order with no items"
       redirect_to cart_path
     else
-      binding.pry
       order = OrderCreator.new.create(current_user, @cart.contents)
 
       @amount = @cart.total_price * 100
@@ -29,8 +28,7 @@ class OrdersController < ApplicationController
       )
 
       @cart.clear
-
-      flash[:success] = "Order was successfully placed"
+      flash[:success] = "Thank You! Your order will be ready for pickup in 1 hour."
       redirect_to user_orders_path(current_user.slug, order_id: order.id)
     end
 

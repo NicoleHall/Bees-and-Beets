@@ -5,11 +5,6 @@
 
 <h3>Total: $<%= @total %></h3>
 
-<%= form_for :order_address do %>
-  <%= text_field :address_label %>
-  <%= submit %>
-<% end %>
-
 <div class="row">
   <% if current_user %>
     <%= form_tag user_orders_path(current_user), id: 'stripe-form' do %>
