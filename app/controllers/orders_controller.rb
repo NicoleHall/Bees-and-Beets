@@ -10,9 +10,11 @@ class OrdersController < ApplicationController
       flash[:error] = "Cannot place an order with no items"
       redirect_to cart_path
     else
+      binding.pry
       order = OrderCreator.new.create(current_user, @cart.contents)
 
       @amount = @cart.total_price * 100
+
 
       customer = Stripe::Customer.create(
         email:  params[:stripeEmail],
@@ -44,7 +46,7 @@ class OrdersController < ApplicationController
   private
 
   def require_user
-    render file: "public/404" unless current_admin? ||
+    render file: "public/404" unless current_vendor? ||
                                      current_user.slug == params[:user_slug]
   end
 end

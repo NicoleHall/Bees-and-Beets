@@ -11,6 +11,7 @@ class CartItemsController < ApplicationController
   def index
     @items_with_quantities = @cart.item_quantities
     @total = @cart.total_price
+    @addresses = current_user.addresses
   end
 
   def update

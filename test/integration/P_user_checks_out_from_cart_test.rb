@@ -6,7 +6,8 @@ class UserChecksOutFromCartTest < ActionDispatch::IntegrationTest
     add_items_to_cart_and_visit_shopping_cart(2)
 
     visit cart_path
-    click_button "Checkout"
+
+    click_button "Login To Complete Order"
 
     assert_equal login_path, current_path
 
@@ -23,7 +24,10 @@ class UserChecksOutFromCartTest < ActionDispatch::IntegrationTest
     )
 
     visit cart_path
+    select("Home", from: "Address List")
+
     click_button "Checkout"
+
 
     assert_equal 1, Order.count
 
@@ -48,6 +52,8 @@ class UserChecksOutFromCartTest < ActionDispatch::IntegrationTest
     )
 
     visit cart_path
+    select("Home", from: "Address List")
+
     click_button "Checkout"
 
     assert_equal 1, Order.count

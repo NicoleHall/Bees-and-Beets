@@ -21,7 +21,7 @@
                   <% end %>
                 </div>
                 <div class="order_data col s12 m7 larger-text">
-                  <p><span class="order_heading">Item Title:</span><%= link_to item.title, item_path(item) %></p>
+                  <p><span class="order_heading">Item Title:</span><%= link_to item.title, vendor_item_path(vendor: item.vendor.url, id: item.id) %></p>
                   <p><span class="order_heading">Price:</span> $<%= item.price %></p>
                   <p><span class="order_heading">Quantity:</span> <%= order.quantity_of_item(item.id) %></p>
                   <p><span class="order_heading">Subtotal:</span> $<%= item.price * order.quantity_of_item(item.id) %></p>
@@ -36,10 +36,10 @@
           <div class="row larger-text">
             <p><span class="order_heading">Name:</span><%= order.user.first_name + " " +  order.user.last_name %></p>
             <p><span class="order_heading">Email:</span><%= order.user.email_address%></p>
-            <p><span class="order_heading">Street Address:</span><%= order.user.street_address %></p>
-            <p><span class="order_heading">City:</span><%= order.user.city %></p>
-            <p><span class="order_heading">State:</span><%= order.user.state %></p>
-            <p><span class="order_heading">Zipcode:</span><%= order.user.zipcode %></p>
+            <p><span class="order_heading">Street Address:</span><%= order.address.street %></p>
+            <p><span class="order_heading">City:</span><%= order.address.city %></p>
+            <p><span class="order_heading">State:</span><%= order.address.state %></p>
+            <p><span class="order_heading">Zipcode:</span><%= order.address.zipcode %></p>
           </div>
         </div>
       </div> <!--card-content-->
