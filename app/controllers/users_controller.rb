@@ -14,7 +14,11 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to dashboard_path
+      if @user.vendor?
+        redirect_to vendor_dashboard_path
+      else
+        redirect_to dashboard_path
+      end
     else
       render :new
     end

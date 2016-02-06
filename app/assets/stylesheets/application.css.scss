@@ -295,6 +295,11 @@ select {
   width: 300px;
   margin: 0 auto;
 }
+
+select#user_role {
+  text-transform: capitalize!important;
+}
+
 /***** SIDE NAV ******/
 .side-nav {
   background-color: rgba(0,0,0,0.7);

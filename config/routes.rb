@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
   get "/dashboard", to: "users#show"
-  get "/admin_dashboard", to: "admin_dashboards#show"
+  get "/vendor_dashboard", to: "vendor_dashboards#show"
   get "/platform_dashboard", to: "platform_dashboards#show"
   root "home#index"
 end
