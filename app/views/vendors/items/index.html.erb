@@ -1,5 +1,7 @@
 <h2><%= current_vendor.name %></h2>
 
-<% @items.each do |item| %>
+<div class="grid">
+  <% @items.each do |item| %>
   <%= render partial: 'shared/vendor_item_card', locals: { item: item } %>
-<% end %>
+  <% end %>
+</div>

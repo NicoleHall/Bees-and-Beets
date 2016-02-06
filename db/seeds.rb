@@ -33,7 +33,7 @@ class Seed
       last_name: name.last,
       username: name.join(".").downcase,
       email_address: Faker::Internet.email,
-      password: "password"
+      password: "password",
       role: 0
       )
     end
@@ -58,7 +58,7 @@ class Seed
       last_name: name.last,
       username: name.join(".").downcase,
       email_address: Faker::Internet.email,
-      password: "password"
+      password: "password",
       role: 1
       )
     end
@@ -127,6 +127,7 @@ class Seed
     customers = User.where(role: 0)
     customers.each do |customer|
       customer.addresses.create!(
+      label: "Home",
       street: Faker::Address.street_address,
       city: Faker::Address.city,
       state: Faker::Address.state_abbr,

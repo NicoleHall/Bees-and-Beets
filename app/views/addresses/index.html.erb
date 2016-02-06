@@ -2,7 +2,7 @@
 
 <%= link_to "Add Address", new_address_path, class: "waves-effect waves-light btn" %>
 
-<div class="address-index-list">
+<div class="address-index-list grid">
   <% @addresses.each do |address| %>
   <div class="row">
     <%= render partial: "address_card", locals: { address: address }%>
