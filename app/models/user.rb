@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
                             uniqueness: true
   has_many :orders
   has_many :items
+  has_many :addresses
 
 
   has_attached_file :file_upload,

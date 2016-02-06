@@ -1,0 +1,9 @@
+<h2> Addresses </h2>
+
+<div class="address-index-list">
+  <% @addresses.each do |address| %>
+  <div class="row">
+    <%= render partial: "address_card", locals: { address: address }%>
+  </div>
+  <% end %>
+</div>

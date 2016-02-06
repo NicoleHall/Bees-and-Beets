@@ -2,11 +2,6 @@
   <div class="col s12 m6">
     <div class="card">
       <div class="card-content">
-        <% if current_artist? %>
-          <% if current_user.file_upload %>
-            <%= image_tag current_user.file_upload.url(:medium) %>
-          <% end %>
-        <% end %>
         <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
         <table class="larger-text">
           <tr>
@@ -46,9 +41,7 @@
   <div class="col s12 m6">
     <div class="card">
       <div class="card-action user_action_links">
-          <div class="action_box"><%= link_to "Create Item", "#" %></div>
-          <div class="action_box"><%= link_to "View Items", "#" %></div>
-          <div class="action_box"><%= link_to "Add New Item", "#" %></div>
+          <div class="action_box"><%= link_to "Add Address", new_address_path %></div>
           <div class="action_box"><%= link_to "Order History", "#" %></div>
       </div>
     </div>
