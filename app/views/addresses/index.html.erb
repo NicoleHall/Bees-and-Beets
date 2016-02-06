@@ -1,5 +1,7 @@
 <h2> Addresses </h2>
 
+<%= link_to "Add Address", new_address_path, class: "waves-effect waves-light btn" %>
+
 <div class="address-index-list">
   <% @addresses.each do |address| %>
   <div class="row">

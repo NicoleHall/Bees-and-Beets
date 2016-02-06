@@ -6,6 +6,9 @@ class UserCanAddANewAddressTest < ActionDispatch::IntegrationTest
     ApplicationController.any_instance.stubs(:current_user).returns(user)
 
     visit dashboard_path
+    click_on "Manage Addresses"
+
+    assert_equal addresses_path, current_path
     click_on "Add Address"
 
     assert_equal new_address_path, current_path
