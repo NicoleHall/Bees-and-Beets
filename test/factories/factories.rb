@@ -67,6 +67,7 @@ FactoryGirl.define do
     name { generate(:vendor_name) }
     description "A shop."
     image_path "http://theveganherald.com/wp-content/uploads/2015/12/Farm-Animals.jpg"
+    
     factory :vendor_with_items do
       transient do
         item_count 2
