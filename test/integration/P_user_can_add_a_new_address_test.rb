@@ -23,7 +23,7 @@ class UserCanAddANewAddressTest < ActionDispatch::IntegrationTest
     assert_equal addresses_path, current_path
     address = user.addresses.last
 
-    within("#address-#{address.label}") do
+    within("#address-#{address.label.parameterize}") do
       assert page.has_content?("#{address.label}")
       assert page.has_content?("#{address.street}")
       assert page.has_content?("#{address.city}")

@@ -37,6 +37,29 @@ FactoryGirl.define do
         create_list(:order, evaluator.order_count, user: user)
       end
     end
+
+    factory :user_with_addresses do
+      transient do
+        address_count 2
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:address, evaluator.address_count, user: user)
+      end
+    end
+  end
+
+  factory :address do
+    user
+    label
+    street "123 Maple Drive"
+    city "Denver"
+    state "CO"
+    zipcode "80220"
+  end
+
+  sequence :label do |n|
+    "Home #{n}"
   end
 
   factory :vendor do
