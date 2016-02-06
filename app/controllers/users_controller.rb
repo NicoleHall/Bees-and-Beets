@@ -45,9 +45,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_user_to_vendor
+    @user = User.find(current_user.id)
+    @user.update_attribute(:role, 1)
+  end
+
   private
 
   def set_user
+    user_slug_is_current_user
     @user = User.find(current_user.id)
   end
 

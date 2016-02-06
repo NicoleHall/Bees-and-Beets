@@ -2,7 +2,6 @@ require "test_helper"
 
 class UserCanBecomeAVendorTest < ActionDispatch::IntegrationTest
   test "registered user can become a vendor" do
-  # test "registered user logs in and is taken to their dashboard" do
     user = create(:user)
     visit login_path
 
@@ -13,11 +12,10 @@ class UserCanBecomeAVendorTest < ActionDispatch::IntegrationTest
     end
 
     assert_equal "/dashboard", current_path
-    within(".nav-wrapper") do
-      assert page.has_content?("Logged in as #{user.first_name}")
-    end
-
-    refute page.has_content?("Login")
-    assert page.has_content?("Logout")
+    #putting this putton on shared/_user.info.html.erb
+    assert page.has_button?("Become Vendor")
+    click_button "Become Vendor"
+    assert_equal "vendor", user.roles
   end
+
 end

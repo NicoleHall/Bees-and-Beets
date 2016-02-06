@@ -54,4 +54,9 @@
     </div>
   </div>
 
-</div>
+  <%= form_for(current_user), url: {action: "update_user_to_vendor"} do |f| %>
+    <%= f.submit "Become Vendor" %>
+  <% end %>
+
+
+ </div>
