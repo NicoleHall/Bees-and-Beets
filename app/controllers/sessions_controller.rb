@@ -8,8 +8,10 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
 
-      if user.admin?
-        redirect_to admin_dashboard_path
+      if user.platform_admin?
+        redirect_to platform_admin_dashboard_path
+      elsif user.vendor?
+        redirect_to vendor_dashboard_path
       else
         redirect_to dashboard_path
       end
