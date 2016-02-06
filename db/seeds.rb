@@ -1,15 +1,15 @@
 class Seed
   def self.start
     seed = Seed.new
-    # seed.create_customer_josh
-    # seed.generate_customer
+    seed.create_customer_josh
+    seed.generate_customer
     # seed.create_business_admin_andrew
     # seed.generate_business_admins
     # seed.create_platform_admin_jorge
     seed.generate_vendors
     seed.generate_categories
     seed.generate_items
-    # seed.generate_addresses
+    seed.generate_addresses
     # seed.generate_orders
     # seed.generate_order_items
   end
@@ -21,7 +21,7 @@ class Seed
     username: "josh@turing.io",
     email_address: "josh@turing.io",
     password: "password",
-    # role: 0
+    role: 0
     )
   end
 
@@ -33,8 +33,8 @@ class Seed
       last_name: name.last,
       username: name.join(".").downcase,
       email_address: Faker::Internet.email,
-      password: "password"
-      # role: 0
+      password: "password",
+      role: 0
       )
     end
   end
@@ -46,7 +46,7 @@ class Seed
     username: "andrew@turing.io",
     email_address: "andrew@turing.io",
     password: "password",
-    # role: 1
+    role: 1
     )
   end
 
@@ -58,8 +58,8 @@ class Seed
       last_name: name.last,
       username: name.join(".").downcase,
       email_address: Faker::Internet.email,
-      password: "password"
-      # role: 1
+      password: "password",
+      role: 1
       )
     end
   end
@@ -71,7 +71,7 @@ class Seed
     username: "jorge@turing.io",
     email_address: "jorge@turing.io",
     password: "password",
-    # role: 2
+    role: 2
     )
   end
 
@@ -127,6 +127,7 @@ class Seed
     customers = User.where(role: 0)
     customers.each do |customer|
       customer.addresses.create!(
+      label: "Home",
       street: Faker::Address.street_address,
       city: Faker::Address.city,
       state: Faker::Address.state_abbr,

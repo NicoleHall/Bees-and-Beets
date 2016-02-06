@@ -1,0 +1,16 @@
+<div class="grid-item">
+  <div class="card" id="address-<%= address.label.parameterize %>">
+    <div class="card-content green-text left-align">
+      <div class="card-title"><%= address.label %></div>
+      <br/>
+      <p>
+        <%= address.street %><br>
+        <%= address.city %>, <%= address.state %> <%= address.zipcode %>
+      </p>
+    </div>
+    <div class="card-action">
+      <%= link_to "Edit", edit_address_path(address) %>
+      <%= link_to "Delete", address_path(address), method: :delete %>
+    </div>
+  </div>
+</div>

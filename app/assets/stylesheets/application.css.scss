@@ -1,57 +1,36 @@
 /* STRIPE -- DO NOT DELETE!!!! */
 $weird_green: #C4D4AF;
 $white: #fff;
-
 button.stripe-button-el span {
   display: none !important;
 }
-
 /* END OF STRIPE -- DO NOT DELETE!!!! */
 
-/* DARKER GREEN #6C8672
- LIGHTER GREEN $weird_green
- BLUEISH #68A8AD
-PURPLY #737495
- PINK #F17D80 */
-
- /* font-family: 'Codystar', cursive;
- font-family: 'League Script', cursive;
- */
-
 /* MAIN STYLES */
-
 p {
   font-size: 18px;
 }
-
 img {
   max-width: 100%;
 }
-
 h2 {
   font-size: 5rem;
   letter-spacing: 1.1rem;
   font-family: 'Codystar', cursive;
 }
-
-h3  {
+h3 {
   font-weight: 100;
 }
-
 a {
-  color: #6C8672
+  color: #6C8672;
 }
-
 a:hover {
   color: $weird_green;
 }
-
 .clear-floats {
   clear: both;
 }
-
 /* HOME INDEX PAGE */
-
 h1.home_title {
   /*background-image: url('bees_beets_logo_black.png');
   background-color: rgba(255,255,255,0.7);*/
@@ -62,98 +41,77 @@ h1.home_title {
   position: relative;
   top: 80px;
   border-radius: 5px;
-
 }
-
 .home_enter_link {
-    top: 55px;
-    position: relative;
-    font-size: 30px;
-    color: #fff;
-    text-shadow: 1px 1px 20px #000;
-    font-weight: 500;
-    letter-spacing: 10px;
+  top: 55px;
+  position: relative;
+  font-size: 30px;
+  color: #fff;
+  text-shadow: 1px 1px 20px #000;
+  font-weight: 500;
+  letter-spacing: 10px;
 }
-
 .landing-page {
   background-image: url('market_bg.jpg');
-  background-size: cover;}
-
+  background-size: cover;
+}
 .home_content_container {
-    max-width: 800px;
-    margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
-
 /* NEW CATEGORIES INDEX PAGE */
-
 .categories .card ul {
-    padding: 0;
-    text-align: left;
-    margin-left: 25px;
-    li {
-      list-style-type: disc;
-    }
+  padding: 0;
+  text-align: left;
+  margin-left: 25px;
+  li {
+    list-style-type: disc;
+  }
 }
-
-
 /* NAVBAR */
 nav {
   background-color: transparent;
 }
-
 nav .brand-logo {
   color: #fff;
   margin-left: 20px;
   font-family: 'Codystar', curisve;
   font-size: 20px;
 }
-
 nav .nav-wrapper {
-    background-color: rgba(191,0,0,0.71);
+  background-color: rgba(191,0,0,0.71);
 }
-
 nav ul a {
   color: $white;
 }
-
 nav ul a:hover {
   background-color: rgba(0,0,0,0.1);
   color: #ddd;
 }
-
 /* ORDERS */
-
-.status_ordered{
+.status_ordered {
   color: #ffa000;
 }
-
 #order_link1 {
   padding-right: 40px;
 }
-
 #order_link2 {
   padding-left: 40px;
 }
-
-.status_paid{
+.status_paid {
   color: green;
 }
-
-.status_cancelled{
+.status_cancelled {
   color: red;
 }
-
-.status_completed{
+.status_completed {
   color: black;
 }
-
 #order_status {
   width: 200px;
-  margin: 5px auto 20px auto;
+  margin: 5px auto 20px;
 }
-
 /* BUTTONS */
-
 .row.shop_buttons {
   position: relative;
   top: 75px;
@@ -164,167 +122,131 @@ nav ul a:hover {
     padding: 12px;
   }
 }
-
-
 .remove-item-button {
   font-size: 14px;
   position: relative;
   top: -62px;
   left: 150px;
 }
-
 .login_confirm {
   color: #F17D80;
 }
-
 .img-small {
   max-width: 100%;
 }
-
-.highlight tbody tr:hover td, .table-hover tbody tr:hover th {
+.highlight tbody tr:hover td,
+.table-hover tbody tr:hover th {
   background-color: white;
 }
-
 #price {
   padding-top: 25px;
 }
-
 #remove {
   padding-left: 10px;
   padding-top: 10px;
 }
-
 .container {
   padding-top: 20px;
 }
-
 .error {
   color: rgba(196, 42, 32, 0.8);
 }
-
 .btn {
   margin: 3px;
   background-color: rgba(0,0,0,0.5)!important;
-  color: #fff
+  color: #fff;
 }
-
 .btn:hover {
   background-color: rgba(0,0,0,0.8)!important;
   color: #ccc;
 }
-
 .btn_edit {
   background-color: rgba(115, 127, 149, 1)!important;
 }
-
 .btn_edit:hover {
   background-color: rgba(115, 127, 149, 0.8)!important;
 }
-
 .btn_delete {
   background-color: rgba(104, 168, 173,1)!important;
 }
-
 .btn_delete:hover {
   background-color: rgba(104, 168, 173,0.8)!important;
 }
-
 .active_status_text {
   color: #6C8672;
   font-weight: 100;
 }
-
 .inactive_status_text {
   color: $weird_green;
   font-weight: 100;
 }
-
 .pink_error_text {
   color: #F17D80;
 }
-
 /* MASONRY */
-
 .grid-item {
   width: 295px;
 }
-
 .grid {
   margin: 0 auto;
 }
-
 /* CARDS */
-
 .card-title {
   opacity: 0.8;
 }
-.title-links{
-font-family: 'Roboto', sans-serif;
-font-size: 20px
+.title-links {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
 }
-
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
   margin-right: 0;
 }
-
 /* FLASH MESSAGES */
-
 .flash_success {
   background-color: #ccff90;
   text-align: center;
   font-size: 1.2em;
 }
-
 .flash_error {
   background-color: #f25050;
   text-align: center;
   font-size: 1.2em;
 }
-
 /* ORDERS SHOW PAGE */
-
 .order_image.col.s5 {
   clear: both;
 }
-
 .order_card_title {
   font-size: 30px;
   display: block;
   padding-bottom: 17px;
   font-weight: 700;
 }
-
 .order_details_top {
   font-size: 15px;
-  padding: 20px 0px;
+  padding: 20px 0;
   font-weight: 300;
   border-bottom: 1px dashed #607D8B;
 }
-
 span.order_heading {
   font-weight: 700;
   text-decoration: underline;
   margin-right: 10px;
 }
-
 .order_data {
   text-align: left;
   font-size: 17px;
 }
-
 .order_data a {
   font-size: 20px;
   color: rgb(64, 136, 171);
 }
-
 .order_data a:hover {
-    color: #0EAF15;
+  color: #0EAF15;
 }
-
 .card-panel {
   margin-top: 2rem;
 }
-
 /* FORM STYLING */
 form.profile_form {
   width: 80%;
@@ -333,7 +255,6 @@ form.profile_form {
   padding: 20px;
   margin-bottom: 20px;
 }
-
 label {
   font-size: 1.3rem;
   font-weight: 100;
@@ -341,7 +262,6 @@ label {
   text-transform: uppercase;
   letter-spacing: 5px;
 }
-
 input[type=text],
 input[type=password],
 input[type=email],
@@ -358,40 +278,31 @@ textarea.materialize-textarea {
   font-weight: 300;
   text-align: center;
 }
-
 .dropdown-content li {
   text-align: center;
 }
-
 .select-wrapper input.select-dropdown {
   font-size: 20px;
   font-weight: 300px;
   text-align: center;
 }
-
 .upload_file {
   padding-left: 110px;
 }
-
 select {
   display: block;
   font-size: 20px;
   width: 300px;
   margin: 0 auto;
 }
-
-
 /***** SIDE NAV ******/
-
 .side-nav {
   background-color: rgba(0,0,0,0.7);
 }
-
 .side-nav a {
   color: #7E8D94;
   font-size: 15.5px;
 }
-
 .side-nav a:hover {
   background-color: transparent;
   color: #fff;
@@ -399,87 +310,67 @@ select {
 .side-nav li {
   border-bottom: 1px solid #303F46;
 }
-
 .side-nav li:hover {
   background-color: rgba(89, 107, 115, 0.62);
 }
-
 /***** USERS SHOW PAGE *****/
-
 .user_action_links .action_box {
   margin-bottom: 10px;
 }
-
 .user_action_links .action_box a {
   color: $weird_green !important;
   display: block;
   padding: 20px;
-  background-color: #6C8672
+  background-color: #6C8672;
 }
-
 .user_action_links .action_box a:hover {
   color: #6C8672 !important;
   background-color: $weird_green;
 }
-
 .larger-text {
   font-size: 18px;
 }
-
 /* CATEGORY ITEM SHOW PAGE */
-
 .item-thumbnail img {
   max-width: 200px;
-  margin-top: 10px
+  margin-top: 10px;
 }
-
 .category-show-item {
   border-bottom: 1px solid #ddd;
 }
-
-
 .item-show-image {
   max-width: 500px;
   float: left;
 }
-
 /* DASHBOARD */
-
 .platform_dashboard {
   .dashboard_graph {
     width: 65%;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 40px;
     box-shadow: 1px 1px 30px #ccc;
     padding: 20px;
-      figcaption {
-        font-size: 25px;
-      }
+    figcaption {
+      font-size: 25px;
+    }
   }
 }
-
 .dashboard_thumbnail {
   max-width: 150px;
 }
-
 table tr th {
   text-align: center;
 }
-
 /* MEDIA QUERIES */
 @media screen and (max-width: 990px) {
   .brand-logo {
     margin: 0 auto;
   }
 }
-
 @media screen and (max-width: 730px) {
   h1.home_title {
     font-size: 36px;
   }
-
-
 }
-
 @media screen and (max-width: 550px) {
   h2 {
     font-size: 40px;
@@ -487,45 +378,36 @@ table tr th {
   h1.home_title {
     font-size: 20px;
   }
-
   select {
     width: 190px;
     font-size: 16px;
   }
-
   input {
     font-size: 16px;
   }
-
   .vendor_thumb {
     float: left;
   }
-
   .upload_file {
     padding-left: 0;
   }
-
   #item_image_path {
     font-size: 12px;
   }
-
   h5 {
     font-size: 16px;
   }
-
   table a,
   table tr {
     font-size: 14px;
   }
 }
-
 @media screen and (max-width: 475px) {
   h1.home_title {
     position: relative;
     left: -12px;
   }
 }
-
 @media only screen and (max-width: 500px) and (orientation: landscape) {
   h1.home_title {
     font-size: 15px;
@@ -533,7 +415,6 @@ table tr th {
     margin-bottom: -60px;
   }
 }
-
 @media screen and (max-width: 410px) {
   h1.home_title {
     font-size: 15px;

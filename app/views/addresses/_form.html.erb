@@ -1,0 +1,23 @@
+<%= form_for @address do |f| %>
+  <%= f.label :label %>
+  <%= f.text_field :label %>
+  <br>
+
+  <%= f.label :street %>
+  <%= f.text_field :street %>
+  <br>
+
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+  <br>
+
+  <%= f.label :state %>
+  <%= f.text_field :state %>
+  <br>
+
+  <%= f.label :zipcode %>
+  <%= f.text_field :zipcode %>
+  <br>
+
+  <%= f.submit "Submit", class: "waves-effect waves-light btn" %>
+<% end %>
