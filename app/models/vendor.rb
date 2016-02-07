@@ -1,5 +1,7 @@
 class Vendor < ActiveRecord::Base
   has_many :items
+  has_many :order_items
+  has_many :orders, through: :order_items
 
   before_create :generate_url
 
