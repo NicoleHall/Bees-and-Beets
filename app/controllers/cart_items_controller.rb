@@ -30,7 +30,8 @@ class CartItemsController < ApplicationController
     item = Item.find(params[:id])
     @cart.delete_item(item.id)
 
-    link_to_item = "#{view_context.link_to(item.title, item)}"
+    link_to_item = "#{view_context.link_to(item.title,
+                      vendor_item_path(vendor: item.vendor.url, id: item.id))}"
     flash[:success] = "Successfully removed #{link_to_item} from your cart."
 
     redirect_to cart_path

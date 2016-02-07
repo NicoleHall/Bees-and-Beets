@@ -6,6 +6,7 @@ FactoryGirl.define do
     image_path "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTmmnVDNMRzWNavHqRRaaHMyY_e4_qg5QsoBIGxRNhuhJmNdRUO"
     association :vendor, factory: :vendor
     category
+    status 1
   end
 
   factory :category do
@@ -67,6 +68,7 @@ FactoryGirl.define do
     name { generate(:vendor_name) }
     description "A shop."
     image_path "http://theveganherald.com/wp-content/uploads/2015/12/Farm-Animals.jpg"
+
     factory :vendor_with_items do
       transient do
         item_count 2
@@ -82,6 +84,7 @@ FactoryGirl.define do
     order
     item
     quantity 1
+    vendor
   end
 
   factory :order do
