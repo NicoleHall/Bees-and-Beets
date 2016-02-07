@@ -5,7 +5,7 @@ class UserSeesItemsByCategoryTest < ActionDispatch::IntegrationTest
     category1 = create(:category_with_items)
     category2 = create(:category_with_items)
 
-    visit category_path(category1)
+    visit category_items_path(category1)
 
     assert page.has_content?("#{category1.items.first.title}")
     assert page.has_content?("#{category1.items.last.title}")

@@ -10,7 +10,7 @@ class UserRemovesItemFromCartTest < ActionDispatch::IntegrationTest
     success_message = "Successfully removed #{@item.title} from your cart."
     assert page.has_content?(success_message)
     assert page.has_css?(".flash_success")
-    assert page.has_link?(@item.title, href: item_path(@item))
+    assert page.has_link?(@item.title, href: vendor_item_path(vendor: @item.vendor.url, id: @item.id))
 
     within ".container" do
       refute page.has_content?(@item.title)
