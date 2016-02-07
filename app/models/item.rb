@@ -13,6 +13,7 @@ class Item < ActiveRecord::Base
   validates :title, presence: true,
                     uniqueness: true
   validates :category_id, presence: true
+  validates :vendor_id, presence: true
   validates :price, presence: true,
                     numericality: { greater_than: 0 }
   validates :description, presence: true

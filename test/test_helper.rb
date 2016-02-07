@@ -34,7 +34,7 @@ class ActionDispatch::IntegrationTest
     @items = create_list(:item, num_items)
 
     @items.each do |item|
-      visit item_path(item)
+      visit vendor_item_path(vendor: item.vendor.url, id: item.id)
       click_button "Add to Cart"
     end
     find("#shopping_cart").click

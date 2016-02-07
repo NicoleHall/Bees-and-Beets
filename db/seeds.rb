@@ -10,8 +10,8 @@ class Seed
     seed.generate_categories
     seed.generate_items
     seed.generate_addresses
-    # seed.generate_orders
-    # seed.generate_order_items
+    seed.generate_orders
+    seed.generate_order_items
   end
 
   def create_customer_josh
@@ -110,7 +110,7 @@ class Seed
     vendors.each do |vendor|
       items = []
       100.times do |i|
-        items << Item.create!(
+        vendor.items.create!(
         title: vendor.name + " " + Faker::SlackEmoji.food_and_drink.gsub(":","") + "#{i}",
         price: Faker::Commerce.price.to_i + 1,
         description: Faker::Lorem.paragraph,
@@ -119,7 +119,6 @@ class Seed
         category_id: (1..10).to_a.sample
         )
       end
-      vendor.items << items
     end
   end
 
@@ -138,14 +137,11 @@ class Seed
 
   def generate_orders
     customers = User.where(role: 0)
-    vendors = Vendor.take(20)
     customers.each do |customer|
       10.times do |i|
         customer.orders.create!(
-          address_id: customer.address,
           user_id: customer.id,
-          status: rand(4),
-          vendor_id: vendors.sample.id
+          status: rand(4)
         )
       end
     end
@@ -154,10 +150,12 @@ class Seed
   def generate_order_items
     orders = Order.all
     orders.each do |order|
-      item_ids = order.vendor.items.pluck(:id)
+      vendors = Vendor.all
       3.times do |i|
+        vendor = vendors.shuffle.pop
         order.order_items.create!(
-          item_id: item_ids.sample,
+          vendor_id: vendor.id,
+          item_id: vendor.items.pluck(:id).sample,
           quantity: (1..8).to_a.sample
         )
       end

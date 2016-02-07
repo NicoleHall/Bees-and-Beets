@@ -7,6 +7,6 @@
     <h4><%= link_to item.title, vendor_item_path(vendor: item.vendor.url, id: item.id) %></h4>
     <p><%= item.description %></p>
     <p><%= number_to_currency(item.price, class: "item-price") %></p>
-    <%= button_to "Add to Cart", "#", class: "btn waves-effect waves-light" %>
+    <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn waves-effect waves-light" %>
   </div>
 </div>

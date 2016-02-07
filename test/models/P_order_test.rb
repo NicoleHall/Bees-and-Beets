@@ -20,15 +20,15 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "order can belong to an artist" do
-    artist = create(:artist)
+    user_vendor = create(:user, role: 1)
     order = create(:order)
-    artist.orders << order
+    user_vendor.orders << order
 
-    assert_equal order.user.id, artist.id
+    assert_equal order.user.id, user_vendor.id
   end
 
   test "order can belong to an admin" do
-    admin = create(:admin)
+    admin = create(:user, role: 2)
     order = create(:order)
     admin.orders << order
 

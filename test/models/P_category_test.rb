@@ -5,8 +5,8 @@ class CategoryTest < ActiveSupport::TestCase
   should validate_uniqueness_of(:name)
 
   test "category name cannot be duplicate" do
-    Category.create(name: "Painting")
-    Category.create(name: "Painting")
+    Category.create(name: "Fruit")
+    Category.create(name: "Fruit")
 
     assert_equal 1, Category.count
   end
