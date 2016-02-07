@@ -84,6 +84,7 @@ FactoryGirl.define do
     order
     item
     quantity 1
+    vendor
   end
 
   factory :order do
