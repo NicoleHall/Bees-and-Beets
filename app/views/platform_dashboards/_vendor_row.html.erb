@@ -3,6 +3,7 @@
     <%= image_tag("https://s-media-cache-ak0.pinimg.com/236x/1e/53/94/1e53942d804bd726b332b849ca7254b0.jpg", class: "dashboard_thumbnail circle") %>
   </td>
   <td>
+    <%= link_to vendor.name, vendor_items_path(vendor: vendor.url) %>
     <%= vendor.description %>
   </td>
   <td>
@@ -14,7 +15,7 @@
     <% elsif vendor.pending? %>
       <%= button_to "Open", open_vendor_path(vendor_id: vendor.id), method: :put, class: "btn waves-effect waves-light" %>
       <%= button_to "Close", close_vendor_path(vendor_id: vendor.id), method: :put, class: "btn waves-effect waves-light" %>
-    <% else %>
+    <% elsif vendor.closed? %>
       <%= button_to "Open", open_vendor_path(vendor_id: vendor.id), method: :put, class: "btn waves-effect waves-light" %>
     <% end %>
   </td>

@@ -5,7 +5,7 @@ class Seed
     seed.generate_customer
     seed.create_business_admin_andrew
     # seed.generate_business_admins
-    # seed.create_platform_admin_jorge
+    seed.create_platform_admin_jorge
     seed.generate_vendors
     seed.generate_categories
     seed.generate_items

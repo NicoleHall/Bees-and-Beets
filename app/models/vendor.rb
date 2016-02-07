@@ -18,15 +18,15 @@ class Vendor < ActiveRecord::Base
     statuses.include?(0)
   end
 
-  def pending?
+  def self.pending?
     self.status == 0
   end
 
-  def open?
+  def self.open?
     self.status == 1
   end
 
-  def closed?
+  def self.closed?
     self.status == 2
   end
 end
