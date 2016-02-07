@@ -32,7 +32,6 @@ class GuestCannotCheckoutWithoutLoginTest < ActionDispatch::IntegrationTest
       assert page.has_content?(item.price)
       assert page.has_css?("img[src*='#{item.image_path}']")
     end
-    # save_and_open_page
 
     refute page.has_button?("Checkout")
     assert page.has_button?("Login To Complete Order")

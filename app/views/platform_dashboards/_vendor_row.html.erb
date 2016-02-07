@@ -1,14 +1,21 @@
-<tr>
+<tr id="vendor-<%=vendor.id%>">
   <td>
     <%= image_tag("https://s-media-cache-ak0.pinimg.com/236x/1e/53/94/1e53942d804bd726b332b849ca7254b0.jpg", class: "dashboard_thumbnail circle") %>
   </td>
   <td>
-    This vendor is located in Colorado. They specialize in Things.
+    <%= vendor.description %>
   </td>
   <td>
-    "ACTIVE"
+    <%= vendor.status.capitalize %>
   </td>
   <td>
-    <%= button_to "Close", class: "btn waves-effect waves-light" %>
+    <% if vendor.open? %>
+      <%= button_to "Close", close_vendor_path(vendor_id: vendor.id), method: :put, class: "btn waves-effect waves-light" %>
+    <% elsif vendor.pending? %>
+      <%= button_to "Open", open_vendor_path(vendor_id: vendor.id), method: :put, class: "btn waves-effect waves-light" %>
+      <%= button_to "Close", close_vendor_path(vendor_id: vendor.id), method: :put, class: "btn waves-effect waves-light" %>
+    <% else %>
+      <%= button_to "Open", open_vendor_path(vendor_id: vendor.id), method: :put, class: "btn waves-effect waves-light" %>
+    <% end %>
   </td>
 </tr>

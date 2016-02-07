@@ -18,6 +18,21 @@ class VendorsController < ApplicationController
     end
   end
 
+  def open
+    Vendor.update(params[:vendor_id], status: 1)
+    redirect_to platform_dashboard_path
+  end
+
+  def close
+    Vendor.update(params[:vendor_id], status: 2)
+    redirect_to platform_dashboard_path
+  end
+
+  def pending
+    Vendor.update(params[:vendor_id], status: 0)
+    redirect_to platform_dashboard_path
+  end
+
   private
 
   def vendor_params

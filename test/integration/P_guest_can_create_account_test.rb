@@ -7,7 +7,6 @@ class GuestCanCreateAccountTest < ActionDispatch::IntegrationTest
     # assert page.has_content?(@item.title)
 
     visit "/"
-    # save_and_open_page
     first(:link, "Log In/Sign Up").click
     click_on "Create Account"
 
