@@ -3,14 +3,14 @@
     <div class="card">
       <div class="card-content">
         <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
-        <p>Current Status: <%= @vendor.status %> </p>
+        <p>Current Status: <%= vendor.status %> </p>
         <table class="larger-text">
           <tr>
             <td>
               <strong>Kiosk Name:</strong>
             </td>
             <td>
-              <%= @vendor.name %>
+              <%= vendor.name %>
             </td>
           </tr>
           <tr>
@@ -18,7 +18,7 @@
               <strong>Description:</strong>
             </td>
             <td>
-              <%= @vendor.description %>
+              <%= vendor.description %>
             </td>
           </tr>
         </table>

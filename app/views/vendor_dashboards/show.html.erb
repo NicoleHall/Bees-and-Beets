@@ -43,7 +43,7 @@
     </div>
 
     <% if @vendor %>
-      <% render partial: 'vendor_kiosk' %>
+      <%= render partial: 'vendor_kiosk', :locals => {:vendor => @vendor} %>
     <% end %>
   </div>
 </div>
