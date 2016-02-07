@@ -35,7 +35,6 @@ class AdminApprovesPendingStoreTest < ActionDispatch::IntegrationTest
 
     within("#vendor-#{vendor.id}") do
       assert page.has_content?("Pending")
-      save_and_open_page
 
       assert page.has_button?("Open")
       click_on "Open"

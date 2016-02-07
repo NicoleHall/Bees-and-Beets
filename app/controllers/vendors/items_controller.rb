@@ -10,6 +10,10 @@ class Vendors::ItemsController < Vendors::VendorsController
     @item = current_vendor.items.find(params[:id])
   end
 
+  def new
+    @item = Item.new
+  end
+
   # private
   #
   # def current_vendor

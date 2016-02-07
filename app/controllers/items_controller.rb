@@ -4,8 +4,8 @@ class ItemsController < ApplicationController
   #               only: [:edit, :update, :destroy]
 
   def index
-    @category = Category.find_by(url: params[:category_url])
-    @items = @category.items
+      @category = Category.find_by(url: params[:category_url])
+      @items = @category.items
   end
 
   # def show
