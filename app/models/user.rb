@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :items
   has_many :addresses
+  belongs_to :vendor
 
 
   has_attached_file :file_upload,

@@ -1,0 +1,32 @@
+<div id="vendor-details">
+  <div class="col s12 m6">
+    <div class="card">
+      <div class="card-content">
+        <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
+        <p>Current Status: <%= @vendor.status %> </p>
+        <table class="larger-text">
+          <tr>
+            <td>
+              <strong>Kiosk Name:</strong>
+            </td>
+            <td>
+              <%= @vendor.name %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Description:</strong>
+            </td>
+            <td>
+              <%= @vendor.description %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card-action">
+        <%= link_to "Edit Info", edit_user_path(current_user), class: "btn waves-effect waves-light" %>
+        <%= link_to "Manage Items", manage_items_path, class: "btn waves-effect waves-light" %>
+      </div>
+    </div>
+  </div>
+</div>

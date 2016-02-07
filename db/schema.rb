@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160206180950) do
+ActiveRecord::Schema.define(version: 20160207001107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,7 +91,10 @@ ActiveRecord::Schema.define(version: 20160206180950) do
     t.string   "file_upload_content_type"
     t.integer  "file_upload_file_size"
     t.datetime "file_upload_updated_at"
+    t.integer  "vendor_id"
   end
+
+  add_index "users", ["vendor_id"], name: "index_users_on_vendor_id", using: :btree
 
   create_table "vendors", force: :cascade do |t|
     t.integer  "status",                   default: 0
@@ -114,4 +117,5 @@ ActiveRecord::Schema.define(version: 20160206180950) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
+  add_foreign_key "users", "vendors"
 end
