@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:create, :destroy, :update]
 
   namespace :vendors, path: ':vendor', as: :vendor do
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show, :new]
   end
 
   resources :users,
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#destroy"
   get "/dashboard", to: "users#show"
   get "/vendor_dashboard", to: "vendor_dashboards#show"
-  get "/manage_items", to: "items#index"
+  get "/manage_items", to: "vendors/items#index"
   get "/platform_dashboard", to: "platform_dashboards#show"
   root "home#index"
 end

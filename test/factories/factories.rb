@@ -78,6 +78,12 @@ FactoryGirl.define do
         create_list(:item, evaluator.item_count, vendor: vendor)
       end
     end
+
+    factory :vendor_with_user do
+      after(:create) do |vendor, evaluator|
+        create_list(:user, 1, vendor: vendor)
+      end
+    end
   end
 
   factory :order_item do
