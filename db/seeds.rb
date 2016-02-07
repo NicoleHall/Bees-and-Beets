@@ -110,7 +110,7 @@ class Seed
     vendors.each do |vendor|
       items = []
       100.times do |i|
-        items << Item.create!(
+        vendor.items.create!(
         title: vendor.name + " " + Faker::SlackEmoji.food_and_drink.gsub(":","") + "#{i}",
         price: Faker::Commerce.price.to_i + 1,
         description: Faker::Lorem.paragraph,
@@ -119,7 +119,6 @@ class Seed
         category_id: (1..10).to_a.sample
         )
       end
-      vendor.items << items
     end
   end
 
