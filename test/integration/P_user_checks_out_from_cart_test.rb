@@ -6,7 +6,8 @@ class UserChecksOutFromCartTest < ActionDispatch::IntegrationTest
     add_items_to_cart_and_visit_shopping_cart(2)
 
     visit cart_path
-    click_button "Checkout"
+
+    click_button "Login To Complete Order"
 
     assert_equal login_path, current_path
 
@@ -23,17 +24,19 @@ class UserChecksOutFromCartTest < ActionDispatch::IntegrationTest
     )
 
     visit cart_path
+
     click_button "Checkout"
 
     assert_equal 1, Order.count
 
     assert_equal user_orders_path(user), current_path
 
-    assert page.has_content?("Order was successfully placed")
     assert page.has_content?(@items.first.title)
     assert page.has_content?(@items.last.title)
     assert page.has_content?(Order.last.id)
     assert page.has_content?(Order.last.total)
+
+    assert page.has_content?("Thank You! Your order will be ready for pickup in 1 hour.")
   end
 
   test "logged in user places order" do
@@ -48,16 +51,18 @@ class UserChecksOutFromCartTest < ActionDispatch::IntegrationTest
     )
 
     visit cart_path
+
     click_button "Checkout"
 
     assert_equal 1, Order.count
 
     assert_equal user_orders_path(user), current_path
 
-    assert page.has_content?("Order was successfully placed")
     assert page.has_content?(@items.first.title)
     assert page.has_content?(@items.last.title)
     assert page.has_content?(Order.last.id)
     assert page.has_content?(Order.last.total)
+    assert page.has_content?("Thank You! Your order will be ready for pickup in 1 hour.")
+
   end
 end

@@ -18,4 +18,23 @@ class UserCanViewPastOrdersTest < ActionDispatch::IntegrationTest
     assert page.has_content?(Order.last.id)
     assert page.has_content?(Order.last.total)
   end
+
+  test "user sees all submitted orders by clicking on order history" do
+    user = create(:user)
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
+
+    add_items_to_cart_and_visit_shopping_cart(1)
+    click_on "Checkout"
+    add_items_to_cart_and_visit_shopping_cart(1)
+    click_on "Checkout"
+
+    visit dashboard_path
+    click_on "Order History"
+
+    assert_equal 2, Order.all.count
+    assert page.has_content?(Order.first.id)
+    assert page.has_content?(Order.first.total)
+    assert page.has_content?(Order.last.id)
+    assert page.has_content?(Order.last.total)
+  end
 end
