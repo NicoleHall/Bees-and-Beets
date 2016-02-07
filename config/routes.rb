@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :vendors, only: [:index]
+  resources :vendors, only: [:index, :new, :create]
 
   resources :categories, only: [:index], param: :url do
     resources :items, only: [:index]
@@ -34,7 +34,8 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
   get "/dashboard", to: "users#show"
-  get "/admin_dashboard", to: "admin_dashboards#show"
+  get "/vendor_dashboard", to: "vendor_dashboards#show"
+  get "/manage_items", to: "items#index"
   get "/platform_dashboard", to: "platform_dashboards#show"
   root "home#index"
 end

@@ -1,10 +1,8 @@
 class Vendors::VendorsController < ApplicationController
-  # attr_reader :current_vendor
   before_action :vendor_not_found
   helper_method :current_vendor
 
   def current_vendor
-    # binding.pry
     @current_vendor ||= Vendor.find_by(url: params[:vendor])
   end
 

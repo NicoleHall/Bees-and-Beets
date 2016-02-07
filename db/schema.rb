@@ -93,7 +93,10 @@ ActiveRecord::Schema.define(version: 20160207160904) do
     t.string   "file_upload_content_type"
     t.integer  "file_upload_file_size"
     t.datetime "file_upload_updated_at"
+    t.integer  "vendor_id"
   end
+
+  add_index "users", ["vendor_id"], name: "index_users_on_vendor_id", using: :btree
 
   create_table "vendors", force: :cascade do |t|
     t.integer  "status",                   default: 0
@@ -117,4 +120,5 @@ ActiveRecord::Schema.define(version: 20160207160904) do
   add_foreign_key "order_items", "vendors"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
+  add_foreign_key "users", "vendors"
 end

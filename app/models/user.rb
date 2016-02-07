@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :items
   has_many :addresses
+  belongs_to :vendor
 
 
   has_attached_file :file_upload,
@@ -22,7 +23,7 @@ class User < ActiveRecord::Base
 
   scope :vendors, -> { where(role: 1) }
 
-  enum role: %w(default vendor platform_admin)
+  enum role: %w(customer vendor platform_admin)
 
   def full_name
     "#{first_name} #{last_name}"
