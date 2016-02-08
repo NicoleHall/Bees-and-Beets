@@ -12,7 +12,7 @@ class UserCanBecomeAVendorTest < ActionDispatch::IntegrationTest
     end
 
     assert_equal "/dashboard", current_path
-    #putting this button on shared/_user.info.html.erb
+
     assert page.has_button?("Become Vendor")
     click_button "Become Vendor"
     assert_equal "vendor", user.reload.role
