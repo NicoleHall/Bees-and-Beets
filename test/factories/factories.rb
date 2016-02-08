@@ -112,7 +112,7 @@ FactoryGirl.define do
     "vendor_#{n}"
   end
 
-  sequence :status, %w(ordered paid cancelled completed).cycle do |n|
+  sequence :status, %w(ordered completed).cycle do |n|
     n
   end
 

@@ -3,8 +3,8 @@ class Order < ActiveRecord::Base
   belongs_to :address
   has_many :order_items
   has_many :items, through: :order_items
-  
-  enum status: %w(ordered paid cancelled completed)
+
+  enum status: %w(ordered completed)
 
   def date
     created_at.strftime("%b %d, %Y %I:%M%P")
@@ -24,15 +24,11 @@ class Order < ActiveRecord::Base
     where(status: 0).count
   end
 
-  def self.count_of_paid
+  def self.count_of_completed
     where(status: 1).count
   end
 
-  def self.count_of_cancelled
-    where(status: 2).count
-  end
-
-  def self.count_of_completed
-    where(status: 3).count
+  def all_complete?
+    order_items.pluck(:status).all?{ |status| status != 0 }
   end
 end

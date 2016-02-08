@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class VendorCanSeeOrdersAndChangeStatusOfOrderItemTest < ActionDispatch::IntegrationTest
-  test "vendor can see orders and change status of order item test" do
+class VendorCanSeeOrderItemsForOrderTest < ActionDispatch::IntegrationTest
+  test "vendor can see order items for order" do
     registered_user = create(:user)
     vendor_1 = create(:vendor_with_user, status: 1)
     vendor_2 = create(:vendor_with_items, status: 1)
@@ -19,10 +19,15 @@ class VendorCanSeeOrdersAndChangeStatusOfOrderItemTest < ActionDispatch::Integra
 
     ApplicationController.any_instance.stubs(:current_user).returns(user_vendor)
 
-    visit vendor_dashboard_path
-    click_on "Manage Orders"
+    visit vendor_orders_path(vendor: vendor_1.url)
 
-    assert_equal vendor_orders_path(vendor: vendor_1.url), current_path
+    within("#order_item_#{order_item_1.id}") do
+      click_on "#{order_item_1.order.id}"
+    end
+
+    assert_equal vendor_order_path(vendor: vendor_1.url, id: order_item_1.order.id), current_path
+
+    assert page.has_content?("Order ID: #{order_item_1.order.id}")
 
     [order_item_1, order_item_2].each do |order_item|
       within("#order_item_#{order_item.id}") do
@@ -36,26 +41,7 @@ class VendorCanSeeOrdersAndChangeStatusOfOrderItemTest < ActionDispatch::Integra
       end
     end
 
-    refute page.has_content?(item_3.title)
-
-    within("#order_item_#{order_item_1.id}") do
-      click_on "Mark as Completed"
-    end
-
-    within("#order_item_#{order_item_1.id}") do
-      assert_equal "completed", order_item_1.reload.status
-      refute page.has_link?("Mark as Completed")
-      refute page.has_link?("Cancel")
-    end
-
-    within("#order_item_#{order_item_2.id}") do
-      click_on "Cancel"
-    end
-
-    within("#order_item_#{order_item_2.id}") do
-      assert_equal "completed", order_item_1.reload.status
-      refute page.has_link?("Mark as Completed")
-      refute page.has_link?("Cancel")
-    end
+    assert page.has_content?("Total:")
+    assert page.has_content?("#{order_item_1.item.price * order_item_1.quantity + order_item_2.item.price * order_item_2.quantity}")
   end
 end
