@@ -48,6 +48,7 @@ class UsersController < ApplicationController
   def update_user_to_vendor
     @user = User.find(current_user.id)
     @user.update_attribute(:role, 1)
+    redirect_to dashboard_path
   end
 
   private

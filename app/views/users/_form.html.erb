@@ -10,7 +10,7 @@
   <br>
 
   <div class="row">
-    <% if current_artist? %>
+    <% if current_vendor? %>
     <%= f.label "Upload Profile Picture" %>
     <br><br>
     <%= f.file_field :file_upload, class: "upload_file grey-text" %>
@@ -24,7 +24,7 @@
   <% unless current_user %>
     <%= f.label :username %>
     <%= f.text_field :username  %>
-  <% end %>
+    <% end %>
   <br>
 
   <%= f.label :password %>
