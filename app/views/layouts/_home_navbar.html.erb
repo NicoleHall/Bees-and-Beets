@@ -4,11 +4,19 @@
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
     <!-- DESKTOP NAV -->
+    <% if current_user %>
+    <p class="right-align">
+      <%= link_to "Logged in as #{current_user.first_name}", dashboard_path(current_user.slug) , class: "login_confirm"%>
+    </p>
+
+
+    <% else %>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li class="right-align">
-          <%= link_to "Log In/Sign Up", login_path %>
-        </li>
+      <li class="right-align">
+        <%= link_to "Log In/Sign Up", login_path %>
+      </li>
     </ul>
+    <% end %>
 
     <!-- MOBILE NAV -->
     <ul class="side-nav" id="mobile-demo">
