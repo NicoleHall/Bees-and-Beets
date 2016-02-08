@@ -19,7 +19,7 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal order.user.id, user.id
   end
 
-  test "order can belong to an artist" do
+  test "order can belong to an vendor" do
     user_vendor = create(:user, role: 1)
     order = create(:order)
     user_vendor.orders << order
@@ -33,5 +33,21 @@ class OrderTest < ActiveSupport::TestCase
     admin.orders << order
 
     assert_equal order.user.id, admin.id
+  end
+
+  test "count of ordered" do
+    order_1 = create(:order, status: 0)
+    order_2 = create(:order, status: 0)
+    order_3 = create(:order, status: 1)
+
+    assert_equal 2, Order.count_of_ordered
+  end
+
+  test "count of completed" do
+    order_1 = create(:order, status: 0)
+    order_2 = create(:order, status: 0)
+    order_3 = create(:order, status: 1)
+
+    assert_equal 1, Order.count_of_completed
   end
 end
