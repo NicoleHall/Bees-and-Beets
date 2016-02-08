@@ -15,8 +15,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_platform_admin?
-    current_user && current_user.platform_admin?
-  end
+      current_user && current_user.platform_admin?
+    end
 
   def current_vendor?
     current_user && current_user.vendor?
