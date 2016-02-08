@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   namespace :vendors, path: ':vendor', as: :vendor do
     resources :items, only: [:index, :show]
+    resources :orders, only: [:index, :show, :update]
   end
 
   resources :users,

@@ -1,0 +1,57 @@
+<h2>All Orders</h2>
+<div class="col s12 m12">
+  <div id= "totals" class="row center-align">
+    <!-- chartkick goes here -->
+  </div>
+
+  <div class="filter">
+    <label>Filter By Order Status:</label>
+    <%= select_tag :order_status, options_for_select(%w(all ordered completed cancelled)) %>
+  </div>
+
+  <div class="card-panel blue-grey lighten-5">
+
+    <table class="highlight larger-text responsive-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Username</th>
+          <th>Item</th>
+          <th>Order Item Status</th>
+          <th>Date</th>
+          <th>Update Status</th>
+          <th>Cancel</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @order_items.reverse.each do |order_item| %>
+          <tr id="order_item_<%= order_item.id %>" class="order">
+            <td><%= link_to order_item.order_id,
+                            user_order_path(order_item.order.user,
+                                            order_item.order) %></td>
+            <td><%= order_item.order.user.username  %></td>
+            <td><%= link_to order_item.item.title,
+                            vendor_item_path(vendor: order_item.vendor.url,
+                                             id: order_item.item.id) %></td>
+            <td class="status_<%=order_item.status%> order_status"><%= order_item.status.capitalize %></td>
+            <td><%= order_item.order.date %></td>
+            <td>
+              <% if order_item.ordered? %>
+                <%= link_to "Mark as Completed", vendor_order_path(vendor: order_item.vendor.url,
+                                                                   id:order_item.id,
+                                                                   status: 1), method: :put %>
+              <% end %>
+            </td>
+            <td>
+              <% unless order_item.cancelled? || order_item.completed? %>
+                <%= link_to "Cancel", vendor_order_path(vendor: order_item.vendor.url,
+                                                                   id:order_item.id,
+                                                                   status: 2), method: :put %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -29,6 +29,10 @@ FactoryGirl.define do
     password "password"
     email_address
 
+    factory :user_vendor do
+      role 1
+    end
+
     factory :user_with_orders do
       transient do
         order_count 2
@@ -68,6 +72,18 @@ FactoryGirl.define do
     name { generate(:vendor_name) }
     description "A shop."
     image_path "http://theveganherald.com/wp-content/uploads/2015/12/Farm-Animals.jpg"
+
+    factory :vendor_with_user do
+      transient do
+        user_count 1
+        item_count 2
+      end
+
+      after(:create) do |vendor, evaluator|
+        create_list(:user_vendor, evaluator.user_count, vendor: vendor)
+        create_list(:item, evaluator.item_count, vendor: vendor)
+      end
+    end
 
     factory :vendor_with_items do
       transient do
