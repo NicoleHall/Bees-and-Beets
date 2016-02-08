@@ -25,6 +25,20 @@ class Vendors::ItemsController < Vendors::VendorsController
     end
   end
 
+  def edit
+    @item = current_vendor.items.find(params[:id])
+  end
+
+  def update
+    @item = current_vendor.items.find(params[:id])
+    if @item.update_attributes(item_params)
+      redirect_to vendor_items_path(vendor: current_vendor.url)
+    else
+      flash.now[:error] = "Incorrect user information"
+      render :edit
+    end
+  end
+
   private
 
   def item_params
