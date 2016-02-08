@@ -29,6 +29,10 @@ FactoryGirl.define do
     password "password"
     email_address
 
+    factory :user_vendor do
+      role 1
+    end
+
     factory :user_with_orders do
       transient do
         order_count 2
@@ -81,7 +85,7 @@ FactoryGirl.define do
 
     factory :vendor_with_user do
       after(:create) do |vendor, evaluator|
-        create_list(:user, 1, vendor: vendor)
+        create_list(:user_vendor, 1, vendor: vendor)
       end
     end
   end

@@ -11,15 +11,14 @@ class Vendors::ItemsController < Vendors::VendorsController
   end
 
   def new
-    @item = Item.new
+    @item = current_vendor.items.new
   end
 
   def create
     sanitize_price(params[:item][:price])
     @item = current_vendor.items.new(item_params)
-
     if @item.save
-      redirect_to @item
+      redirect_to vendor_items_path(vendor: current_vendor.url)
     else
       flash.now[:error] = "Incomplete form"
       render :new

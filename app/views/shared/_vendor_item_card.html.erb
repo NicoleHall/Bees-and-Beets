@@ -1,6 +1,9 @@
 <div class="grid-item">
   <div class="card" id="vendor_item_<%= item.id %>">
     <a href="/<%= current_vendor.url %>/items/<%= item.id %>" class="card-image">
+      <p>
+        "THIS SHOULD BE VENDOR ITEMS SHOW"
+      </p>
       <% if item.file_upload_file_name.nil? %>
         <%= image_tag item.image_path %>
       <% elsif item.file_upload_file_name %>
@@ -9,9 +12,12 @@
     </a>
     <div class="card-action">
       <span class="card-title"><a class="black-text title-links" href="/<%= current_vendor.url %>/items/<%= item.id %>"><%= item.title %></a></span>
+       <p><%= item.description %></p>
+       <p><%= item.price %></p>
       <br/>
       <% if current_vendor? %>
-        <%= link_to "Edit Item", edit_vendor_item_path(vendor:vendor.url, id: item.id) %>
+        <%= link_to "Edit Item", edit_vendor_item_path(vendor: current_vendor.url, id: item.id) %>
+        <%= link_to "Delete Item", "#" %>
       <% end %>
       <% if item.status == "active" %>
         <%= number_to_currency(item.price, class: "item-price") %>
