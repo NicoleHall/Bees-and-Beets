@@ -27,6 +27,7 @@ class VendorCanAddAnItemTest < ActionDispatch::IntegrationTest
     click_on "Create Item"
 
     item = Item.last
+    binding.pry
     assert_equal vendor, item.user
 
     assert_equal vendor_item_path(vendor: vendor.url, id: item.id), current_path
