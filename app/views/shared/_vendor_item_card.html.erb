@@ -1,9 +1,6 @@
 <div class="grid-item">
   <div class="card" id="vendor_item_<%= item.id %>">
     <a href="/<%= current_vendor.url %>/items/<%= item.id %>" class="card-image">
-      <p>
-        "THIS SHOULD BE VENDOR ITEMS SHOW"
-      </p>
       <% if item.file_upload_file_name.nil? %>
         <%= image_tag item.image_path %>
       <% elsif item.file_upload_file_name %>
