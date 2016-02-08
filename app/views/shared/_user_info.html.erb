@@ -2,11 +2,13 @@
   <div class="col s12 m6">
     <div class="card">
       <div class="card-content">
+
         <% if current_vendor? %>
           <% if current_user.file_upload %>
             <%= image_tag current_user.file_upload.url(:medium) %>
           <% end %>
         <% end %>
+
         <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
         <table class="larger-text">
           <tr>
@@ -25,16 +27,6 @@
               <%= current_user.email_address %>
             </td>
           </tr>
-          <tr>
-            <td>
-                <strong>Address: </strong>
-            </td>
-            <td>
-              123 Maple Dr.
-              <br>
-              Denver, CO 80210
-            </td>
-          </tr>
         </table>
       </div>
       <div class="card-action">
@@ -46,16 +38,12 @@
   <div class="col s12 m6">
     <div class="card">
       <div class="card-action user_action_links">
-          <div class="action_box"><%= link_to "Create Item", "#" %></div>
-          <div class="action_box"><%= link_to "View Items", "#" %></div>
-          <div class="action_box"><%= link_to "Add New Item", "#" %></div>
-          <div class="action_box"><%= link_to "Order History", "#" %></div>
+          <div class="action_box"><%= link_to "Order History", user_orders_path(current_user.slug) %></div>
       </div>
     </div>
   </div>
 
-
 <%= button_to('Become Vendor', update_user_to_vendor_users_path, method: :patch ,:action => 'update_user_to_vendor') %>
 
-
  </div>
+</div>

@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
 
       @amount = @cart.total_price * 100
 
+
       customer = Stripe::Customer.create(
         email:  params[:stripeEmail],
         source: params[:stripeToken]
@@ -27,8 +28,7 @@ class OrdersController < ApplicationController
       )
 
       @cart.clear
-
-      flash[:success] = "Order was successfully placed"
+      flash[:success] = "Thank You! Your order will be ready for pickup in 1 hour."
       redirect_to user_orders_path(current_user.slug, order_id: order.id)
     end
 
@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
   private
 
   def require_user
-    render file: "public/404" unless current_admin? ||
+    render file: "public/404" unless current_vendor? ||
                                      current_user.slug == params[:user_slug]
   end
 end

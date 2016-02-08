@@ -1,5 +1,10 @@
 <h2><%= current_vendor.name %></h2>
+  <% if current_vendor? %>
+    <%= link_to "Add Item", new_vendor_item_path(vendor: current_vendor.url) %>
+  <% end %>
 
-<% @items.each do |item| %>
+<div class="grid">
+  <% @items.each do |item| %>
   <%= render partial: 'shared/vendor_item_card', locals: { item: item } %>
-<% end %>
+  <% end %>
+</div>

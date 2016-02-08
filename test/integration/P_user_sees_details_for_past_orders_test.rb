@@ -20,7 +20,7 @@ class UserSeesDetailsForPastOrdersTest < ActionDispatch::IntegrationTest
       assert page.has_content?(item.title)
       assert page.has_content?("Quantity: 1")
       assert page.has_content?("Subtotal: $#{item.price * 1}")
-      assert page.has_link?("#{item.title}", href: item_path(item))
+      assert page.has_link?("#{item.title}", href: vendor_item_path(vendor: item.vendor.url, id: item.id))
     end
 
     assert page.has_content?("Status: Ordered")

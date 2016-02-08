@@ -1,6 +1,6 @@
 require "test_helper"
 
-class GuestCanChangeQuanityInCartTest < ActionDispatch::IntegrationTest
+class GuestCanChangeQuantityInCartTest < ActionDispatch::IntegrationTest
   test "guest visits cart and adds more items" do
     add_items_to_cart_and_visit_shopping_cart(1)
     item = @items.first

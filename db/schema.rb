@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204163920) do
+ActiveRecord::Schema.define(version: 20160207160904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "label"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -48,18 +61,22 @@ ActiveRecord::Schema.define(version: 20160204163920) do
     t.integer  "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "vendor_id"
   end
 
   add_index "order_items", ["item_id"], name: "index_order_items_on_item_id", using: :btree
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+  add_index "order_items", ["vendor_id"], name: "index_order_items_on_vendor_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "status",     default: 0
+    t.integer  "address_id"
   end
 
+  add_index "orders", ["address_id"], name: "index_orders_on_address_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -76,7 +93,10 @@ ActiveRecord::Schema.define(version: 20160204163920) do
     t.string   "file_upload_content_type"
     t.integer  "file_upload_file_size"
     t.datetime "file_upload_updated_at"
+    t.integer  "vendor_id"
   end
+
+  add_index "users", ["vendor_id"], name: "index_users_on_vendor_id", using: :btree
 
   create_table "vendors", force: :cascade do |t|
     t.integer  "status",                   default: 0
@@ -92,9 +112,13 @@ ActiveRecord::Schema.define(version: 20160204163920) do
     t.string   "url"
   end
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "vendors"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "vendors"
+  add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
+  add_foreign_key "users", "vendors"
 end
