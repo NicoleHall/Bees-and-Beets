@@ -7,7 +7,7 @@
   </figure>
 
   <div class="table_wrapper">
-    <table class="larger-text bordered striped">
+    <table class="larger-text bordered">
       <tr>
         <th>
           BLANK
@@ -22,8 +22,8 @@
           ACTION
         </th>
       </tr>
-      <% 5.times do %>
-      <%= render partial: "vendor_row" %>
+      <% @vendors.each do |vendor|%>
+        <%= render partial: "vendor_row", locals: {vendor: vendor}%>
       <% end %>
     </table>
   </div>

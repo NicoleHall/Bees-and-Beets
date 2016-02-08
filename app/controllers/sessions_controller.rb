@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
 
       if user.platform_admin?
-        redirect_to platform_admin_dashboard_path
+        redirect_to platform_dashboard_path
       elsif user.vendor?
         redirect_to vendor_dashboard_path
       else
