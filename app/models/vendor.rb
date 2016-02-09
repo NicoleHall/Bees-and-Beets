@@ -5,6 +5,7 @@ class Vendor < ActiveRecord::Base
   has_many :orders, through: :order_items
 
   before_create :generate_url
+  
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
   enum status: %w(pending open closed)

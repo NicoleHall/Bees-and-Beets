@@ -23,13 +23,19 @@ class ImagesShowInactiveStatusIfDefaultTest < ActionDispatch::IntegrationTest
     assert_equal "https://www.weefmgrenada.com/images/na4.jpg", item.image_path
     assert_equal "inactive", item.status
 
-    click_on "Edit Item"
+    within("#vendor_item_#{item.id}") do
+      click_on "Edit Item"
+    end
+
     choose "Active"
     click_on "Update Item"
 
     assert_equal "inactive", item.status
 
-    click_on "Edit Item"
+    within("#vendor_item_#{item.id}") do
+      click_on "Edit Item"
+    end
+
     fill_in "Image path", with: image_path
     choose "Active"
     click_on "Update Item"

@@ -7,7 +7,7 @@ class UserCannotCheckoutWithZeroItemsTest < ActionDispatch::IntegrationTest
 
     visit cart_path
     click_on "Checkout"
-
+    
     assert_equal cart_path, current_path
     assert_equal 0, Order.count
   end
