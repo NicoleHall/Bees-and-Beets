@@ -23,7 +23,7 @@ class VendorTest < ActiveSupport::TestCase
     create(:vendor, status: 0)
     create(:vendor, status: 2)
 
-    expected = [["Open", 1], ["Pending", 2], ["Closed", 1]]
+    expected = [["Open", 1], ["Pending", 2],["Closed", 1]]
     assert_equal expected, Vendor.vendor_status_count
   end
 end

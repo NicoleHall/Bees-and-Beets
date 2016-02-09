@@ -12,7 +12,7 @@ class UserIsShownInNavbarTest < ActionDispatch::IntegrationTest
     end
 
     visit '/'
-    assert page.has_content?("Welcome, #{user.first_name}")
+    assert page.has_content?("Logged in as #{user.first_name}")
     refute page.has_content?("Log in/Sign up")
 
   end
