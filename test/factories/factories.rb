@@ -84,8 +84,14 @@ FactoryGirl.define do
     end
 
     factory :vendor_with_user do
+      transient do
+	      user_count 1
+	      item_count 2
+      end
+​
       after(:create) do |vendor, evaluator|
-        create_list(:user_vendor, 1, vendor: vendor)
+	      create_list(:user_vendor, evaluator.user_count, vendor: vendor)
+	      create_list(:item, evaluator.item_count, vendor: vendor)
       end
     end
   end
