@@ -1,22 +1,23 @@
 require 'test_helper'
 
-class VendorCanCreateStoreTest < ActionDispatch::IntegrationTest
-  test "vendor can create a store" do
-    user = create(:user, role: 1)
-    # ApplicationController.any_instance.stubs(:current_user).returns(user)
+class VendorCanEditTheirShopTest < ActionDispatch::IntegrationTest
+  test "vendor can edit their shop" do
+    vendor = create(:vendor_with_user, status: 1)
+    user_vendor = vendor.users.first
 
     visit login_path
 
-    fill_in "Username", with: user.username
-    fill_in "Password", with: user.password
+    fill_in "Username", with: user_vendor.username
+    fill_in "Password", with: "password"
     within "form" do
       click_on "Login"
     end
 
     visit vendor_dashboard_path
-    click_on "Create Kiosk"
 
-    assert_equal new_vendor_path, current_path
+    click_on "Edit Kiosk"
+
+    assert_equal edit_vendor_path(vendor), current_path
 
     fill_in "Name", with: "Leornard's Potato Salad"
     fill_in "Description", with: "Complicated potato salad."
@@ -24,11 +25,9 @@ class VendorCanCreateStoreTest < ActionDispatch::IntegrationTest
     click_on "Submit"
 
     assert_equal vendor_dashboard_path, current_path
-    vendor = user.reload.vendor
+    vendor = user_vendor.reload.vendor
 
-    assert page.has_content?("Your kiosk is pending approval.")
     within('#vendor-details') do
-      assert page.has_link?("View My Items")
       assert page.has_content?("Status: #{vendor.status}")
       assert page.has_content?("Kiosk Name: #{vendor.name}")
       assert page.has_content?("Description: #{vendor.description}")
