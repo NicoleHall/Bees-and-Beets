@@ -1,6 +1,5 @@
 class Vendors::ItemsController < Vendors::VendorsController
-  # before_action :item_belongs_to_current_vendor, only: [:edit, :update]
-  # helper_method :current_vendor
+  before_action :item_belongs_to_current_vendor, only: [:edit, :update]
 
   def index
     @items = current_vendor.items
@@ -51,19 +50,15 @@ class Vendors::ItemsController < Vendors::VendorsController
                                  :file_upload)
   end
 
-  # def require_vendor
-  #   render file: "/public/404" unless current_user.id = current_vendor.id
-  # end
+  def require_vendor
+    render file: "/public/404" unless current_user.vendor.id == current_vendor.id
+  end
 
-  # def current_vendor
-  #   @current_vendor ||= Vendor.find_by(url: params[:vendor])
-  # end
+  def item_belongs_to_current_vendor
+    render file: "/public/404" unless item_vendor_id_is_current_vendor
+  end
 
-  # def item_belongs_to_current_vendor
-  #   render file: "/public/404" unless item_vendor_id_is_current_vendor
-  # end
-  #
-  # def item_vendor_id_is_current_vendor
-  #   Item.find(params[:id]).current_vendor.id == current_user.id
-  # end
+  def item_vendor_id_is_current_vendor
+    Item.find(params[:id]).vendor_id == current_user.vendor.id
+  end
 end

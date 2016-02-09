@@ -69,7 +69,6 @@ class VendorCanEditAnExistingItemTest < ActionDispatch::IntegrationTest
   end
 
   test "vendor cannot go directly to another vendor's edit item page" do
-    skip
     vendor_1 = create(:vendor_with_user, status: 1)
     user_1 = vendor_1.users.first
     item_1 = vendor_1.items.first
