@@ -15,11 +15,11 @@
         <% end %>
       <% elsif current_vendor? %>
         <li class="right-align">
-          <%= link_to "Logged in as #{current_user.first_name}: Vendor", vendor_dashboard_path(current_user.slug) , class: "login_confirm"%>
+          <%= link_to "Logged in as #{current_user.first_name}: Vendor", vendor_dashboard_path, class: "login_confirm"%>
         </li>
       <% elsif current_user %>
         <li class="right-align">
-          <%= link_to "Logged in as #{current_user.first_name}", dashboard_path(current_user.slug) , class: "login_confirm"%>
+          <%= link_to "Logged in as #{current_user.first_name}", dashboard_path, class: "login_confirm"%>
         </li>
       <% end %>
 

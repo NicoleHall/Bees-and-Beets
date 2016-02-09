@@ -4,19 +4,28 @@
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
     <!-- DESKTOP NAV -->
-    <% if current_user %>
-    <p class="right-align">
-      <%= link_to "Logged in as #{current_user.first_name}", dashboard_path(current_user.slug) , class: "login_confirm"%>
-    </p>
-
-
-    <% else %>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li class="right-align">
-        <%= link_to "Log In/Sign Up", login_path %>
-      </li>
+      <% if current_platform_admin? %>
+        <li class="right-align">
+          <%= link_to "Logged in as #{current_user.first_name}: Admin", platform_dashboard_path, class: "login_confirm"%>
+        </li>
+        <% if Vendor.status_pending? %>
+          <li id="pending_alert">Stores Pending Approval</li>
+        <% end %>
+      <% elsif current_vendor? %>
+        <li class="right-align">
+          <%= link_to "Logged in as #{current_user.first_name}: Vendor", vendor_dashboard_path, class: "login_confirm"%>
+        </li>
+      <% elsif current_user %>
+        <li class="right-align">
+          <%= link_to "Logged in as #{current_user.first_name}", dashboard_path , class: "login_confirm"%>
+        </li>
+      <% else %>
+        <li class="right-align">
+          <%= link_to "Log In/Sign Up", login_path %>
+        </li>
+      <% end %>
     </ul>
-    <% end %>
 
     <!-- MOBILE NAV -->
     <ul class="side-nav" id="mobile-demo">

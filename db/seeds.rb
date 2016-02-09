@@ -154,7 +154,8 @@ class Seed
         order.order_items.create!(
           vendor_id: vendor.id,
           item_id: vendor.items.pluck(:id).sample,
-          quantity: (1..8).to_a.sample
+          quantity: (1..8).to_a.sample,
+          status: rand(3)
         )
       end
     end
