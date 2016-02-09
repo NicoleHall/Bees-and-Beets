@@ -4,8 +4,8 @@ class Vendor < ActiveRecord::Base
   has_many :order_items
   has_many :orders, through: :order_items
 
-  before_create :generate_url
-  
+  before_save :generate_url
+
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
   enum status: %w(pending open closed)
@@ -19,15 +19,14 @@ class Vendor < ActiveRecord::Base
     statuses.include?(0)
   end
 
-  def self.pending?
-    self.status == 0
-  end
+  def self.vendor_status_count
+    status_freq = group(:status).count
+    (0..2).to_a.each do |status|
+      status_freq[status] ||= 0
+    end
 
-  def self.open?
-    self.status == 1
-  end
-
-  def self.closed?
-    self.status == 2
+    status_freq.map do |status, count|
+      [Vendor.statuses.key(status).capitalize, count]
+    end
   end
 end

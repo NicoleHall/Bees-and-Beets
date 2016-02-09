@@ -8,6 +8,7 @@ class GuestCanAddItemToCartTest < ActionDispatch::IntegrationTest
     visit category_items_path(category_url: category.url)
 
     first(:button, "Add to Cart").click
+
     assert page.has_content?("You added #{items.first.title} to your cart.")
     cart_items = [items.first]
 

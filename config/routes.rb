@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :vendors, only: [:index, :new, :create]
+  resources :vendors, only: [:index, :new, :create, :edit, :update]
 
   resources :categories, only: [:index], param: :url do
     resources :items, only: [:index]

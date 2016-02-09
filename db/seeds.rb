@@ -4,7 +4,7 @@ class Seed
     seed.create_customer_josh
     seed.generate_customer
     seed.create_business_admin_andrew
-    # seed.generate_business_admins
+    seed.generate_business_admins
     seed.create_platform_admin_jorge
     seed.generate_vendors
     seed.generate_categories

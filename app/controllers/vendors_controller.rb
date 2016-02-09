@@ -33,9 +33,24 @@ class VendorsController < ApplicationController
     redirect_to platform_dashboard_path
   end
 
+  def edit
+    @vendor = Vendor.find(params[:id])
+  end
+
+  def update
+    @vendor = Vendor.find(params[:id])
+
+    if @vendor.update(vendor_params)
+      redirect_to vendor_dashboard_path
+    else
+      flash.now[:error] = "All fields must be filled in."
+      render :edit
+    end
+  end
+
   private
 
   def vendor_params
-    params.require(:vendor).permit(:name, :description, :status, :image_path)
+    params.require(:vendor).permit(:name, :description, :image_path)
   end
 end

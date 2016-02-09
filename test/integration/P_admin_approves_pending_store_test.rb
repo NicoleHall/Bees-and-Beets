@@ -14,7 +14,7 @@ class AdminApprovesPendingStoreTest < ActionDispatch::IntegrationTest
     fill_in "Name", with: "Leornard's Potato Salad"
     fill_in "Description", with: "Complicated potato salad."
     fill_in "Image path", with: "http://images.edge-generalmills.com/6e42a6b2-18b6-46f8-b383-94e0379fb9a5.jpg"
-    click_on "Create Kiosk"
+    click_on "Submit"
     vendor = user.reload.vendor
     admin = create(:user, role: 2)
     ApplicationController.any_instance.stubs(:current_user).returns(admin)
@@ -22,11 +22,13 @@ class AdminApprovesPendingStoreTest < ActionDispatch::IntegrationTest
     within('.nav-wrapper') do
       assert page.has_content?("Stores Pending Approval")
     end
+
     within("#vendor-#{vendor.id}") do
       assert page.has_content?("Pending")
       assert page.has_button?("Open")
       click_on "Open"
     end
+
     within('.nav-wrapper') do
       refute page.has_content?("Stores Pending Approval")
     end

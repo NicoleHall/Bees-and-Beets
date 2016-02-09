@@ -9,7 +9,7 @@ class Vendors::OrdersController < Vendors::VendorsController
     order = order_item.order
 
     Order.find(order.id).update_attribute(:status, 1) if order.all_complete?
-    
+
     redirect_to vendor_orders_path
   end
 

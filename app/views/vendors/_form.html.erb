@@ -1,0 +1,15 @@
+<%= form_for @vendor do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+
+  <%= f.label :description %>
+  <%= f.text_area :description%>
+  <br>
+
+  <%= f.label :image_path %>
+  <%= f.text_field :image_path %>
+  <br>
+
+  <%= f.submit "Submit", class: "waves-effect waves-light btn" %>
+<% end %>
