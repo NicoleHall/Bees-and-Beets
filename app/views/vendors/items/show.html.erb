@@ -20,7 +20,7 @@
         <%= @item.description %>
       </p>
 
-      <% if current_vendor == current_user.vendor %>
+      <% if current_user && current_vendor == current_user.vendor %>
       <p>
         <%= link_to "Edit Item", edit_vendor_item_path(vendor: current_vendor.url, id: @item.id) %>
       </p>

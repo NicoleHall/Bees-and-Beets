@@ -31,7 +31,6 @@ class VendorCanAddAnItemTest < ActionDispatch::IntegrationTest
 
     assert_equal vendor_items_path(vendor: vendor.url), current_path
     assert page.has_link?("Edit Item")
-    assert page.has_link?("Delete Item")
     assert page.has_content? item.title
     assert page.has_content? item.vendor.name
     assert page.has_content? item.description
