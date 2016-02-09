@@ -1,10 +1,25 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cart
+  before_action :authorize!
   helper_method :current_user
   helper_method :current_platform_admin?
   helper_method :current_vendor?
   # helper_method :artist_owns_item?
+
+  def current_permission
+    @current_permission ||= PermissionService.new(current_user)
+  end
+
+  def authorized?
+    @current_permission.allow?(params[:controller], params[:action])
+  end
+
+  def authorize!
+    unless authorized?
+      redirect_to root_url, danger: "You are neither a Bee or Beet!"
+    end
+  end
 
   def set_cart
     @cart = Cart.new(session[:cart])
