@@ -24,7 +24,7 @@ class GuestCanCreateAccountTest < ActionDispatch::IntegrationTest
     assert_equal "/dashboard", current_path
 
     within(".nav-wrapper") do
-      assert page.has_content?("Logged in as #{user.first_name}")
+      assert page.has_content?("Welcome, #{user.first_name}")
       refute page.has_content?("Login/Signup")
       assert page.has_content?("Logout")
     end

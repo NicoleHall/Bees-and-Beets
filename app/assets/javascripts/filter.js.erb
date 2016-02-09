@@ -2,6 +2,23 @@ $(document).ready(function () {
   var $vendors = $('.vendor_cards');
   var $categories = $('.category-card');
   var $orders = $('.order');
+  var $categoryItems = $('.category-show-item')
+
+
+  $('#category_items_filter_name').on('keyup', function() {
+    var currentName = this.value.toLowerCase();
+
+    $categoryItems.each(function (index, item) {
+      var $item = $(item);
+      var $itemName = $item.find('.item-details h4').text().toLowerCase().replace(/\W/g, '');
+
+      if ($itemName.indexOf(currentName) >= 0) {
+        $item.show();
+      } else {
+        $item.hide();
+      }
+    });
+  });
 
   $('#vendor_filter_name').on('keyup', function () {
     var currentName = this.value.toLowerCase().replace(/\W/g, '');

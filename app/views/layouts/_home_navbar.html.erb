@@ -6,7 +6,7 @@
     <!-- DESKTOP NAV -->
     <% if current_user %>
     <p class="right-align">
-      <%= link_to "Logged in as #{current_user.first_name}", dashboard_path(current_user.slug) , class: "login_confirm"%>
+      <%= link_to "Welcome, #{current_user.first_name}", dashboard_path(current_user.slug) , class: "login_confirm"%>
     </p>
 
 

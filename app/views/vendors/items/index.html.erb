@@ -1,10 +1,17 @@
 <h2><%= current_vendor.name %></h2>
   <% if current_vendor? %>
-    <%= link_to "Add Item", new_vendor_item_path(vendor: current_vendor.url) %>
+    <%= link_to "Add Item", new_vendor_item_path(vendor: current_vendor.url), class: "btn waves-effect waves-light add-item-button" %>
   <% end %>
 
-<div class="grid">
+  <div class="filter">
+    <label>Find an Item:</label>
+    <%= text_field :category_items, :filter_name %>
+  </div>
+<br>
+<div class="category-show-list">
   <% @items.each do |item| %>
-  <%= render partial: 'shared/vendor_item_card', locals: { item: item } %>
+    <div class="row">
+      <%= render partial: 'shared/vendor_item_card', locals: { item: item } %>
+    </div>
   <% end %>
 </div>
