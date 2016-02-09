@@ -2,7 +2,11 @@
   <h2>Vendor Dashboard</h2>
 
   <div class="row">
-    <div class="col s12 m6">
+    <% if @vendor %>
+      <div class="col s12 m6">
+    <% else %>
+      <div class="col s12 m12">
+    <% end %>
       <div class="card">
         <div class="card-content">
           <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
