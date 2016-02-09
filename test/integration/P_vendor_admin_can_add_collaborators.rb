@@ -22,10 +22,10 @@ class TestVendorUserCanAddCollaborators < ActionDispatch::IntegrationTest
 
       click_link("Manage Collaborators")
 
-      assert_equal edit_vendor_collaborator_path(vendor: vendor.url, id: default_user.id), current_path
+      assert_equal vendor_users_path(vendor: vendor.url), current_path
       click_link("Add Collaborator")
 
-      assert_equal new_vendor_collaborator_path(vendor: vendor.url), current_path
+      assert_equal edit_vendor_user_path(vendor: vendor.url), current_path
 
       assert page.has_content?("Enter Username Of New Collaborator")
       fill_in "Username", with: default_user.username
