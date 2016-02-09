@@ -25,6 +25,7 @@ class VendorCanCreateStoreTest < ActionDispatch::IntegrationTest
 
     assert_equal vendor_dashboard_path, current_path
     vendor = user.reload.vendor
+
     assert page.has_content?("Your kiosk is pending approval.")
     within('#vendor-details') do
       assert page.has_link?("View My Items")

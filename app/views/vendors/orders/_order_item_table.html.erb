@@ -1,0 +1,27 @@
+<tr id="order_item_<%= order_item.id %>" class="order">
+  <td><%= link_to order_item.order_id,
+                  vendor_order_path(vendor: order_item.vendor.url,
+                                  id: order_item.order.id) %></td>
+  <td><%= order_item.order.user.username  %></td>
+  <td><%= link_to order_item.item.title,
+                  vendor_item_path(vendor: order_item.vendor.url,
+                                   id: order_item.item.id) %></td>
+  <td><%= number_to_currency(order_item.price) %></td>
+  <td><%= order_item.quantity %></td>
+  <td class="status_<%=order_item.status%> order_status"><%= order_item.status.capitalize %></td>
+  <td><%= order_item.order.date %></td>
+  <td>
+    <% if order_item.ordered? %>
+      <%= link_to "Mark as Completed", vendor_order_path(vendor: order_item.vendor.url,
+                                                         id:order_item.id,
+                                                         status: 1), method: :put %>
+    <% end %>
+  </td>
+  <td>
+    <% unless order_item.cancelled? || order_item.completed? %>
+      <%= link_to "Cancel", vendor_order_path(vendor: order_item.vendor.url,
+                                                         id:order_item.id,
+                                                         status: 2), method: :put %>
+    <% end %>
+  </td>
+</tr>

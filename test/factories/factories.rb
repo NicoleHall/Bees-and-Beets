@@ -73,6 +73,18 @@ FactoryGirl.define do
     description "A shop."
     image_path "http://theveganherald.com/wp-content/uploads/2015/12/Farm-Animals.jpg"
 
+    factory :vendor_with_user do
+      transient do
+        user_count 1
+        item_count 2
+      end
+
+      after(:create) do |vendor, evaluator|
+        create_list(:user_vendor, evaluator.user_count, vendor: vendor)
+        create_list(:item, evaluator.item_count, vendor: vendor)
+      end
+    end
+
     factory :vendor_with_items do
       transient do
         item_count 2
@@ -80,18 +92,6 @@ FactoryGirl.define do
 
       after(:create) do |vendor, evaluator|
         create_list(:item, evaluator.item_count, vendor: vendor)
-      end
-    end
-
-    factory :vendor_with_user do
-      transient do
-	      user_count 1
-	      item_count 2
-      end
-​
-      after(:create) do |vendor, evaluator|
-	      create_list(:user_vendor, evaluator.user_count, vendor: vendor)
-	      create_list(:item, evaluator.item_count, vendor: vendor)
       end
     end
   end
@@ -112,7 +112,7 @@ FactoryGirl.define do
     "vendor_#{n}"
   end
 
-  sequence :status, %w(ordered paid cancelled completed).cycle do |n|
+  sequence :status, %w(ordered completed).cycle do |n|
     n
   end
 

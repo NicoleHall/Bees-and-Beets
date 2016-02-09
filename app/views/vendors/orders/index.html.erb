@@ -1,0 +1,35 @@
+<h2>All Orders</h2>
+<div class="col s12 m12">
+  <div id= "totals" class="row center-align">
+    <!-- chartkick goes here -->
+  </div>
+
+  <div class="filter">
+    <label>Filter By Order Status:</label>
+    <%= select_tag :order_status, options_for_select(%w(all ordered completed cancelled)) %>
+  </div>
+
+  <div class="card-panel blue-grey lighten-5">
+
+    <table class="highlight larger-text responsive-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Username</th>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Order Item Status</th>
+          <th>Date</th>
+          <th>Update Status</th>
+          <th>Cancel</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @order_items.reverse.each do |order_item| %>
+        <%= render partial: 'order_item_table', locals: { order_item: order_item } %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
