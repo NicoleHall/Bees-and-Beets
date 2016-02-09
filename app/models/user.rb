@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   scope :vendors, -> { where(role: 1) }
 
-  enum role: %w(customer vendor platform_admin)
+  enum role: %w(customer vendor platform_admin collaborator)
 
   def full_name
     "#{first_name} #{last_name}"

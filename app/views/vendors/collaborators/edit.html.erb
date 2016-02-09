@@ -1,0 +1,6 @@
+<p>Enter Username Of New Collaborator</p>
+<%= form_for  :url => vendor_collaborators_path(vendor: current_vendor.url) do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.submit("Submit") %>
+  <% end %>
