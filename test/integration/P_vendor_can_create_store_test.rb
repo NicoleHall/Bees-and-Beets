@@ -28,7 +28,7 @@ class VendorCanCreateStoreTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Your kiosk is pending approval.")
     within('#vendor-details') do
-      assert page.has_link?("Manage Items")
+      assert page.has_link?("View My Items")
       assert page.has_content?("Status: #{vendor.status}")
       assert page.has_content?("Kiosk Name: #{vendor.name}")
       assert page.has_content?("Description: #{vendor.description}")

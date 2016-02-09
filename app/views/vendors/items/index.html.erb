@@ -1,4 +1,7 @@
 <h2><%= current_vendor.name %></h2>
+  <% if current_vendor? %>
+    <%= link_to "Add Item", new_vendor_item_path(vendor: current_vendor.url) %>
+  <% end %>
 
 <div class="grid">
   <% @items.each do |item| %>
