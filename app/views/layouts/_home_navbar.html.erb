@@ -19,7 +19,7 @@
         </li>
       <% elsif current_user %>
         <li class="right-align">
-          <%= link_to "Logged in as #{current_user.first_name}", dashboard_path , class: "login_confirm"%>
+          <%= link_to "Logged in as #{current_user.first_name}", dashboard_path, class: "login_confirm"%>
         </li>
       <% else %>
         <li class="right-align">

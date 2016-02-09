@@ -28,7 +28,7 @@ class VendorCanEditTheirShopTest < ActionDispatch::IntegrationTest
     vendor = user_vendor.reload.vendor
 
     within('#vendor-details') do
-      assert page.has_content?("Status: #{vendor.status}")
+      assert page.has_content?("Status: #{vendor.status.capitalize}")
       assert page.has_content?("Kiosk Name: #{vendor.name}")
       assert page.has_content?("Description: #{vendor.description}")
       assert page.has_link?("Edit Kiosk")

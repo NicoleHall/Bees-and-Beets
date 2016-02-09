@@ -29,21 +29,22 @@
           <%= link_to "Edit Info", edit_user_path(current_user), class: "btn waves-effect waves-light" %>
         </div>
       </div>
-    </div>
 
-    <div class="col s12 m6">
       <div class="card">
         <div class="card-action user_action_links">
           <% unless @vendor %>
             <div class="action_box"><%= link_to "Create Kiosk", new_vendor_path %></div>
           <% end %>
-          <div class="action_box"><%= link_to "View Orders", "#" %></div>
+          <div class="action_box"><%= link_to "View Orders", user_orders_path(current_user.slug) %></div>
         </div>
       </div>
+
     </div>
 
     <% if @vendor %>
       <%= render partial: 'vendor_kiosk', :locals => {:vendor => @vendor} %>
     <% end %>
+
+
   </div>
 </div>

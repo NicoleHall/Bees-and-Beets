@@ -55,7 +55,7 @@ $(document).ready(function () {
 
     $orders.each(function (index, order) {
       var $order = $(order);
-      var $orderStatus = $order.find('.order_status').text();
+      var $orderStatus = $order.find('.order_status').text().toLowerCase();
 
       if ($orderStatus === currentStatus || currentStatus === 'all') {
         $order.show();
