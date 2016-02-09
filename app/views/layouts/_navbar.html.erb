@@ -10,6 +10,7 @@
         <li class="right-align">
           <%= link_to "Logged in as #{current_user.first_name}: Admin", platform_dashboard_path , class: "login_confirm"%>
         </li>
+
         <% if Vendor.status_pending? %>
           <li id="pending_alert">Stores Pending Approval</li>
         <% end %>

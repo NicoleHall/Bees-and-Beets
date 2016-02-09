@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   #
   # resources :artists, only: [:index, :show], param: :slug
 
+  patch "/update_user_to_vendor_users", to: "users#update_user_to_vendor"
   get "/cart", to: "cart_items#index"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"

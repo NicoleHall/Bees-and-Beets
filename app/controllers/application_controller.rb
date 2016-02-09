@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cart
   helper_method :current_user
+
+
   helper_method :current_platform_admin?
   helper_method :current_vendor?
   # helper_method :artist_owns_item?
@@ -21,6 +23,8 @@ class ApplicationController < ActionController::Base
   def current_vendor?
     current_user && current_user.vendor?
   end
+
+ 
   #
   # def artist_owns_item?(item)
   #   item.user.id == current_user.id

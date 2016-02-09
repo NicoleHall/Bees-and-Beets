@@ -36,4 +36,8 @@ class User < ActiveRecord::Base
   def generate_slug
     self.slug = username.parameterize
   end
+
+  def admin?
+    self.role == 1
+  end
 end
