@@ -19,7 +19,13 @@
       <p class = "item-show-description">
         <%= @item.description %>
       </p>
-r
+
+      <% if current_vendor == current_user.vendor %>
+      <p>
+        <%= link_to "Edit Item", edit_vendor_item_path(vendor: current_vendor.url, id: @item.id) %>
+      </p>
+      <% end %>
+
       <% if @item.status == "active" %>
       <%= button_to "Add to Cart", cart_items_path(item_id: @item.id), class: "btn waves-effect waves-light" %>
       <% else %>

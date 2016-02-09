@@ -12,9 +12,8 @@
        <p><%= item.description %></p>
        <p><%= item.price %></p>
       <br/>
-      <% if current_vendor? %>
+      <% if current_vendor == current_user.vendor %>
         <%= link_to "Edit Item", edit_vendor_item_path(vendor: current_vendor.url, id: item.id) %>
-        <%= link_to "Delete Item", "#" %>
       <% end %>
       <% if item.status == "active" %>
         <%= number_to_currency(item.price, class: "item-price") %>
