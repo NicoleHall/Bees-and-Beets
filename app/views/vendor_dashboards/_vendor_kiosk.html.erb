@@ -2,8 +2,8 @@
   <div class="col s12 m6">
     <div class="card">
       <div class="card-content">
-        <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
-        <p>Current Status: <%= vendor.status %> </p>
+        <h3><%= current_user.vendor.name %></h3>
+        <p>Current Status: <%= vendor.status.capitalize %></p>
         <table class="larger-text">
           <tr>
             <td>

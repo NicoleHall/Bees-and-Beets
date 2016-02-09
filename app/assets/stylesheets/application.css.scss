@@ -1,12 +1,36 @@
+/*
+*= require_self
+*= require_tree .
+*/
+
+
 /* STRIPE -- DO NOT DELETE!!!! */
 $weird_green: #C4D4AF;
-$white: #fff;
+$light_font: #fff; /* Mostly links/text on dark backgrounds */
+$dark_font: #000;
+$link_color: #D14A4A;
+$link_hover: #FFAFBC;
+$error_status_text: #F17D80;
+$inactive_status_text: #aaa;
+$ordered_status: #ffa000;
+$button_text_color: #fff;
+$button_text_hover: #ddd;
+$main_font: 'Roboto', sans-serif;
+$header_font: 'Codystar', cursive;
+$paid_status_text: green;
+$cancelled_status_text: red;
+$completed_status_text: black;
+
 button.stripe-button-el span {
   display: none !important;
 }
 /* END OF STRIPE -- DO NOT DELETE!!!! */
 
 /* MAIN STYLES */
+body {
+  font-family: $main_font;
+  font-weight: 100;
+}
 p {
   font-size: 18px;
 }
@@ -16,24 +40,24 @@ img {
 h2 {
   font-size: 5rem;
   letter-spacing: 1.1rem;
-  font-family: 'Codystar', cursive;
+  font-family: $header_font;
 }
+
 h3 {
   font-weight: 100;
 }
+
 a {
-  color: #6C8672;
+  color: $link_color;
 }
 a:hover {
-  color: $weird_green;
+  color: $link_hover;
 }
 .clear-floats {
   clear: both;
 }
 /* HOME INDEX PAGE */
 h1.home_title {
-  /*background-image: url('bees_beets_logo_black.png');
-  background-color: rgba(255,255,255,0.7);*/
   background-image: url('bees_beets_logo_white.png');
   background-color: rgba(0,0,0,0.7);
   width: 100%;
@@ -42,15 +66,7 @@ h1.home_title {
   top: 80px;
   border-radius: 5px;
 }
-.home_enter_link {
-  top: 55px;
-  position: relative;
-  font-size: 30px;
-  color: #fff;
-  text-shadow: 1px 1px 20px #000;
-  font-weight: 500;
-  letter-spacing: 10px;
-}
+
 .landing-page {
   background-image: url('market_bg.jpg');
   background-size: cover;
@@ -68,29 +84,30 @@ h1.home_title {
     list-style-type: disc;
   }
 }
+
 /* NAVBAR */
 nav {
   background-color: transparent;
 }
 nav .brand-logo {
-  color: #fff;
+  color: $light_font;
   margin-left: 20px;
-  font-family: 'Codystar', curisve;
+  font-family: $header_font;
   font-size: 20px;
 }
 nav .nav-wrapper {
   background-color: rgba(191,0,0,0.71);
 }
 nav ul a {
-  color: $white;
+  color: $light_font;
 }
 nav ul a:hover {
   background-color: rgba(0,0,0,0.1);
-  color: #ddd;
+  color: $button_text_hover;
 }
 /* ORDERS */
 .status_ordered {
-  color: #ffa000;
+  color: $ordered_status;
 }
 #order_link1 {
   padding-right: 40px;
@@ -99,13 +116,13 @@ nav ul a:hover {
   padding-left: 40px;
 }
 .status_paid {
-  color: green;
+  color: $paid_status_text;
 }
 .status_cancelled {
-  color: red;
+  color: $cancelled_status_text;
 }
 .status_completed {
-  color: black;
+  color: $completed_status_text;
 }
 #order_status {
   width: 200px;
@@ -117,6 +134,11 @@ nav ul a:hover {
   top: 75px;
   .btn {
     height: 60px;
+    display: block;
+    background-color: rgba(0,0,0,0.7)!important;
+  }
+  .btn:hover {
+    background-color: rgba(123, 43, 37, 0.8)!important;
   }
   a {
     padding: 12px;
@@ -128,9 +150,7 @@ nav ul a:hover {
   top: -62px;
   left: 150px;
 }
-.login_confirm {
-  color: #F17D80;
-}
+
 .img-small {
   max-width: 100%;
 }
@@ -151,14 +171,17 @@ nav ul a:hover {
 .error {
   color: rgba(196, 42, 32, 0.8);
 }
+.flash_error a {
+  color: $light_font;
+}
 .btn {
   margin: 3px;
   background-color: rgba(0,0,0,0.5)!important;
-  color: #fff;
+  color: $button_text_color;
 }
 .btn:hover {
   background-color: rgba(0,0,0,0.8)!important;
-  color: #ccc;
+  color: $button_text_hover;
 }
 .btn_edit {
   background-color: rgba(115, 127, 149, 1)!important;
@@ -167,21 +190,21 @@ nav ul a:hover {
   background-color: rgba(115, 127, 149, 0.8)!important;
 }
 .btn_delete {
-  background-color: rgba(104, 168, 173,1)!important;
+  background-color: $link_color!important;
 }
 .btn_delete:hover {
-  background-color: rgba(104, 168, 173,0.8)!important;
+  background-color: $link_hover!important;
 }
 .active_status_text {
   color: #6C8672;
   font-weight: 100;
 }
 .inactive_status_text {
-  color: $weird_green;
+  color: $inactive_status_text;
   font-weight: 100;
 }
 .pink_error_text {
-  color: #F17D80;
+  color: $error_status_text;
 }
 /* MASONRY */
 .grid-item {
@@ -310,7 +333,7 @@ select#user_role {
 }
 .side-nav a:hover {
   background-color: transparent;
-  color: #fff;
+  color: $light_font;
 }
 .side-nav li {
   border-bottom: 1px solid #303F46;
@@ -323,14 +346,14 @@ select#user_role {
   margin-bottom: 10px;
 }
 .user_action_links .action_box a {
-  color: $weird_green !important;
+  color: $light_font!important;
   display: block;
   padding: 20px;
-  background-color: #6C8672;
+  background-color: $link_color;
 }
 .user_action_links .action_box a:hover {
-  color: #6C8672 !important;
-  background-color: $weird_green;
+  color: $dark_font !important;
+  background-color: $link_hover;
 }
 .larger-text {
   font-size: 18px;
@@ -342,6 +365,20 @@ select#user_role {
 }
 .category-show-item {
   border-bottom: 1px solid #ddd;
+  h4 a {
+    color: $link_color;
+    font-weight: 100!important;
+    text-transform: uppercase;
+    font-size: 30px;
+  }
+  h4 a:hover {
+    color: $link_hover;
+  }
+  p.vendor-name-small {
+    font-size: 1em;
+    font-weight: 100;
+    text-transform: uppercase;
+}
 }
 .item-show-image {
   max-width: 500px;
@@ -365,6 +402,28 @@ select#user_role {
 table tr th {
   text-align: center;
 }
+
+.category-show-list .row {
+  margin-bottom: 0px;
+}
+
+.add-item-button {
+  margin-bottom: 20px;
+}
+input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #f44336;
+  box-shadow: 0 1px 0 0 #f44336;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+    color: $link_color;
+    font-weight: 100;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover {
+    color: $link_hover;
+}
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 990px) {
   .brand-logo {

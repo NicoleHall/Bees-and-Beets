@@ -17,7 +17,7 @@ class VendorCanCreateAccountTest < ActionDispatch::IntegrationTest
     assert_equal "/vendor_dashboard", current_path
 
     within(".nav-wrapper") do
-      assert page.has_content?("Logged in as #{user.first_name}: Vendor")
+      assert page.has_content?("Welcome, #{user.first_name}! (Vendor)")
       refute page.has_content?("Login/Signup")
       assert page.has_content?("Logout")
     end

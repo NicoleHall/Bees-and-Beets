@@ -71,7 +71,6 @@ class VendorCanAddAnItemTest < ActionDispatch::IntegrationTest
 
     assert_equal vendor_items_path(vendor: vendor.url), current_path
     assert_equal 3, Item.count
-    assert page.has_content? Item.last.price
     assert_equal vendor, Item.last.vendor
     assert_equal 100000, Item.last.price
   end

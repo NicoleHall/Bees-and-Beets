@@ -1,26 +1,31 @@
-<div class="grid-item">
-  <div class="card" id="vendor_item_<%= item.id %>">
+<div class="category-show-item" id="vendor_item_<%=item.id%>">
+  <div class="item-thumbnail col s4">
     <a href="/<%= current_vendor.url %>/items/<%= item.id %>" class="card-image">
       <% if item.file_upload_file_name.nil? %>
-        <%= image_tag item.image_path %>
+      <%= image_tag item.image_path %>
       <% elsif item.file_upload_file_name %>
-        <%= image_tag item.file_upload.url(:large) %>
+      <%= image_tag item.file_upload.url(:large) %>
       <% end %>
     </a>
-    <div class="card-action">
-      <span class="card-title"><a class="black-text title-links" href="/<%= current_vendor.url %>/items/<%= item.id %>"><%= item.title %></a></span>
-       <p><%= item.description %></p>
-       <p><%= item.price %></p>
-      <br/>
+  </div>
+
+  <div class="item-details col s8 left-align item-<%=item.title%>">
+    <h4><%= link_to item.title, vendor_item_path(vendor: item.vendor.url, id: item.id) %></h4>
+    <p><%= item.description %></p>
+      <div class="col s2">
+        <p><%= number_to_currency(item.price, class: "item-price") %></p>
+      </div>
       <% if current_user && current_vendor == current_user.vendor %>
-        <%= link_to "Edit Item", edit_vendor_item_path(vendor: current_vendor.url, id: item.id) %>
+      <div class="col s3">
+        <%= link_to "Edit Item", edit_vendor_item_path(vendor: current_vendor.url, id: item.id), class: "btn waves-effect waves-light vendor_item_edit"%>
+      </div>
       <% end %>
       <% if item.status == "active" %>
-        <%= number_to_currency(item.price, class: "item-price") %>
+      <div class="col s3">
         <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn waves-effect waves-light" %>
-      <% else %>
-        <p class="pink_error_text">This item is inactive.</p>
-      <% end %>
-    </div>
+      </div>
+    <% else %>
+    <p class="pink_error_text" style="clear: both;">This item is inactive.</p>
+    <% end %>
   </div>
 </div>

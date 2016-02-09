@@ -1,0 +1,68 @@
+$(document).ready(function () {
+  var $vendors = $('.vendor_cards');
+  var $categories = $('.category-card');
+  var $orders = $('.order');
+  var $categoryItems = $('.category-show-item')
+
+
+  $('#category_items_filter_name').on('keyup', function() {
+    var currentName = this.value.toLowerCase();
+
+    $categoryItems.each(function (index, item) {
+      var $item = $(item);
+      var $itemName = $item.find('.item-details h4').text().toLowerCase().replace(/\W/g, '');
+
+      if ($itemName.indexOf(currentName) >= 0) {
+        $item.show();
+      } else {
+        $item.hide();
+      }
+    });
+  });
+
+  $('#vendor_filter_name').on('keyup', function () {
+    var currentName = this.value.toLowerCase().replace(/\W/g, '');
+
+    $vendors.each(function (index, vendor) {
+      var $vendor = $(vendor);
+      var $vendorName = $vendor.find('span a').text().toLowerCase().replace(/\W/g, '');
+
+      if ($vendorName.indexOf(currentName) >= 0) {
+        $vendor.show();
+      } else {
+        $vendor.hide();
+      }
+    });
+  });
+
+  $('#category_filter_name').on('keyup', function () {
+    var currentName = this.value.toLowerCase();
+
+    $categories.each(function (index, category) {
+      var $category = $(category);
+      var $categoryName = $category.find('a').text().toLowerCase().replace(/\W/g, '');
+
+      if ($categoryName.indexOf(currentName) >= 0 ) {
+        $category.show();
+      } else {
+        $category.hide();
+      }
+    });
+  });
+
+  $('#order_status').on('change', function () {
+    var currentStatus = $('#order_status :selected').text();
+
+    $orders.each(function (index, order) {
+      var $order = $(order);
+      var $orderStatus = $order.find('.order_status').text().toLowerCase();
+
+      if ($orderStatus === currentStatus || currentStatus === 'all') {
+        $order.show();
+      } else {
+        $order.hide();
+      }
+    });
+  });
+
+});
