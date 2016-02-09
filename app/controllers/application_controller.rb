@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cart
-  before_action :authorize!
   helper_method :current_user
+  before_action :authorize!
   helper_method :current_platform_admin?
   helper_method :current_vendor?
   # helper_method :artist_owns_item?
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorized?
-    @current_permission.allow?(params[:controller], params[:action])
+    current_permission.allow?(params[:controller], params[:action])
   end
 
   def authorize!

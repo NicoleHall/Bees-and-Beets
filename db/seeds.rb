@@ -9,7 +9,6 @@ class Seed
     seed.generate_vendors
     seed.generate_categories
     seed.generate_items
-    seed.generate_addresses
     seed.generate_orders
     seed.generate_order_items
   end
@@ -117,19 +116,6 @@ class Seed
         category_id: (1..10).to_a.sample
         )
       end
-    end
-  end
-
-  def generate_addresses
-    customers = User.where(role: 0)
-    customers.each do |customer|
-      customer.addresses.create!(
-      label: "Home",
-      street: Faker::Address.street_address,
-      city: Faker::Address.city,
-      state: Faker::Address.state_abbr,
-      zipcode: Faker::Address.zip
-      )
     end
   end
 

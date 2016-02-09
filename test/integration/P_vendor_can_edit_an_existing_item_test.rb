@@ -5,12 +5,15 @@ class VendorCanEditAnExistingItemTest < ActionDispatch::IntegrationTest
     vendor = create(:vendor_with_user, status: 1)
     user = vendor.users.first
     item = vendor.items.first
+    assert user.vendor?
     ApplicationController.any_instance.stubs(:current_user).returns(user)
     visit vendor_items_path(vendor: vendor.url)
 
     within("#vendor_item_#{item.id}") do
       click_on "Edit Item"
     end
+
+    assert_equal edit_vendor_item_path(vendor: vendor.url, id: item.id), current_path
 
     fill_in "Title", with: "New Title"
     click_on "Update Item"

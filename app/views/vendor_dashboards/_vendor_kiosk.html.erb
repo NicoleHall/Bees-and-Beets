@@ -2,8 +2,11 @@
   <div class="col s12 m6">
     <div class="card">
       <div class="card-content">
-        <h3><%= current_user.vendor.name %></h3>
+        <h3><%= link_to current_user.vendor.name, vendor_items_path(vendor: vendor.url)  %></h3>
         <p>Current Status: <%= vendor.status.capitalize %></p>
+        <%= link_to vendor_items_path(vendor:vendor.url) do %>
+          <%= image_tag vendor.image_path %>
+        <% end %>
         <table class="larger-text">
           <tr>
             <td>
