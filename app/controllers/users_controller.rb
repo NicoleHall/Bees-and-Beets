@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  require "states_helper"
   before_action :set_user, only: [:edit, :update]
 
   def index

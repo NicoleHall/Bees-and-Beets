@@ -1,2 +1,0 @@
-module Vendor::ItemsHelper
-end
