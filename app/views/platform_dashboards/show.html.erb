@@ -1,9 +1,13 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 <div class="platform_dashboard">
   <h2>Platform Dashboard</h2>
 
   <figure class="dashboard_graph">
-    <%= image_tag 'sample_graph.png' %>
-    <figcaption>Current Vendor Stats</figcaption>
+    <figcaption>Current Vendor Statuses</figcaption>
+    <%= bar_chart Vendor.vendor_status_count, discrete: true,
+    colors: ["red"],
+    library: { backgroundColor: "transparent",
+               hAxis: {title: "Frequency"}} %>
   </figure>
 
   <div class="table_wrapper">

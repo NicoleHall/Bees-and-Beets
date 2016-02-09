@@ -22,11 +22,13 @@ class AdminApprovesPendingStoreTest < ActionDispatch::IntegrationTest
     within('.nav-wrapper') do
       assert page.has_content?("Stores Pending Approval")
     end
+    
     within("#vendor-#{vendor.id}") do
       assert page.has_content?("Pending")
       assert page.has_button?("Open")
       click_on "Open"
     end
+
     within('.nav-wrapper') do
       refute page.has_content?("Stores Pending Approval")
     end
