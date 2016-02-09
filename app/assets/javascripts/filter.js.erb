@@ -1,16 +1,16 @@
 $(document).ready(function () {
-  var $vendors = $('.vendor');
-  var $categories = $('.category');
+  var $vendors = $('.vendor_cards');
+  var $categories = $('.category-card');
   var $orders = $('.order');
 
-  $('#vendor_filter_name').on('keypress', function () {
-    var currentName = this.value.toLowerCase();
+  $('#vendor_filter_name').on('keyup', function () {
+    var currentName = this.value.toLowerCase().replace(/\W/g, '');
 
     $vendors.each(function (index, vendor) {
       var $vendor = $(vendor);
-      var $vendorName = $vendor.find('h2 span').text().toLowerCase();
+      var $vendorName = $vendor.find('span a').text().toLowerCase().replace(/\W/g, '');
 
-      if ($vendorName.startsWith(currentName)) {
+      if ($vendorName.indexOf(currentName) >= 0) {
         $vendor.show();
       } else {
         $vendor.hide();
@@ -18,14 +18,14 @@ $(document).ready(function () {
     });
   });
 
-  $('#category_filter_name').on('keypress', function () {
+  $('#category_filter_name').on('keyup', function () {
     var currentName = this.value.toLowerCase();
 
     $categories.each(function (index, category) {
       var $category = $(category);
-      var $categoryName = $category.find('h2').text().toLowerCase();
+      var $categoryName = $category.find('a').text().toLowerCase().replace(/\W/g, '');
 
-      if ($categoryName.startsWith(currentName)) {
+      if ($categoryName.indexOf(currentName) >= 0 ) {
         $category.show();
       } else {
         $category.hide();
@@ -47,4 +47,5 @@ $(document).ready(function () {
       }
     });
   });
+
 });
