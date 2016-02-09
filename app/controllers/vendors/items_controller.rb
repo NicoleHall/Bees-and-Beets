@@ -1,5 +1,5 @@
 class Vendors::ItemsController < Vendors::VendorsController
-  # before_action :current_vendor
+  # before_action :item_belongs_to_current_vendor, only: [:edit, :update]
   # helper_method :current_vendor
 
   def index
@@ -34,7 +34,7 @@ class Vendors::ItemsController < Vendors::VendorsController
     if @item.update_attributes(item_params)
       redirect_to vendor_items_path(vendor: current_vendor.url)
     else
-      flash.now[:error] = "Incorrect user information"
+      flash.now[:error] = "All fields must be filled in."
       render :edit
     end
   end
@@ -50,8 +50,20 @@ class Vendors::ItemsController < Vendors::VendorsController
                                  :status,
                                  :file_upload)
   end
-  #
+
+  # def require_vendor
+  #   render file: "/public/404" unless current_user.id = current_vendor.id
+  # end
+
   # def current_vendor
   #   @current_vendor ||= Vendor.find_by(url: params[:vendor])
+  # end
+
+  # def item_belongs_to_current_vendor
+  #   render file: "/public/404" unless item_vendor_id_is_current_vendor
+  # end
+  #
+  # def item_vendor_id_is_current_vendor
+  #   Item.find(params[:id]).current_vendor.id == current_user.id
   # end
 end

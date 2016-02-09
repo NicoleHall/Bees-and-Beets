@@ -1,15 +1,14 @@
 require "test_helper"
 
 class VendorCanEditAnExistingItemTest < ActionDispatch::IntegrationTest
-  test "vendor edits an existing item from artist item index" do
+  test "vendor edits an existing item from vendor item index" do
     vendor = create(:vendor_with_user, status: 1)
     user = vendor.users.first
     item = vendor.items.first
-    category = create(:category)
     ApplicationController.any_instance.stubs(:current_user).returns(user)
-    binding.pry
     visit vendor_items_path(vendor: vendor.url)
-    within(".vendor_item_#{item.id}") do
+
+    within("#vendor_item_#{item.id}") do
       click_on "Edit Item"
     end
 
@@ -20,79 +19,78 @@ class VendorCanEditAnExistingItemTest < ActionDispatch::IntegrationTest
     assert page.has_content? "New Title"
   end
 
-  test "artist edits an existing item from item show page" do
-    skip
-    artist = create(:artist)
-    item = create(:item)
-    artist.items << item
+  test "vendor edits an existing item from item show page" do
+    vendor = create(:vendor_with_user, status: 1)
+    user = vendor.users.first
+    item = vendor.items.first
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
 
-    ApplicationController.any_instance.stubs(:current_user).returns(artist)
+    visit vendor_item_path(vendor: vendor.url, id: item.id)
+    click_on "Edit Item"
 
-    visit item_path(item)
-    click_on "Edit"
-
-    fill_in "Title", with: "New Title"
+    fill_in "Title", with: "New Item Title"
     click_on "Update Item"
 
-    assert_equal item_path(item), current_path
-    assert page.has_content? "New Title"
+    assert_equal vendor_items_path(vendor: vendor.url), current_path
+    within("#vendor_item_#{item.id}") do
+      assert page.has_content? "New Item Title"
+    end
   end
 
-  test "artist cannot edit another artist's item from item show page" do
-    skip
-    artist1 = create(:artist)
-    item1 = create(:item)
-    artist1.items << item1
+  test "vendor cannot edit another vendor's item from item show page" do
+    vendor_1 = create(:vendor_with_user, status: 1)
+    user_1 = vendor_1.users.first
+    item_1 = vendor_1.items.first
+    ApplicationController.any_instance.stubs(:current_user).returns(user_1)
 
-    artist2 = create(:artist)
-    item2 = create(:item)
-    artist2.items << item2
+    vendor_2 = create(:vendor_with_user, status: 1)
+    user_2 = vendor_2.users.last
+    item_2 = vendor_2.items.first
 
-    ApplicationController.any_instance.stubs(:current_user).returns(artist1)
-
-    visit item_path(item2)
+    visit vendor_item_path(vendor: vendor_2.url, id: item_2.id)
     refute page.has_content? "Edit"
   end
 
-  test "artist cannot edit another artist's item from item index page" do
-    skip
-    artist1 = create(:artist)
+  test "vendor cannot edit another vendors item from item index page" do
+    vendor_1 = create(:vendor_with_user, status: 1)
+    user_1 = vendor_1.users.first
+    item_1 = vendor_1.items.first
+    ApplicationController.any_instance.stubs(:current_user).returns(user_1)
 
-    artist2 = create(:artist)
-    item2 = create(:item)
-    artist2.items << item2
+    vendor_2 = create(:vendor_with_user, status: 1)
+    user_2 = vendor_2.users.last
+    item_2 = vendor_2.items.first
 
-    ApplicationController.any_instance.stubs(:current_user).returns(artist1)
-
-    visit items_path
+    visit vendor_items_path(vendor: vendor_2.url)
     refute page.has_content? "Edit"
   end
 
-  test "artist cannot go directly to another artist's edit item page" do
+  test "vendor cannot go directly to another vendor's edit item page" do
     skip
-    artist1 = create(:artist)
+    vendor_1 = create(:vendor_with_user, status: 1)
+    user_1 = vendor_1.users.first
+    item_1 = vendor_1.items.first
 
-    artist2 = create(:artist)
-    item2 = create(:item)
-    artist2.items << item2
+    ApplicationController.any_instance.stubs(:current_user).returns(user_1)
 
-    ApplicationController.any_instance.stubs(:current_user).returns(artist1)
+    vendor_2 = create(:vendor_with_user, status: 1)
+    user_2 = vendor_2.users.last
+    item_2 = vendor_2.items.first
 
-    visit edit_user_item_path(artist2, item2)
+    visit edit_vendor_item_path(vendor: vendor_2.url, id: item_2.id)
     message_404 = "The page you were looking for doesn't exist (404)"
     assert page.has_content?(message_404)
   end
 
-  test "artist cannot leave required fields blank when editing an item" do
-    skip
-    artist = create(:artist)
-    item = create(:item)
-    artist.items << item
+  test "vendor cannot leave required fields blank when editing an item" do
+    vendor = create(:vendor_with_user, status: 1)
+    user = vendor.users.first
+    item = vendor.items.first
 
-    ApplicationController.any_instance.stubs(:current_user).returns(artist)
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
 
-    visit artist_path(artist)
-    click_on "Edit"
+    visit vendor_item_path(vendor: vendor.url, id: item.id)
+    click_on "Edit Item"
 
     fill_in "Title", with: ""
     click_on "Update Item"
