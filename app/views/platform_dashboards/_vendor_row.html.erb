@@ -12,6 +12,9 @@
   <td>
     <% if vendor.open? %>
       <%= button_to "Close", close_vendor_path(vendor_id: vendor.id), method: :put, class: "btn waves-effect waves-light" %>
+      
+      <%= button_to "Items", vendor_items_path(vendor: vendor.url), method: :get, class: "btn waves-effect waves-light" %>
+
     <% elsif vendor.pending? %>
       <%= button_to "Open", open_vendor_path(vendor_id: vendor.id), method: :put, class: "btn waves-effect waves-light" %>
       <%= button_to "Close", close_vendor_path(vendor_id: vendor.id), method: :put, class: "btn waves-effect waves-light" %>

@@ -8,9 +8,7 @@ class PlatformAdminCanEditAVendorsItemsTest < ActionDispatch::IntegrationTest
     vendor = create(:vendor_with_items)
     vendor.update_attribute(:status, 1)
     item1 = Item.first
-    item2 = Item.last
-    item1.update_attribute(:title, "Pine Cone")
-    item2.update_attribute(:title, "Tuna Fish Sandwich")
+    item1.update_attribute(:title, "Pinecone")
 
     ApplicationController.any_instance.stubs(:current_user).returns(platform_admin)
 
@@ -20,8 +18,14 @@ class PlatformAdminCanEditAVendorsItemsTest < ActionDispatch::IntegrationTest
 
     assert_equal vendor_items_path(vendor: vendor.url), current_path
 
-    assert page.has_content?("Pine Cone")
+    assert page.has_content?("Pinecone")
+    assert page.has_link?("Edit Item")
 
+      within(".item-#{item1.title.parameterize}") do
+      click_link "Edit"
+    end
+
+  assert_equal "", current_path
 
   end
 

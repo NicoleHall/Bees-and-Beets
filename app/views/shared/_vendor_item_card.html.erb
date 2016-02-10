@@ -9,13 +9,13 @@
     </a>
   </div>
 
-  <div class="item-details col s8 left-align item-<%=item.title%>">
+  <div class="item-details col s8 left-align item-<%=item.title.parameterize%>">
     <h4><%= link_to item.title, vendor_item_path(vendor: item.vendor.url, id: item.id) %></h4>
     <p><%= item.description %></p>
       <div class="col s2">
         <p><%= number_to_currency(item.price, class: "item-price") %></p>
       </div>
-      <% if current_user && current_vendor == current_user.vendor %>
+      <% if current_user && (current_vendor == current_user.vendor || current_platform_admin?) %>
       <div class="col s3">
         <%= link_to "Edit Item", edit_vendor_item_path(vendor: current_vendor.url, id: item.id), class: "btn waves-effect waves-light vendor_item_edit"%>
       </div>
