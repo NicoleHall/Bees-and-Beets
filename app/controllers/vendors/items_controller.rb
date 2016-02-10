@@ -4,11 +4,7 @@ class Vendors::ItemsController < Vendors::VendorsController
 
   def index
     check_vendor_status
-    if current_vendor? || current_platform_admin?
-      @items = current_vendor.items.all
-    else
-      @items = current_vendor.items.where(status: 1)
-    end
+    check_item_status
   end
 
   def show
@@ -73,6 +69,14 @@ class Vendors::ItemsController < Vendors::VendorsController
       render file: "public/404"
     else
       render file: "public/404" unless current_vendor.status == "open" || current_user.vendor_id == current_vendor.id
+    end
+  end
+
+  def check_item_status
+    if current_vendor? || current_platform_admin?
+      @items = current_vendor.items.all
+    else
+      @items = current_vendor.items.where(status: 1)
     end
   end
 end
