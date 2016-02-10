@@ -1,4 +1,6 @@
 class Vendors::OrdersController < Vendors::VendorsController
+  before_action :check_vendor_status
+
   def index
     @order_items = current_vendor.order_items
   end
@@ -17,4 +19,11 @@ class Vendors::OrdersController < Vendors::VendorsController
     @order = current_vendor.orders.find(params[:id])
     @order_items = current_vendor.order_items.where(order_id: @order.id)
   end
+
+  private
+
+  def check_vendor_status
+    render file: "public/404" unless current_user.platform_admin? || current_vendor.id == current_user.vendor_id
+  end
+
 end
