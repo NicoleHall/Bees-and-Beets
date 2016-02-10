@@ -14,9 +14,11 @@ class PlatformAdminCanEditAVendorsItemsTest < ActionDispatch::IntegrationTest
 
     ApplicationController.any_instance.stubs(:current_user).returns(platform_admin)
 
-    visit vendor_dashboard_path
-    assert page.has_content?("Kiosk Name:")
-    click_link("View My Items")
+    visit platform_dashboard_path
+    assert page.has_content?("#{vendor.name}")
+    click_button("Items")
+
+    assert_equal "", current_path
 
 
   end
