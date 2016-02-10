@@ -1,6 +1,7 @@
 class VendorsController < ApplicationController
+
   def index
-    @vendors = Vendor.where(status: 1)
+      @vendors = Vendor.where(status: 1)
   end
 
   def new

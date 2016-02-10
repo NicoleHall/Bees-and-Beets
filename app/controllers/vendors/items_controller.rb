@@ -65,6 +65,6 @@ class Vendors::ItemsController < Vendors::VendorsController
   end
 
   def check_vendor_status
-    render file: "public/404" unless current_vendor.status == "open"
+    render file: "public/404" unless current_vendor.status == "open" || current_user.vendor.id == current_vendor.id
   end
 end
