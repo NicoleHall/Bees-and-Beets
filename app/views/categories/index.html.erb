@@ -11,7 +11,9 @@
         <div id="<%= category.name %>">
           <div class="card category-card">
             <div class="card-image waves-effect waves-block waves-light">
-              <%= image_tag "vegetables.jpg" %>
+              <%= link_to category_items_path(category_url: category.url) do %>
+                <%= image_tag "vegetables.jpg" %>
+              <% end %>
             </div>
             <div class="card-content">
               <!-- <%= category.name %> -->

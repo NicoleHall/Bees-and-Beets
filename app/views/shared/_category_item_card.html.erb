@@ -1,6 +1,8 @@
 <div class="category-show-item">
   <div class="item-thumbnail col s4">
-    <%= image_tag "vegetables.jpg" %>
+    <%= link_to vendor_items_path(vendor: item.vendor.url) do %>
+      <%= image_tag "vegetables.jpg" %>
+    <% end %>
     <p><%= link_to item.vendor.name, vendor_items_path(vendor: item.vendor.url) %></p>
   </div>
   <div class="item-details col s8 left-align item-<%=item.title%>">

@@ -12,6 +12,9 @@
 
   <div class="col s12 m6">
     <div class="item-show-details">
+      <p>
+        <%= link_to current_vendor.name, vendor_items_path(vendor: current_vendor.url)%>
+      </p>
       <p class = "item-show-price">
         <%= number_to_currency(@item.price) %>
       </p>
