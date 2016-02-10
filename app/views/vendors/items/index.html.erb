@@ -1,13 +1,20 @@
 <h2><%= current_vendor.name %></h2>
-  <% if current_vendor? %>
-    <%= link_to "Add Item", new_vendor_item_path(vendor: current_vendor.url), class: "btn waves-effect waves-light add-item-button" %>
-  <% end %>
 
-  <div class="filter">
-    <label>Find an Item:</label>
-    <%= text_field :category_items, :filter_name %>
-  </div>
+<% if current_vendor.status == "pending" %>
+  <p>"Pending Approval"</p>
+<% end %>
+
+<% if current_vendor? || current_platform_admin?%>
+  <%= link_to "Add Item", new_vendor_item_path(vendor: current_vendor.url), class: "btn waves-effect waves-light add-item-button" %>
+<% end %>
+
+<div class="filter">
+  <label>Find an Item:</label>
+  <%= text_field :category_items, :filter_name %>
+</div>
+
 <br>
+
 <div class="category-show-list">
   <% @items.each do |item| %>
     <div class="row">

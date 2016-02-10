@@ -15,7 +15,6 @@ class ViewingAdminDashboardTest < ActionDispatch::IntegrationTest
 
     visit platform_dashboard_path
     assert_equal root_path, current_path
-    save_and_open_page
     assert page.has_content?("You are neither a Bee nor a Beet!")
   end
 

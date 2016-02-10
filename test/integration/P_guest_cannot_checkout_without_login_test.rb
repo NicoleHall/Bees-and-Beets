@@ -15,7 +15,6 @@ class GuestCannotCheckoutWithoutLoginTest < ActionDispatch::IntegrationTest
     vendor_items = vendor.items
     visit vendor_items_path(vendor: vendor.url)
     item = vendor_items.last
-
     click_on item.title
     assert_equal vendor_item_path(vendor: vendor.url, id: item.id), current_path
 
