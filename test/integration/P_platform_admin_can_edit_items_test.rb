@@ -18,7 +18,9 @@ class PlatformAdminCanEditAVendorsItemsTest < ActionDispatch::IntegrationTest
     assert page.has_content?("#{vendor.name}")
     click_button("Items")
 
-    assert_equal "", current_path
+    assert_equal vendor_items_path(vendor: vendor.url), current_path
+
+    assert page.has_content?("Pine Cone")
 
 
   end
