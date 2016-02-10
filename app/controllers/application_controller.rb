@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
 
   def authorize!
     unless authorized?
-      redirect_to root_url, danger: "You are neither a Bee or Beet!"
+      flash[:error] = "You are neither a Bee nor a Beet!"
+      redirect_to root_path
     end
   end
 
