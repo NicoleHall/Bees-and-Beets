@@ -13,8 +13,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.0.0/imagesloaded.pkgd.js"></script>
 
     <%= render partial: "layouts/home_navbar" %>
+    
+    <% flash.each do |type, message| %>
+      <%= content_tag :div, sanitize(message), class: "flash_#{type}" %>
+    <% end %>
 
     <div class="container center-align">
+
       <%= yield %>
     </div>
 

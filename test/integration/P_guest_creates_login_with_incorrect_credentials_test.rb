@@ -1,6 +1,6 @@
 require "test_helper"
 
-class GuestCreatesLoginWithIncorrectCreditialsTest < ActionDispatch::IntegrationTest
+class GuestCreatesLoginWithIncorrectCredentialsTest < ActionDispatch::IntegrationTest
   test "guest puts in incorrect password confirmation and gets error message" do
     visit new_user_path
     fill_in "First name", with: "Bruce"
@@ -8,7 +8,7 @@ class GuestCreatesLoginWithIncorrectCreditialsTest < ActionDispatch::Integration
     fill_in "Username", with: "Batman"
     fill_in "Password", with: "darkness"
     fill_in "Password confirmation", with: "parents_dead"
-    click_on "Create User"
+    click_on "Submit"
 
     assert_equal users_path, current_path
     assert page.has_content? "Password confirmation doesn't match Password"
@@ -23,7 +23,7 @@ class GuestCreatesLoginWithIncorrectCreditialsTest < ActionDispatch::Integration
     fill_in "Username", with: user.username
     fill_in "Password", with: "darkness"
     fill_in "Password confirmation", with: "darkness"
-    click_on "Create User"
+    click_on "Submit"
 
     assert_equal users_path, current_path
     assert page.has_content? "Username has already been taken"
