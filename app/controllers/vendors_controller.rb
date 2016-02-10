@@ -1,4 +1,5 @@
 class VendorsController < ApplicationController
+  before_action :check_vendor_status, only: [:edit, :update]
 
   def index
       @vendors = Vendor.where(status: 1)
@@ -35,14 +36,18 @@ class VendorsController < ApplicationController
   end
 
   def edit
+    check_vendor_status
     @vendor = Vendor.find(params[:id])
   end
 
   def update
     @vendor = Vendor.find(params[:id])
-
     if @vendor.update(vendor_params)
-      redirect_to vendor_dashboard_path
+      if current_platform_admin?
+        redirect_to platform_dashboard_path
+      else
+        redirect_to vendor_dashboard_path
+      end
     else
       flash.now[:error] = "All fields must be filled in."
       render :edit
@@ -50,6 +55,10 @@ class VendorsController < ApplicationController
   end
 
   private
+
+  def check_vendor_status
+    render file: "public/404" unless current_platform_admin? || (params[:id].to_i == current_user.vendor_id)
+  end
 
   def vendor_params
     params.require(:vendor).permit(:name, :description, :image_path)
