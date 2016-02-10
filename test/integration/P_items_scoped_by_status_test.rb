@@ -5,6 +5,7 @@ class ItemsScopedByStatusTest < ActionDispatch::IntegrationTest
     vendor = create(:vendor_with_items)
     active_item = vendor.items.first
     inactive_item = vendor.items.last
+    inactive_item.update_attributes(status: 0)
 
     visit vendors_path
     refute page.has_content?("#{vendor.name}")
@@ -14,10 +15,6 @@ class ItemsScopedByStatusTest < ActionDispatch::IntegrationTest
     assert page.has_content? message_404
 
     vendor.update_attributes(status: 1)
-    vendor.reload
-
-    inactive_item.update_attributes(status: 0)
-    inactive_item.reload
 
     visit vendors_path
     assert page.has_content?("#{vendor.name}")
@@ -72,14 +69,13 @@ class ItemsScopedByStatusTest < ActionDispatch::IntegrationTest
     ApplicationController.any_instance.stubs(:current_user).returns(vendor_admin_1)
 
     visit vendors_path
-    refute page.has_content?("##{vendor_1.name}")
-    refute page.has_content?("##{vendor_2.name}")
-
+    refute page.has_content?("#{vendor_1.name}")
+    refute page.has_content?("#{vendor_2.name}")
     visit vendor_items_path(vendor: vendor_1.url)
+    assert page.has_content?("Pending Approval")
     within("#vendor_item_#{vendor_1_active_item.id}") do
       assert page.has_content?("#{vendor_1_active_item.title}")
       assert page.has_content?("Edit Item")
-      assert page.has_content?("Pending Approval")
     end
 
     within("#vendor_item_#{vendor_1_inactive_item.id}") do
@@ -91,13 +87,12 @@ class ItemsScopedByStatusTest < ActionDispatch::IntegrationTest
 
     # OPEN VENDOR
     vendor_1.update_attributes(status: 1)
-    vendor_1.reload
 
     visit vendors_path
-    within "##{vendor.name}" do
+    within "##{vendor_1.name}" do
       assert page.has_content?("#{vendor_1.name}")
-      refute page.has_content?("Pending Approval")
     end
+
     refute page.has_content?("#{vendor_2.name}")
 
     visit vendor_items_path(vendor: vendor_2.url)
