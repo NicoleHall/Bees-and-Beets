@@ -21,11 +21,9 @@ class AuthenticatedUserCannotSeeOtherDataTest < ActionDispatch::IntegrationTest
     visit user_orders_path(user1)
     message_404 = "The page you were looking for doesn't exist (404)"
     assert page.has_content?(message_404)
-    assert_equal "/users/username1/orders", current_path
 
     visit vendor_dashboard_path
     non_authorized_user_flash = "You are neither a Bee nor a Beet!"
-    save_and_open_page
     assert page.has_content?(non_authorized_user_flash)
   end
 end
