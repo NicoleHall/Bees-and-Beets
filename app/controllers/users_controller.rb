@@ -24,8 +24,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user
+    if current_platform_admin?
       @user = User.find_by_slug(params[:slug])
+    elsif current_user?
+      @user = User.find(current_user.id)
     else
       render file: "public/404"
     end
