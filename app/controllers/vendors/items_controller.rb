@@ -56,7 +56,7 @@ class Vendors::ItemsController < Vendors::VendorsController
   end
 
   def item_belongs_to_current_vendor
-    render file: "/public/404" unless item_vendor_id_is_current_vendor
+    render file: "/public/404" unless current_user.platform_admin? || item_vendor_id_is_current_vendor
   end
 
   def item_vendor_id_is_current_vendor
