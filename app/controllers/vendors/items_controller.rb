@@ -3,7 +3,6 @@ class Vendors::ItemsController < Vendors::VendorsController
   before_action :check_vendor_status
 
   def index
-    check_vendor_status
     check_item_status
   end
 

@@ -49,7 +49,7 @@ FactoryGirl.define do
   end
 
   factory :vendor do
-    status 0
+    status 1
     name { generate(:vendor_name) }
     description "A shop."
     image_path "http://theveganherald.com/wp-content/uploads/2015/12/Farm-Animals.jpg"

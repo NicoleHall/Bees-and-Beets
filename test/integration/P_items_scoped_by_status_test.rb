@@ -6,6 +6,7 @@ class ItemsScopedByStatusTest < ActionDispatch::IntegrationTest
     active_item = vendor.items.first
     inactive_item = vendor.items.last
     inactive_item.update_attributes(status: 0)
+    vendor.update_attributes(status: 0)
 
     visit vendors_path
     refute page.has_content?("#{vendor.name}")
@@ -31,6 +32,8 @@ class ItemsScopedByStatusTest < ActionDispatch::IntegrationTest
     vendor = create(:vendor_with_items)
     active_item = vendor.items.first
     inactive_item = vendor.items.last
+    vendor.update_attributes(status: 0)
+
 
     visit vendors_path
     refute page.has_content?("#{vendor.name}")
@@ -56,11 +59,13 @@ class ItemsScopedByStatusTest < ActionDispatch::IntegrationTest
   test "vendor admins can only see their own pending store and items" do
     vendor_1, vendor_2 = create_list(:vendor_with_user, 2)
 
+    vendor_1.update_attributes(status: 0)
     vendor_admin_1 = vendor_1.users.first
     vendor_1_active_item = vendor_1.items.first
     vendor_1_inactive_item = vendor_1.items.last
     vendor_1_inactive_item.update_attributes(status: 0)
 
+    vendor_2.update_attributes(status: 0)
     vendor_admin_2 = vendor_2.users.first
     vendor_2_active_item = vendor_2.items.first
     vendor_2_inactive_item = vendor_2.items.last
