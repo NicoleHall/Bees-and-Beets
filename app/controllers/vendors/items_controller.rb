@@ -67,7 +67,7 @@ class Vendors::ItemsController < Vendors::VendorsController
     if !current_user && current_vendor.status != "open"
       render file: "public/404"
     else
-      render file: "public/404" unless current_vendor.status == "open" || current_user.vendor_id == current_vendor.id
+      render file: "public/404" unless current_platform_admin? || current_vendor.status == "open" || current_user.vendor_id == current_vendor.id
     end
   end
 

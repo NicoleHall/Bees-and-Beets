@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209222209) do
+ActiveRecord::Schema.define(version: 20160211004052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20160209222209) do
     t.integer  "file_upload_file_size"
     t.datetime "file_upload_updated_at"
     t.string   "url"
+    t.integer  "owner_id"
   end
 
   add_foreign_key "items", "categories"

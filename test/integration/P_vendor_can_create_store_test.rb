@@ -25,6 +25,8 @@ class VendorCanCreateStoreTest < ActionDispatch::IntegrationTest
     assert_equal vendor_dashboard_path, current_path
     vendor = user.reload.vendor
 
+    assert_equal user.id, vendor.owner_id
+
     assert page.has_content?("Your kiosk is pending approval.")
     within('#vendor-details') do
       assert page.has_link?("View My Items")
@@ -56,6 +58,6 @@ class VendorCanCreateStoreTest < ActionDispatch::IntegrationTest
     fill_in "Image path", with: "http://images.edge-generalmills.com/6e42a6b2-18b6-46f8-b383-94e0379fb9a5.jpg"
     click_on "Submit"
 
-    assert_equal new_vendor_path, current_path    
+    assert_equal new_vendor_path, current_path
   end
 end

@@ -14,6 +14,7 @@ class Seed
     seed.generate_order_items
     seed.populate_mikes_store
     seed.populate_rachels_store
+    seed.generate_future_collaborator
   end
 
   def populate_mikes_store
@@ -33,6 +34,7 @@ class Seed
     status: 1
     )
     mike.update_attributes(vendor_id: kiosk.id)
+    kiosk.update_attributes(owner_id: mike.id)
 
     goods = Category.create(name: "Hosiery")
     ties = Category.create(name: "Ties")
@@ -91,6 +93,7 @@ class Seed
     status: 1
     )
     rachel.update_attributes(vendor_id: kiosk.id)
+    kiosk.update_attributes(owner_id: rachel.id)
 
     puppies = Category.create(name: "Puppies")
     piglets = Category.create(name: "Piglets")
@@ -172,11 +175,12 @@ class Seed
   def generate_business_admins
     19.times do |i|
       name = Faker::Name.name.split(" ")
+      email = Faker::Internet.email
       User.create!(
       first_name: name.first,
       last_name: name.last,
-      username: name.join(".").downcase,
-      email_address: Faker::Internet.email,
+      username: email,
+      email_address: email,
       password: "password",
       role: 1
       )
@@ -201,12 +205,13 @@ class Seed
       business_admins = User.where(role: 1)
       business_admins.each do |admin|
         kiosk = Vendor.create!(
-        name: Faker::Name.name.split(" ").first + "'s " + types.sample,
+        name: Faker::Name.name.split(" ")[-2] + "'s " + types.sample,
         description: Faker::Lorem.paragraph,
         image_path: "https://s-media-cache-ak0.pinimg.com/236x/1e/53/94/1e53942d804bd726b332b849ca7254b0.jpg",
         status: rand(3),
         )
         admin.update_attributes(vendor_id: kiosk.id)
+        kiosk.update_attributes(owner_id: admin.id)
       end
     end
 
@@ -267,7 +272,16 @@ class Seed
         end
       end
 
-
+      def generate_future_collaborator
+        jeff = User.create!(
+        first_name: "Jeff",
+        last_name: "Casimir",
+        username: "jeff@turing.io",
+        email_address: "jeff@turing.io",
+        password: "password",
+        role: 1
+        )
+      end
     end
 
 

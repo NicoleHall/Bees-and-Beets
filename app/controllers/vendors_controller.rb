@@ -2,7 +2,7 @@ class VendorsController < ApplicationController
   before_action :check_vendor_status, only: [:edit, :update]
 
   def index
-      @vendors = Vendor.where(status: 1).order(updated_at: :desc)
+      @vendors = Vendor.open_stores_desc
   end
 
   def new
@@ -13,6 +13,7 @@ class VendorsController < ApplicationController
     @vendor = Vendor.new(vendor_params)
     if @vendor.save
       User.find(current_user.id).update_attributes(vendor_id: @vendor.id)
+      @vendor.update_attributes(owner_id: current_user.id)
       flash[:success] = "Your kiosk is pending approval."
       redirect_to vendor_dashboard_path
     else
