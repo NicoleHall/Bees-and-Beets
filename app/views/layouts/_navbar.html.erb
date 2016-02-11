@@ -11,7 +11,7 @@
           <%= link_to "Welcome, #{current_user.first_name}! (Admin)", platform_dashboard_path , class: "login_confirm"%>
         </li>
         <% if Vendor.status_pending? %>
-          <li id="pending_alert">Stores Pending Approval</li>
+          <li id="pending_alert"> <%= link_to "(Stores Pending Approval)", platform_dashboard_path%></li>
         <% end %>
       <% elsif current_vendor? %>
         <li class="right-align">
