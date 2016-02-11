@@ -16,9 +16,11 @@
 <br>
 
 <div class="category-show-list">
-  <% @items.each do |item| %>
+  <div class="contained_display">
+    <% @items.each do |item| %>
     <div class="row">
       <%= render partial: 'shared/vendor_item_card', locals: { item: item } %>
     </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
