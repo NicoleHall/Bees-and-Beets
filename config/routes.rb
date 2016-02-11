@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   end
 
   resources :phone_numbers, only: [:new, :create]
+  post 'phone_numbers/verify' => "phone_numbers#verify"
+
 
   get "/cart", to: "cart_items#index"
   get "/login", to: "sessions#new"

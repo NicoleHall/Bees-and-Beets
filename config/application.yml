@@ -9,6 +9,12 @@
 development:
   stripe_api_key: sk_test_ktu2SLF9p140GZJq2iDef9OQ
   stripe_publishable_key: pk_test_cq0euKSMqWVsLgE0DUAdPGZ8
+  TWILIO_ACCOUNT_SID: AC148c4775977fba877ccdbd9c07c94752
+  TWILIO_AUTH_TOKEN: c6b713e3d47a9ff5201d9afce2e6d53b
+  TWILIO_PHONE_NUMBER: 17207249689
 test:
   stripe_api_key: sk_test_ktu2SLF9p140GZJq2iDef9OQ
   stripe_publishable_key: pk_test_cq0euKSMqWVsLgE0DUAdPGZ8
+  TWILIO_ACCOUNT_SID: AC148c4775977fba877ccdbd9c07c94752
+  TWILIO_AUTH_TOKEN: c6b713e3d47a9ff5201d9afce2e6d53b
+  TWILIO_PHONE_NUMBER: 17207249689

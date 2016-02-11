@@ -55,5 +55,6 @@ class PermissionService
     return true if controller == "categories" && action.in?(%w(index))
     return true if controller == "items" && action.in?(%w(index))
     return true if controller == "cart_items" && action.in?(%w(index update destroy create))
+    return true if controller == "phone_numbers" && action.in?(%w(new create verify))
   end
 end
