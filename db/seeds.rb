@@ -84,7 +84,7 @@ class Seed
         name: Faker::Name.name.split(" ").first + "'s " + types.sample,
         description: Faker::Lorem.paragraph,
         image_path: "https://s-media-cache-ak0.pinimg.com/236x/1e/53/94/1e53942d804bd726b332b849ca7254b0.jpg",
-        status: 0,
+        status: rand(3),
       )
       admin.update_attributes(vendor_id: kiosk.id)
     end

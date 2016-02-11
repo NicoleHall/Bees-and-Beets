@@ -1,8 +1,9 @@
 class Vendors::ItemsController < Vendors::VendorsController
   before_action :item_belongs_to_current_vendor, only: [:edit, :update]
+  before_action :check_vendor_status
 
   def index
-    @items = current_vendor.items
+    check_item_status
   end
 
   def show
@@ -55,10 +56,26 @@ class Vendors::ItemsController < Vendors::VendorsController
   end
 
   def item_belongs_to_current_vendor
-    render file: "/public/404" unless item_vendor_id_is_current_vendor
+    render file: "/public/404" unless current_user.platform_admin? || item_vendor_id_is_current_vendor
   end
 
   def item_vendor_id_is_current_vendor
     Item.find(params[:id]).vendor_id == current_user.vendor.id
+  end
+
+  def check_vendor_status
+    if !current_user && current_vendor.status != "open"
+      render file: "public/404"
+    else
+      render file: "public/404" unless current_vendor.status == "open" || current_user.vendor_id == current_vendor.id
+    end
+  end
+
+  def check_item_status
+    if current_vendor? || current_platform_admin?
+      @items = current_vendor.items.all
+    else
+      @items = current_vendor.items.where(status: 1)
+    end
   end
 end

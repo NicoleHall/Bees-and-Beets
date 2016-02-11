@@ -33,6 +33,10 @@ FactoryGirl.define do
       role 1
     end
 
+    factory :platform_admin do
+      role 2
+    end
+
     factory :user_with_orders do
       transient do
         order_count 2
@@ -49,7 +53,7 @@ FactoryGirl.define do
   end
 
   factory :vendor do
-    status 0
+    status 1
     name { generate(:vendor_name) }
     description "A shop."
     image_path "http://theveganherald.com/wp-content/uploads/2015/12/Farm-Animals.jpg"
@@ -63,6 +67,19 @@ FactoryGirl.define do
       after(:create) do |vendor, evaluator|
         create_list(:user_vendor, evaluator.user_count, vendor: vendor)
         create_list(:item, evaluator.item_count, vendor: vendor)
+      end
+    end
+
+    factory :vendor_with_user_and_order do
+      transient do
+        user_count 1
+        item_count 2
+        order_count 2
+      end
+
+      after(:create) do |vendor, evaluator|
+        create_list(:user_vendor, evaluator.user_count, vendor: vendor)
+        create_list(:order_item, evaluator.order_count, vendor: vendor)
       end
     end
 

@@ -37,9 +37,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      if current_user.platform_admin?
+      if @user.platform_admin?
         redirect_to platform_admin_dashboard_path
-      elsif current_user.vendor?
+      elsif @user.vendor?
         redirect_to vendor_dashboard_path
       else
         redirect_to dashboard_path
