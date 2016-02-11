@@ -1,45 +1,71 @@
 <div class="row">
   <div class="col s12 m12">
-    <div class="card-panel blue-grey lighten-5">
-      <div class="card-title order_card_title"><a href="/users/<%= current_user.slug %>/orders/<%= order.id %>">Order ID: <%= order.id %></a></div>
-
-      <div class="card-content order_card_content">
-        <div class="row order_details_top larger-text">
-          <div class="col s4"><span class="order_heading">Ordered:</span> <%= order.date %></div>
-          <div class="col s4"><span class="order_heading">Status:</span><span class="status_<%= order.status %>"> <%= order.status.capitalize %></span></div>
-          <div class="col s4"><span class="order_heading">Total:</span> $<%= order.total %></div>
-        </div> <!-- row -->
-
+      <h1><a href="/users/<%= current_user.slug %>/orders/<%= order.id %>">Order ID: <%= order.id %></a></h1>
           <div class="items">
-            <% order.items.each do |item| %>
-              <div class="row">
-                <div class="order_image col s12 m5">
+            <table class="user_order_details bordered">
+              <thead>
+                <th> <!--order_details_top-->
+                  <span class="order_heading">Ordered:</span> <%= order.date %>
+                </th>
+                <th>
+                  <span class="order_heading">Status:</span><span class="status_<%= order.status %>"> <%= order.status.capitalize %></span>
+                </th>
+                <th>
+                  <span class="order_heading">Total:</span> $<%= order.total %>
+                </th>
+              </thead>
+              <tr>
+                <th>
+                  Image
+                </th>
+                <th>
+                  Item
+                </th>
+                <th>
+                  Price
+                </th>
+                <th>
+                  Quantity
+                </th>
+                <th>
+                  Subtotal
+                </th>
+              </tr>
+              <% order.items.each do |item| %>
+              <tr>
+                <td style="text-align: center;"> <!--.order_image-->
                   <% if item.file_upload_file_name.nil? %>
                     <%= image_tag item.image_path, class: "img-small" %>
                   <% elsif item.file_upload_file_name %>
                     <%= image_tag item.file_upload.url(:medium) %>
                   <% end %>
-                </div>
-                <div class="order_data col s12 m7 larger-text">
-                  <p><span class="order_heading">Item Title:</span><%= link_to item.title, vendor_item_path(vendor: item.vendor.url, id: item.id) %></p>
-                  <p><span class="order_heading">Price:</span> $<%= item.price %></p>
-                  <p><span class="order_heading">Quantity:</span> <%= order.quantity_of_item(item.id) %></p>
-                  <p><span class="order_heading">Subtotal:</span> $<%= item.price * order.quantity_of_item(item.id) %></p>
-                </div>
-              </div> <!-- row -->
-            <% end %> <!--order_data-->
-          </div> <!--items-->
-        <div class="row order_details_top">
-        </div>
-        <div>
-          <h5>Info</h5>
-          <div class="row larger-text">
-            <p><span class="order_heading">Name:</span><%= order.user.first_name + " " +  order.user.last_name %></p>
-            <p><span class="order_heading">Email:</span><%= order.user.email_address%></p>
+                </td>
+                <td> <!--.order_data-->
+                  <%= link_to item.title, vendor_item_path(vendor: item.vendor.url, id: item.id) %>
+                </td>
+                <td>
+                  $<%= item.price %>
+                </td>
+                <td>
+                  <%= order.quantity_of_item(item.id) %>
+                </td>
+                <td>
+                  $<%= item.price * order.quantity_of_item(item.id) %>
+                </td>
+              </tr>
+              <% end %>
+              <tr>
+                <td colspan="1">
 
-          </div>
-        </div>
-      </div> <!--card-content-->
-    </div> <!-- card-panel -->
+                </td>
+                <td>
+                  <strong>User Name:</strong> <%= order.user.first_name + " " +  order.user.last_name %>
+                </td>
+                <td>
+                  <strong>User Email:</strong> <%= order.user.email_address%>
+                </td>
+              </tr>
+            </table>
+          </div> <!--items-->
   </div><!-- col s12 -->
 </div> <!--row-->

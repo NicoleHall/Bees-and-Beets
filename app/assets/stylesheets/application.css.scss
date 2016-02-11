@@ -281,6 +281,25 @@ span.order_heading {
 .card-panel {
   margin-top: 2rem;
 }
+
+.items {
+  box-shadow: 1px 1px 30px #ddd;
+  padding: 20px;
+  .user_order_details{
+    th {
+      text-align: left;
+    }
+    tbody th:first-child {
+      text-align: center;
+    }
+    img {
+      max-width: 150px;
+    }
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+  }
+}
 /* FORM STYLING */
 form.profile_form {
   width: 80%;
