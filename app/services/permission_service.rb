@@ -36,6 +36,7 @@ class PermissionService
     return true if controller == "vendor_dashboards" && action.in?(%w(show))
     return true if controller == "vendors/items" && action.in?(%w(new create edit update))
     return true if controller == "vendors/orders" && action.in?(%w(index show update))
+    return true if controller == "vendors/users" && action.in?(%w(index new create))
     customer_permissions
   end
 

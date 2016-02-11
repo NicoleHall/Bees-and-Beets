@@ -30,6 +30,7 @@
         <%= link_to "Edit Kiosk", edit_vendor_path(vendor), class: "btn waves-effect waves-light" %>
         <%= link_to "Manage Orders", vendor_orders_path(vendor: vendor.url), class: "btn waves-effect waves-light" %>
         <%= link_to "View My Items", vendor_items_path(vendor: vendor.url), class: "btn waves-effect waves-light" %>
+        <%= link_to "Manage Store Admins", vendor_users_path(vendor: vendor.url) if vendor.owner_id == current_user.id %>
       </div>
     </div>
   </div>

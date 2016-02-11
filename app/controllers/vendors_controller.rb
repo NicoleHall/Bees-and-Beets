@@ -10,7 +10,7 @@ class VendorsController < ApplicationController
   end
 
   def create
-    @vendor = Vendor.new(vendor_params)
+    @vendor = Vendor.new(vendor_params, owner_id: current_user.id)
     if @vendor.save
       User.find(current_user.id).update_attributes(vendor_id: @vendor.id)
       flash[:success] = "Your kiosk is pending approval."

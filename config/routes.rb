@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :vendors, path: ':vendor', as: :vendor do
     resources :orders, only: [:index, :show, :update]
     resources :items, only: [:index, :show, :new, :create, :edit, :update]
+    resources :users, only: [:index, :new, :create]
   end
 
   resources :users,
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
     get "/cart", to: "cart_items#index"
     resources :orders, only: [:index, :create, :show]
   end
-  
+
   get "/cart", to: "cart_items#index"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
