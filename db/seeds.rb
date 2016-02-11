@@ -233,7 +233,7 @@ class Seed
           items = []
           100.times do |i|
             vendor.items.create!(
-            title: vendor.name + " " + Faker::SlackEmoji.food_and_drink.gsub(":","") + "#{i}",
+            title: vendor.name + " " + Faker::SlackEmoji.food_and_drink.gsub(":","").gsub("_", " ").capitalize + "#{i}",
             price: Faker::Commerce.price.to_i + 1,
             description: Faker::Lorem.paragraph,
             status: rand(2),
