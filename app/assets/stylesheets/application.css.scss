@@ -3,7 +3,6 @@
 *= require_tree .
 */
 
-
 /* STRIPE -- DO NOT DELETE!!!! */
 $weird_green: #C4D4AF;
 $light_font: #fff; /* Mostly links/text on dark backgrounds */
@@ -56,6 +55,18 @@ a:hover {
 .clear-floats {
   clear: both;
 }
+
+.button_to i, i.btn {
+    padding: 0;
+}
+
+.btn input[type="submit"] {
+    margin: 0;
+    padding: 0 30px;
+    display: block;
+    height: 100%;
+}
+
 /* HOME INDEX PAGE */
 h1.home_title {
   background-image: url('bees_beets_logo_white.png');
@@ -301,6 +312,10 @@ textarea.materialize-textarea {
   font-weight: 300;
   text-align: center;
 }
+
+input, textarea {
+  margin-bottom: 20px;
+}
 .dropdown-content li {
   text-align: center;
 }
@@ -321,6 +336,11 @@ select {
 
 select#user_role {
   text-transform: capitalize!important;
+}
+/***** VENDOR INDEX PAGE *****/
+.contained_display {
+  width: 80%;
+  margin: 0 auto;
 }
 
 /***** SIDE NAV ******/
@@ -431,6 +451,13 @@ input[type=text]:focus:not([readonly]) {
     margin: 0 auto;
   }
 }
+
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 90%;
+  }
+}
+
 @media screen and (max-width: 730px) {
   h1.home_title {
     font-size: 36px;

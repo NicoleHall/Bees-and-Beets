@@ -1,7 +1,7 @@
 class PlatformDashboardsController < ApplicationController
 
   def show
-    @vendors = Vendor.all
+    @vendors = Vendor.order(updated_at: :desc)
   end
 
 end

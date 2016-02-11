@@ -1,4 +1,4 @@
-<%= form_for @item,:url => vendor_item_path(vendor: current_vendor.url, id: @item.id), :html => {class: "item_form", multipart: true} do |f| %>
+<%= form_for @item,:url => vendor_item_path(vendor: current_vendor.url, id: @item.id), :html => {class: "profile_form", multipart: true} do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
   <br>
