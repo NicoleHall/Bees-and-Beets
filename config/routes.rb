@@ -40,6 +40,5 @@ Rails.application.routes.draw do
   get "/platform_dashboard", to: "platform_dashboards#show"
   put "/open_vendor", to: "vendors#open"
   put "/close_vendor", to: "vendors#close"
-  put "/pending_vendor", to: "vendors#pending"
   root "home#index"
 end

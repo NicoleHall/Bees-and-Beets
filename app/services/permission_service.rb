@@ -27,7 +27,7 @@ class PermissionService
 
   def platform_admin_permissions
     return true if controller == "platform_dashboards" && action.in?(%w(show))
-    return true if controller == "vendors" && action.in?(%w(open close pending))
+    return true if controller == "vendors" && action.in?(%w(open close))
     vendor_permissions
   end
 
