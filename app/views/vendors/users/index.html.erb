@@ -1,13 +1,13 @@
-<h2>Vendor Collaborators</h2>
+<h2>Store Admins</h2>
 
-<%= link_to "Add Store Admin", new_vendor_user_path(vendor: current_user.vendor.url) %>
+<%= link_to "Add Store Admin", new_vendor_user_path(vendor: current_vendor.url) %>
 
 <table>
   <thead>
     <tr>
-        <th data-field="id">Name</th>
-        <th data-field="name">Username</th>
-        <th data-field="price">Email Address</th>
+        <th data-field="name">Name</th>
+        <th data-field="username">Username</th>
+        <th data-field="email_address">Email Address</th>
     </tr>
   </thead>
 

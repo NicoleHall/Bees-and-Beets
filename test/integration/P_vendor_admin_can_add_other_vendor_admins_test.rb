@@ -22,7 +22,7 @@ class VendorAdminCanAddOtherVendorAdminsTest < ActionDispatch::IntegrationTest
 
     assert_equal new_vendor_user_path(vendor: vendor.url), current_path
 
-    assert page.has_content?("Enter Username Of New Collaborator:")
+    assert page.has_content?("Enter Username Of New Store Admin:")
     fill_in "Username", with: default_user.username
     click_button("Submit")
 
