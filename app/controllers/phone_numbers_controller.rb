@@ -12,4 +12,12 @@ class PhoneNumbersController < ApplicationController
       format.js # render app/views/phone_numbers/create.js.erb
     end
   end
+
+  def verify
+    @phone_number = PhoneNumber.find_by(phone_number: params[:hidden_phone_number])
+    @phone_number.verify(params[:pin])
+    respond_to do |format|
+      format.js
+    end
+  end
 end

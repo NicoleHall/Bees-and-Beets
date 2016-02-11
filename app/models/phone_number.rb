@@ -17,4 +17,8 @@ class PhoneNumber < ActiveRecord::Base
     )
   end
 
+  def verify(entered_pinT)
+    update(verified: true) if self.pin == entered_pin
+  end
+
 end
