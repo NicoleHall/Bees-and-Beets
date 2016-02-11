@@ -18,7 +18,7 @@
       <td><%= user.full_name %></td>
       <td><%= user.username %></td>
       <td><%= user.email_address %></td>
-      <td><%= link_to "Remove", vendor_user_path(vendor: current_vendor.url, id: user.id), method: :put %></td>
+      <td><%= link_to "Remove", vendor_user_path(vendor: current_vendor.url, id: user.id), method: :put unless current_vendor.owner_id == user.id %></td>
     </tr>
     <% end %>
   </tbody>
