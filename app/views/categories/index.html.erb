@@ -6,12 +6,15 @@
 
 <div class="categories">
   <div class="row">
-    <% @categories.each do |category| %>
+    <div class="contained_display">
+      <% @categories.each do |category| %>
       <div class="col s12 m4 l4">
         <div id="<%= category.name %>">
           <div class="card category-card">
             <div class="card-image waves-effect waves-block waves-light">
+              <%= link_to category_items_path(category_url: category.url) do %>
               <%= image_tag "vegetables.jpg" %>
+              <% end %>
             </div>
             <div class="card-content">
               <!-- <%= category.name %> -->
@@ -20,6 +23,7 @@
           </div> <!--card-->
         </div> <!-- cat name grid -->
       </div> <!--col12-->
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

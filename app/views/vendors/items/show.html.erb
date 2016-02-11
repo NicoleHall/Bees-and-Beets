@@ -1,36 +1,41 @@
 <h2><%= @item.title %></h2>
 <div class="row">
-  <div class="col s12 m6">
-    <div class="item-show-image">
-      <% if @item.file_upload_file_name.nil? %>
-      <%= image_tag @item.image_path %>
-      <% elsif @item.file_upload_file_name %>
-      <%= image_tag @item.file_upload.url(:large) %>
-      <% end %>
+  <div class="contained_display">
+    <div class="col s12 m6">
+      <div class="item-show-image">
+        <% if @item.file_upload_file_name.nil? %>
+        <%= image_tag @item.image_path %>
+        <% elsif @item.file_upload_file_name %>
+        <%= image_tag @item.file_upload.url(:large) %>
+        <% end %>
+      </div>
     </div>
-  </div>
 
-  <div class="col s12 m6">
-    <div class="item-show-details">
-      <p class = "item-show-price">
-        <%= number_to_currency(@item.price) %>
-      </p>
+    <div class="col s12 m6">
+      <div class="item-show-details">
+        <p>
+          <%= link_to current_vendor.name, vendor_items_path(vendor: current_vendor.url)%>
+        </p>
+        <p class = "item-show-price">
+          <%= number_to_currency(@item.price) %>
+        </p>
 
-      <p class = "item-show-description editable">
-        <%= @item.description %>
-      </p>
+        <p class = "item-show-description editable">
+          <%= @item.description %>
+        </p>
 
-      <% if current_user && current_vendor == current_user.vendor %>
-      <p>
-        <%= link_to "Edit Item", edit_vendor_item_path(vendor: current_vendor.url, id: @item.id) %>
-      </p>
-      <% end %>
+        <% if current_user && current_vendor == current_user.vendor %>
+        <p>
+          <%= link_to "Edit Item", edit_vendor_item_path(vendor: current_vendor.url, id: @item.id) %>
+        </p>
+        <% end %>
 
-      <% if @item.status == "active" %>
-      <%= button_to "Add to Cart", cart_items_path(item_id: @item.id), class: "btn waves-effect waves-light" %>
-      <% else %>
-      <p class="pink_error_text">This item is inactive.</p>
-      <% end %>
+        <% if @item.status == "active" %>
+        <%= button_to "Add to Cart", cart_items_path(item_id: @item.id), class: "btn waves-effect waves-light" %>
+        <% else %>
+        <p class="pink_error_text">This item is inactive.</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

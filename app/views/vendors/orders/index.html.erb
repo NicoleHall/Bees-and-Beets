@@ -1,4 +1,5 @@
 <h2>All Orders</h2>
+<h3><%= link_to current_vendor.name, vendor_items_path(vendor: current_vendor.url) %></h3>
 <div class="col s12 m12">
   <div id= "totals" class="row center-align">
     <!-- chartkick goes here -->
@@ -9,9 +10,9 @@
     <%= select_tag :order_status, options_for_select(%w(all ordered completed cancelled)) %>
   </div>
 
-  <div class="card-panel blue-grey lighten-5">
+  <div class="card-panel orders_table">
 
-    <table class="highlight larger-text responsive-table">
+    <table class="responsive-table striped">
       <thead>
         <tr>
           <th>Order ID</th>
