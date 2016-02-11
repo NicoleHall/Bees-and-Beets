@@ -2,7 +2,7 @@ class VendorsController < ApplicationController
   before_action :check_vendor_status, only: [:edit, :update]
 
   def index
-      @vendors = Vendor.where(status: 1)
+      @vendors = Vendor.where(status: 1).order(updated_at: :desc)
   end
 
   def new
