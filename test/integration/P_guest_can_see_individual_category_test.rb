@@ -12,7 +12,7 @@ class GuestCanSeeIndividualCategoryTest < ActionDispatch::IntegrationTest
     assert page.has_content?(category1.name)
     category1.items.each do |item|
       assert page.has_content?(item.title)
-      within(".item-#{item.title}") do
+      within(".item-#{item.id}") do
         assert page.has_button?("Add to Cart")
       end
     end
