@@ -26,6 +26,7 @@
     <% end %>
     <%= button_to "Items", vendor_items_path(vendor: vendor.url), method: :get, class: "btn waves-effect waves-light" %>
     <%= button_to "Orders", vendor_orders_path(vendor: vendor.url), method: :get, class: "btn waves-effect waves-light" %>
+    <%= button_to "Store Admins", vendor_users_path(vendor: vendor.url), method: :get, class: "btn waves-effect waves-light" %>
     <%= button_to "Edit", edit_vendor_path(id: vendor.id), method: :get, class: "btn waves-effect waves-light" %>
   </td>
 </tr>

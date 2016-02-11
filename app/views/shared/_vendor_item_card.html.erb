@@ -22,7 +22,7 @@
       <% end %>
       <% if item.status == "active" %>
       <div class="col s3">
-        <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn waves-effect waves-light" %>
+        <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn waves-effect waves-light" if item.vendor.open? %>
       </div>
     <% else %>
     <p class="pink_error_text" style="clear: both;">This item is inactive.</p>

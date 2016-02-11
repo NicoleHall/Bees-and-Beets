@@ -29,4 +29,8 @@ class Vendor < ActiveRecord::Base
       [Vendor.statuses.key(status).capitalize, count]
     end
   end
+
+  def self.open_stores_desc
+    where(status: 1).order(updated_at: :desc)
+  end
 end

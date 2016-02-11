@@ -11,4 +11,8 @@ class Category < ActiveRecord::Base
   def generate_url
     self.url = self.name.parameterize
   end
+
+  def self.desc_order_include_items
+    order(updated_at: :desc).includes(:items)
+  end
 end
