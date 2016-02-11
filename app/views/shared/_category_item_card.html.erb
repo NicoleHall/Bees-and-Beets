@@ -5,7 +5,7 @@
     <% end %>
     <p><%= link_to item.vendor.name, vendor_items_path(vendor: item.vendor.url) %></p>
   </div>
-  <div class="item-details col s8 left-align item-<%=item.title%>">
+  <div class="item-details col s8 left-align item-<%=item.id%>">
     <h4><%= link_to item.title, vendor_item_path(vendor: item.vendor.url, id: item.id) %></h4>
     <p><%= item.description %></p>
     <p><%= number_to_currency(item.price, class: "item-price") %></p>

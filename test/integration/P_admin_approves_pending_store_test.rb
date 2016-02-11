@@ -37,4 +37,23 @@ class AdminApprovesPendingStoreTest < ActionDispatch::IntegrationTest
       assert page.has_content?("Open")
     end
   end
+
+  test "platform admin can close store" do
+    admin = create(:user, role: 2)
+    vendor = create(:vendor_with_user)
+    ApplicationController.any_instance.stubs(:current_user).returns(admin)
+
+    visit platform_dashboard_path
+
+    within("#vendor-#{vendor.id}") do
+      assert page.has_content?("Open")
+      assert page.has_button?("Close")
+      click_on "Close"
+    end
+
+    within("#vendor-#{vendor.id}") do
+      assert page.has_content?("Close")
+      assert page.has_button?("Open")
+    end
+  end
 end

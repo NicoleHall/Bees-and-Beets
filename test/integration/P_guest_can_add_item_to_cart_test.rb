@@ -7,10 +7,13 @@ class GuestCanAddItemToCartTest < ActionDispatch::IntegrationTest
 
     visit category_items_path(category_url: category.url)
 
-    first(:button, "Add to Cart").click
+    item = items.first
+    within(".item-#{item.id}") do
+      click_on "Add to Cart"
+    end
 
-    assert page.has_content?("You added #{items.first.title} to your cart.")
-    cart_items = [items.first]
+    assert page.has_content?("You added #{item.title} to your cart.")
+    cart_items = [item]
 
     vendor = create(:vendor_with_items)
     vendor_items = vendor.items

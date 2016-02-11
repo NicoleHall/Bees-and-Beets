@@ -30,11 +30,6 @@ class VendorsController < ApplicationController
     redirect_to platform_dashboard_path
   end
 
-  def pending
-    Vendor.update(params[:vendor_id], status: 0)
-    redirect_to platform_dashboard_path
-  end
-
   def edit
     check_vendor_status
     @vendor = Vendor.find(params[:id])
