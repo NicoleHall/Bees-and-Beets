@@ -175,11 +175,12 @@ class Seed
   def generate_business_admins
     19.times do |i|
       name = Faker::Name.name.split(" ")
+      email = Faker::Internet.email
       User.create!(
       first_name: name.first,
       last_name: name.last,
-      username: name.join(".").downcase,
-      email_address: Faker::Internet.email,
+      username: email,
+      email_address: email,
       password: "password",
       role: 1
       )
