@@ -14,6 +14,7 @@ class Seed
     seed.generate_order_items
     seed.populate_mikes_store
     seed.populate_rachels_store
+    seed.generate_future_collaborator
   end
 
   def populate_mikes_store
@@ -203,7 +204,7 @@ class Seed
       business_admins = User.where(role: 1)
       business_admins.each do |admin|
         kiosk = Vendor.create!(
-        name: Faker::Name.name.split(" ").first + "'s " + types.sample,
+        name: Faker::Name.name.split(" ")[-2] + "'s " + types.sample,
         description: Faker::Lorem.paragraph,
         image_path: "https://s-media-cache-ak0.pinimg.com/236x/1e/53/94/1e53942d804bd726b332b849ca7254b0.jpg",
         status: rand(3),
@@ -270,7 +271,16 @@ class Seed
         end
       end
 
-
+      def generate_future_collaborator
+        jeff = User.create!(
+        first_name: "Jeff",
+        last_name: "Casimir",
+        username: "jeff@turing.io",
+        email_address: "jeff@turing.io",
+        password: "password",
+        role: 1
+        )
+      end
     end
 
 

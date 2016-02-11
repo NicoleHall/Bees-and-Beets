@@ -26,6 +26,10 @@ class Item < ActiveRecord::Base
     image_path == default_image
   end
 
+  def self.open_vendors_only
+    joins(:vendor).where("vendors.status = ?", 1)
+  end
+
   private
 
   def default_image
