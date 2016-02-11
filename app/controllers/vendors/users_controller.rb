@@ -19,6 +19,12 @@ class Vendors::UsersController < Vendors::VendorsController
     end
   end
 
+  def update
+    user = User.find(params[:id])
+    user.update_attributes(vendor_id: nil)
+    redirect_to vendor_users_path(vendor: current_vendor.url)
+  end
+
   private
 
     def collaborator_params
@@ -26,6 +32,8 @@ class Vendors::UsersController < Vendors::VendorsController
     end
 
     def check_vendor_status
-      render file: "public/404" unless current_user.platform_admin? || current_vendor.id == current_user.vendor_id
+      render file: "public/404" unless current_user.platform_admin? ||
+                                       (current_vendor.id == current_user.vendor_id &&
+                                       current_user.id == current_vendor.owner_id)
     end
 end

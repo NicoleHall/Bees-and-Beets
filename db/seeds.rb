@@ -33,6 +33,7 @@ class Seed
     status: 1
     )
     mike.update_attributes(vendor_id: kiosk.id)
+    kiosk.update_attributes(owner_id: mike.id)
 
     goods = Category.create(name: "Hosiery")
     ties = Category.create(name: "Ties")
@@ -91,6 +92,7 @@ class Seed
     status: 1
     )
     rachel.update_attributes(vendor_id: kiosk.id)
+    kiosk.update_attributes(owner_id: rachel.id)
 
     puppies = Category.create(name: "Puppies")
     piglets = Category.create(name: "Piglets")
@@ -207,6 +209,7 @@ class Seed
         status: rand(3),
         )
         admin.update_attributes(vendor_id: kiosk.id)
+        kiosk.update_attributes(owner_id: admin.id)
       end
     end
 

@@ -8,15 +8,17 @@
         <th data-field="name">Name</th>
         <th data-field="username">Username</th>
         <th data-field="email_address">Email Address</th>
+        <th data-field="remove">Remove</th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
-    <tr>
+    <tr id = "store_admin_<%= user.id %>">
       <td><%= user.full_name %></td>
       <td><%= user.username %></td>
       <td><%= user.email_address %></td>
+      <td><%= link_to "Remove", vendor_user_path(vendor: current_vendor.url, id: user.id), method: :put %></td>
     </tr>
     <% end %>
   </tbody>
