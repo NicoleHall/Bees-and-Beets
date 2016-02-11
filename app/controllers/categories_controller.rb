@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.order(updated_at: :desc).includes(:items)
+    @categories = Category.desc_order_include_items
   end
 end
