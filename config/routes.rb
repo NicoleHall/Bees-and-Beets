@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     get "/cart", to: "cart_items#index"
     resources :orders, only: [:index, :create, :show]
   end
-  
+
+  resources :phone_numbers, only: [:new, :create]
+
   get "/cart", to: "cart_items#index"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"

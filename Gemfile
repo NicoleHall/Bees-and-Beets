@@ -10,6 +10,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'faker'
 gem 'figaro'
 gem 'chartkick'
+gem 'twilio-ruby', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

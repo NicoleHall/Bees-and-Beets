@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209222209) do
+ActiveRecord::Schema.define(version: 20160211170256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,14 @@ ActiveRecord::Schema.define(version: 20160209222209) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
+  create_table "phone_numbers", force: :cascade do |t|
+    t.string   "phone_number"
+    t.string   "pin"
+    t.boolean  "verified"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -96,6 +104,7 @@ ActiveRecord::Schema.define(version: 20160209222209) do
     t.integer  "file_upload_file_size"
     t.datetime "file_upload_updated_at"
     t.string   "url"
+    t.integer  "owner_id"
   end
 
   add_foreign_key "items", "categories"
